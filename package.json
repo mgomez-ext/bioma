@@ -14,11 +14,11 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sapuk-ai/bioma.git"  
+    "url": "https://github.com/mgomezw/bioma.git"  
   },
-  "homepage": "https://github.com/sapuk-ai/bioma#readme",
+  "homepage": "https://github.com/mgomezw/bioma#readme",
   "bugs": {
-    "url": "https://github.com/sapuk-ai/bioma/issues"
+    "url": "https://github.com/mgomezw/bioma/issues"
   },
   "scripts": {
     "ng": "ng",

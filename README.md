@@ -201,7 +201,7 @@ See the [full token documentation](https://your-storybook-url.chromatic.com) in 
 ### Running Storybook Locally
 
 ```bash
-git clone https://github.com/sapuk-ai/bioma.git
+git clone https://github.com/mgomezw/bioma.git
 cd bioma
 npm install
 npm run storybook

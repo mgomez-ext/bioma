@@ -102,4 +102,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tagged as v0.1.0
 - Comprehensive .gitignore for Angular projects
 
-[0.1.0]: https://github.com/sapuk-ai/bioma/releases/tag/v0.1.0
+[0.1.0]: https://github.com/mgomezw/bioma/releases/tag/v0.1.0

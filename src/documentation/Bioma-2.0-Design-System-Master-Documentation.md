@@ -3820,7 +3820,7 @@ import '@mgomezw/bioma/styles';
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/sapuk-ai/bioma.git
+git clone https://github.com/mgomezw/bioma.git
 
 # Instalar dependencias
 npm install
