@@ -1016,21 +1016,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/icon-font/icon-font.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/icon-font/icon-font.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
             },
             {
                 "name": "Disabled",
@@ -1136,11 +1136,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/icon-font/icon-font.stories.ts",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<IconFontComponent>",
-                "defaultValue": "{\n  title: 'Bioma 2.0/Foundation/IconFont',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
+                "type": "Meta<TokenDocComponent>",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
             },
             {
                 "name": "meta",
@@ -1156,11 +1156,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "file": "src/app/components/icon-font/icon-font.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<TokenDocComponent>",
-                "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
+                "type": "Meta<IconFontComponent>",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Foundation/IconFont',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
             },
             {
                 "name": "NeutralColorToken",
@@ -1226,21 +1226,21 @@
                 "name": "Playground",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/icon-font/icon-font.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
-            },
-            {
-                "name": "Playground",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    token: {\n      name: 'custom-token',\n      value: '#123456',\n      hex: '#123456',\n      rgb: 'rgb(18, 52, 86)',\n      usage: 'Customize this token',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
+                "name": "Playground",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/icon-font/icon-font.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
             },
             {
                 "name": "preview",
@@ -1597,8 +1597,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<IconFontComponent>",
-                "file": "src/app/components/icon-font/icon-font.stories.ts",
+                "rawtype": "StoryObj<TokenDocComponent>",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1619,8 +1619,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<TokenDocComponent>",
-                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "rawtype": "StoryObj<IconFontComponent>",
+                "file": "src/app/components/icon-font/icon-font.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2381,13 +2381,13 @@
                     "kind": 184
                 }
             ],
-            "src/app/components/icon-font/icon-font.stories.ts": [
+            "src/app/components/token-doc/token-doc.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<IconFontComponent>",
-                    "file": "src/app/components/icon-font/icon-font.stories.ts",
+                    "rawtype": "StoryObj<TokenDocComponent>",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2407,13 +2407,13 @@
                     "kind": 184
                 }
             ],
-            "src/app/components/token-doc/token-doc.stories.ts": [
+            "src/app/components/icon-font/icon-font.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<TokenDocComponent>",
-                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "rawtype": "StoryObj<IconFontComponent>",
+                    "file": "src/app/components/icon-font/icon-font.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

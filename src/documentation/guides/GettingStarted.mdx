@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Guides/Getting Started" />
+<Meta title="Bioma 2.0/Guías/Comenzar" />
 
-# 🚀 Getting Started
+# 🚀 Comenzar
 
 Guía rápida para comenzar a usar Bioma 2.0 Design System en tu proyecto Angular.
 
@@ -44,7 +44,7 @@ import { ButtonComponent } from '@mgomezw/bioma';
   selector: 'app-root',
   standalone: true,
   imports: [ButtonComponent], // Importar aquí
-  template: `<bio-button label="Click me" />`
+  template: `<bio-button label="Hacé click" />`
 })
 export class AppComponent {}
 ```
@@ -65,23 +65,23 @@ import { ButtonComponent } from '@mgomezw/bioma';
   imports: [ButtonComponent],
   template: `
     <div class="d-flex gap-3">
-      <!-- Primary button -->
+      <!-- Botón primario -->
       <bio-button
-        label="Primary"
+        label="Primario"
         variant="primary"
         (click)="handlePrimary()">
       </bio-button>
 
-      <!-- Secondary button -->
+      <!-- Botón secundario -->
       <bio-button
-        label="Secondary"
+        label="Secundario"
         variant="secondary"
         (click)="handleSecondary()">
       </bio-button>
 
-      <!-- Disabled button -->
+      <!-- Botón deshabilitado -->
       <bio-button
-        label="Disabled"
+        label="Deshabilitado"
         variant="primary"
         [disabled]="true">
       </bio-button>
@@ -90,11 +90,11 @@ import { ButtonComponent } from '@mgomezw/bioma';
 })
 export class ExampleComponent {
   handlePrimary() {
-    console.log('Primary clicked!');
+    console.log('Primario clickeado!');
   }
 
   handleSecondary() {
-    console.log('Secondary clicked!');
+    console.log('Secundario clickeado!');
   }
 }
 ```
@@ -136,15 +136,15 @@ Todos los componentes usan el prefijo `bio-`:
 
 ## 🎨 Uso de Bootstrap
 
-Bioma extiende Bootstrap, así que puedes usar sus utilidades:
+Bioma extiende Bootstrap, así que podés usar sus utilidades:
 
 ```html
-<!-- Spacing utilities -->
+<!-- Utilidades de espaciado -->
 <div class="p-4 m-2">
-  <bio-button label="Button" />
+  <bio-button label="Botón" />
 </div>
 
-<!-- Grid system -->
+<!-- Sistema de grilla -->
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -153,10 +153,10 @@ Bioma extiende Bootstrap, así que puedes usar sus utilidades:
   </div>
 </div>
 
-<!-- Flexbox utilities -->
+<!-- Utilidades flexbox -->
 <div class="d-flex justify-content-between align-items-center">
-  <bio-button label="Left" />
-  <bio-button label="Right" />
+  <bio-button label="Izquierda" />
+  <bio-button label="Derecha" />
 </div>
 ```
 
@@ -166,10 +166,10 @@ Bioma extiende Bootstrap, así que puedes usar sus utilidades:
 
 ### En Storybook
 
-1. Navega por el menú lateral
-2. Selecciona un componente
-3. Prueba diferentes props en los controles
-4. Copia el código de ejemplo
+1. Navegá por el menú lateral
+2. Seleccioná un componente
+3. Probá diferentes props en los controles
+4. Copiá el código de ejemplo
 
 ### En tu proyecto
 
@@ -195,9 +195,9 @@ import {
 ## 🎓 Próximos Pasos
 
 1. **Explorar Foundations**
-   - [Color System](../foundations/Color.mdx)
-   - [Typography](../foundations/Typography.mdx)
-   - [Spacing](../foundations/Spacing.mdx)
+   - [Sistema de Color](../foundations/Color.mdx)
+   - [Tipografía](../foundations/Typography.mdx)
+   - [Espaciado](../foundations/Spacing.mdx)
 
 2. **Ver Componentes**
    - [Catálogo completo](../components/Components.mdx)
@@ -210,7 +210,7 @@ import {
 
 ---
 
-## 🐛 Troubleshooting
+## 🐛 Solución de Problemas
 
 ### Error: Cannot find module '@mgomezw/bioma'
 
@@ -218,7 +218,7 @@ import {
 
 ### Estilos de Bootstrap no se aplican
 
-**Solución:** Asegúrate de importar Bootstrap en `styles.scss`:
+**Solución:** Asegurate de importar Bootstrap en `styles.scss`:
 
 ```scss
 @import 'bootstrap/scss/bootstrap';
@@ -226,7 +226,7 @@ import {
 
 ### Componente no renderiza
 
-**Solución:** Verifica que el componente esté importado:
+**Solución:** Verificá que el componente esté importado:
 
 ```typescript
 @Component({
@@ -245,4 +245,4 @@ import {
 
 ---
 
-**¿Tienes preguntas?** Consulta la documentación completa o contacta al equipo de Design System.
+**¿Tenés preguntas?** Consultá la documentación completa o contactá al equipo de Design System.

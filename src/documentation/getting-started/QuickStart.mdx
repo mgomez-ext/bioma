@@ -1,12 +1,12 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Getting Started/Quick Start" />
+<Meta title="Bioma 2.0/Comenzar/Inicio Rápido" />
 
-# Quick Start
+# Inicio Rápido
 
-Build your first component with Bioma in 5 minutes.
+Creá tu primer componente con Bioma en 5 minutos.
 
-## Step 1: Create a New Component
+## Paso 1: Creá un Nuevo Componente
 
 ```typescript
 // app/my-card.component.ts
@@ -27,7 +27,7 @@ export class MyCardComponent {
 }
 ```
 
-## Step 2: Add the Template
+## Paso 2: Agregá el Template
 
 ```html
 <!-- my-card.component.html -->
@@ -38,12 +38,12 @@ export class MyCardComponent {
   </div>
 
   <p class="card__content">
-    Start building beautiful experiences with Bioma's design system.
+    Empezá a construir experiencias hermosas con el design system de Bioma.
   </p>
 
   <div class="card__actions">
     <bio-button
-      label="Get Started"
+      label="Comenzar"
       variant="filled"
       size="large"
       [iconEnd]="true"
@@ -51,7 +51,7 @@ export class MyCardComponent {
       (clicked)="handleClick()">
     </bio-button>
     <bio-button
-      label="Learn More"
+      label="Saber Más"
       variant="outlined"
       size="large">
     </bio-button>
@@ -59,7 +59,7 @@ export class MyCardComponent {
 </div>
 ```
 
-## Step 3: Style with Tokens
+## Paso 3: Estilizá con Tokens
 
 ```scss
 // my-card.component.scss
@@ -103,7 +103,7 @@ export class MyCardComponent {
 }
 ```
 
-## Step 4: Use Your Component
+## Paso 4: Usá tu Componente
 
 ```typescript
 // app.component.ts
@@ -119,71 +119,71 @@ import { MyCardComponent } from './my-card.component';
 export class AppComponent {}
 ```
 
-## Result
+## Resultado
 
-You now have a fully-styled card using Bioma components and tokens! The card includes:
-- ✅ Bioma Button components
-- ✅ Icon from IconFont system
-- ✅ Design tokens for consistent styling
-- ✅ Automatic dark mode support
-- ✅ Accessible markup
-- ✅ Responsive design
+¡Ahora tenés una card completamente estilizada usando componentes y tokens de Bioma! La card incluye:
+- ✅ Componentes Button de Bioma
+- ✅ Ícono del sistema IconFont
+- ✅ Design tokens para estilos consistentes
+- ✅ Soporte automático de dark mode
+- ✅ Marcado accesible
+- ✅ Diseño responsive
 
-## What You Learned
+## Qué Aprendiste
 
-### Components
-- How to import and use Bioma components
-- Passing props to components
-- Handling events
+### Componentes
+- Cómo importar y usar componentes de Bioma
+- Pasar props a componentes
+- Manejar eventos
 
 ### Design Tokens
-- Using CSS custom properties
-- Semantic vs foundation tokens
-- Color, spacing, and typography tokens
+- Usar propiedades personalizadas de CSS
+- Tokens semánticos vs foundation tokens
+- Tokens de color, espaciado y tipografía
 
-### Best Practices
-- Standalone components
-- Token-based styling (no hardcoded values)
-- Consistent spacing and sizing
+### Mejores Prácticas
+- Componentes standalone
+- Estilos basados en tokens (sin valores hardcodeados)
+- Espaciado y sizing consistentes
 
-## Next Steps
+## Próximos Pasos
 
-### Explore More Components
-- [Button](#) - All button variants and sizes
-- [Input](#) - Form inputs and validation
-- [IconFont](#) - Complete icon system
+### Explorá Más Componentes
+- [Button](#) - Todas las variantes y tamaños de botones
+- [Input](#) - Inputs de formulario y validación
+- [IconFont](#) - Sistema completo de íconos
 
-### Learn Design Tokens
-- [Overview](#) - Token architecture explained
-- [All Tokens](#) - Complete token reference
-- [Usage Guide](#) - How to use tokens effectively
+### Aprendé sobre Design Tokens
+- [Overview](#) - Arquitectura de tokens explicada
+- [All Tokens](#) - Referencia completa de tokens
+- [Usage Guide](#) - Cómo usar tokens efectivamente
 
-### Build Patterns
-- [Forms](#) - Form layout patterns
-- [Cards](#) - Card variations
-- [Navigation](#) - Navigation patterns
+### Construí Patrones
+- [Forms](#) - Patrones de layout de formularios
+- [Cards](#) - Variaciones de cards
+- [Navigation](#) - Patrones de navegación
 
-## Common Patterns
+## Patrones Comunes
 
-### Form with Bioma Components
+### Formulario con Componentes de Bioma
 
 ```typescript
 <form class="form">
   <bio-input
     label="Email"
     type="email"
-    placeholder="you@example.com"
+    placeholder="vos@ejemplo.com"
     [required]="true">
   </bio-input>
 
   <bio-input
-    label="Password"
+    label="Contraseña"
     type="password"
     [required]="true">
   </bio-input>
 
   <bio-button
-    label="Sign In"
+    label="Iniciar Sesión"
     variant="filled"
     type="submit"
     fullWidth>
@@ -191,7 +191,7 @@ You now have a fully-styled card using Bioma components and tokens! The card inc
 </form>
 ```
 
-### Responsive Layout with Tokens
+### Layout Responsive con Tokens
 
 ```scss
 .layout {
@@ -209,4 +209,4 @@ You now have a fully-styled card using Bioma components and tokens! The card inc
 
 ---
 
-Ready to build more? Explore our [Components](#) or dive into [Foundations](#)!
+¿Listo para construir más? ¡Explorá nuestros [Componentes](#) o sumergite en [Fundamentos](#)!

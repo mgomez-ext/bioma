@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Components/Índice" />
+<Meta title="Bioma 2.0/Componentes/Índice" />
 
-# 🧩 Components (Componentes)
+# 🧩 Componentes
 
 Catálogo completo de componentes del design system, organizados por categoría funcional.
 
@@ -11,6 +11,7 @@ Catálogo completo de componentes del design system, organizados por categoría 
 ## 📦 Categorías de Componentes
 
 ### 📝 Forms
+
 Componentes para entrada y captura de datos.
 
 **Componentes disponibles:**
@@ -28,11 +29,12 @@ Componentes para entrada y captura de datos.
 ---
 
 ### 🎯 Actions
+
 Componentes que desencadenan acciones.
 
 **Componentes disponibles:**
 - **Button** - Botón estándar (todas las variantes)
-- **Icon Button** - Botón solo con icono
+- **Icon Button** - Botón solo con ícono
 - **Button Group** - Grupo de botones
 - **Link** - Enlace de navegación
 
@@ -41,6 +43,7 @@ Componentes que desencadenan acciones.
 ---
 
 ### 💬 Feedback
+
 Componentes para mostrar retroalimentación al usuario.
 
 **Componentes disponibles:**
@@ -57,6 +60,7 @@ Componentes para mostrar retroalimentación al usuario.
 ---
 
 ### 🧭 Navigation
+
 Componentes para navegación y orientación.
 
 **Componentes disponibles:**
@@ -72,6 +76,7 @@ Componentes para navegación y orientación.
 ---
 
 ### 📊 Data Display
+
 Componentes para mostrar información.
 
 **Componentes disponibles:**
@@ -87,6 +92,7 @@ Componentes para mostrar información.
 ---
 
 ### 🎭 Overlays
+
 Componentes que se superponen al contenido.
 
 **Componentes disponibles:**
@@ -101,6 +107,7 @@ Componentes que se superponen al contenido.
 ---
 
 ### 🔧 Primitives
+
 Componentes básicos de bajo nivel.
 
 **Componentes disponibles:**
@@ -166,7 +173,7 @@ import { ButtonComponent } from '@mgomezw/bioma';
   imports: [ButtonComponent],
   template: `
     <bio-button
-      label="Click Me"
+      label="Hacé Click"
       variant="primary"
       size="md"
       (click)="handleClick()">
@@ -175,7 +182,7 @@ import { ButtonComponent } from '@mgomezw/bioma';
 })
 export class AppComponent {
   handleClick() {
-    console.log('Button clicked!');
+    console.log('¡Botón clickeado!');
   }
 }
 ```
@@ -213,12 +220,12 @@ Bioma extiende componentes de Bootstrap:
 ```html
 <!-- Componente Bioma -->
 <bio-button variant="primary">
-  Click me
+  Hacé click
 </bio-button>
 
 <!-- Renderiza internamente -->
 <button class="btn btn-primary">
-  Click me
+  Hacé click
 </button>
 ```
 
@@ -245,4 +252,4 @@ Ver el [Roadmap completo](../../../docs/BIOMA-2.0-ROADMAP.md).
 
 ---
 
-**¿Listo para explorar?** Selecciona una categoría del menú lateral 👈
+**¿Listo para explorar?** Seleccioná una categoría del menú lateral 👈

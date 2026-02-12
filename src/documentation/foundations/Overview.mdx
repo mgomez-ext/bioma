@@ -1,73 +1,73 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Overview" />
+<Meta title="Bioma 2.0/Fundamentos/Resumen" />
 
-# Foundations
+# Fundamentos
 
-Foundations are the core building blocks of the Bioma design system. They define the visual language and provide the atomic elements that all components and patterns are built upon.
+Los fundamentos son los bloques de construcción centrales del sistema de diseño Bioma. Definen el lenguaje visual y proporcionan los elementos atómicos sobre los que se construyen todos los componentes y patrones.
 
-## What are Foundations?
+## ¿Qué son los Fundamentos?
 
-Foundations include:
+Los fundamentos incluyen:
 
-- **Design Tokens**: The single source of truth for design decisions
-- **Color**: Brand colors, neutrals, and semantic color system
-- **Typography**: Font families, scales, weights, and text styles
-- **Spacing**: Consistent spacing scale for layouts
-- **Layout**: Grid systems and responsive breakpoints
-- **Border**: Border widths and radius values
-- **Elevation**: Shadow system for depth and hierarchy
-- **Animation**: Motion principles and timing functions
-- **Iconography**: Icon system and usage guidelines
+- **Design Tokens**: La única fuente de verdad para decisiones de diseño
+- **Color**: Colores de marca, neutrales y sistema de color semántico
+- **Tipografía**: Familias tipográficas, escalas, pesos y estilos de texto
+- **Espaciado**: Escala de espaciado consistente para layouts
+- **Layout**: Sistemas de grilla y breakpoints responsivos
+- **Border**: Anchos de borde y valores de radius
+- **Elevation**: Sistema de sombras para profundidad y jerarquía
+- **Animation**: Principios de movimiento y funciones de timing
+- **Iconografía**: Sistema de íconos y guías de uso
 
-## Token Architecture
+## Arquitectura de Tokens
 
-Bioma uses a **two-level token system**:
+Bioma usa un **sistema de tokens de dos niveles**:
 
-### Level 1: Foundation Tokens (Primitives)
-Raw values that don't change based on context:
+### Nivel 1: Foundation Tokens (Primitivos)
+Valores crudos que no cambian según el contexto:
 ```scss
 --brand-500: #E30038;
 --neutral-950: #121212;
 --spacing-4: 16px;
 ```
 
-### Level 2: Semantic Tokens (Contextual)
-Contextual tokens that reference foundation tokens:
+### Nivel 2: Semantic Tokens (Contextuales)
+Tokens contextuales que referencian foundation tokens:
 ```scss
 --primary-default: var(--brand-500);
 --text-primary: var(--neutral-950);
 --bg-default: var(--neutral-white);
 ```
 
-## Why Use Foundations?
+## ¿Por Qué Usar Fundamentos?
 
-### Consistency
-When everyone uses the same foundations, the product feels cohesive and professional.
+### Consistencia
+Cuando todos usan los mismos fundamentos, el producto se siente cohesivo y profesional.
 
-### Efficiency
-Designers and developers don't need to make low-level decisions—foundations provide the answers.
+### Eficiencia
+Diseñadores y desarrolladores no necesitan tomar decisiones de bajo nivel—los fundamentos proporcionan las respuestas.
 
-### Maintainability
-Change once, update everywhere. Need to adjust spacing? Update the token.
+### Mantenibilidad
+Cambiá una vez, actualizá en todos lados. ¿Necesitás ajustar el espaciado? Actualizá el token.
 
-### Scalability
-As the system grows, foundations ensure new components stay consistent with existing ones.
+### Escalabilidad
+A medida que el sistema crece, los fundamentos aseguran que los nuevos componentes se mantengan consistentes con los existentes.
 
 ### Dark Mode
-Semantic tokens automatically adapt to light and dark themes.
+Los tokens semánticos se adaptan automáticamente a temas claros y oscuros.
 
-## Using Foundations
+## Usando Fundamentos
 
-### In Design (Figma)
+### En Diseño (Figma)
 ```
-Use token names as layer names or in text styles:
+Usá nombres de tokens como nombres de capas o en estilos de texto:
 - text/primary
 - spacing-4
 - brand/500
 ```
 
-### In Code (CSS/SCSS)
+### En Código (CSS/SCSS)
 ```scss
 .component {
   color: var(--text-primary);
@@ -77,107 +77,107 @@ Use token names as layer names or in text styles:
 }
 ```
 
-### In Components (Angular)
+### En Componentes (Angular)
 ```typescript
-// Components automatically inherit tokens
-// Just use the semantic token names
+// Los componentes heredan automáticamente los tokens
+// Solo usá los nombres de tokens semánticos
 ```
 
-## Foundation Categories
+## Categorías de Fundamentos
 
-### Visual Foundations
-Define what things look like:
-- [Color](#) - Brand colors, neutrals, semantic colors
-- [Typography](#) - Fonts, sizes, weights, line heights
-- [Border](#) - Border widths and corner radius
-- [Elevation](#) - Shadows for depth
+### Fundamentos Visuales
+Definen cómo se ven las cosas:
+- [Color](#) - Colores de marca, neutrales, colores semánticos
+- [Tipografía](#) - Fuentes, tamaños, pesos, alturas de línea
+- [Border](#) - Anchos de borde y radio de esquinas
+- [Elevation](#) - Sombras para profundidad
 
-### Structural Foundations
-Define how things are arranged:
-- [Spacing](#) - Consistent spacing scale (4px, 8px, 12px...)
-- [Layout](#) - Grid systems, breakpoints, containers
+### Fundamentos Estructurales
+Definen cómo se organizan las cosas:
+- [Espaciado](#) - Escala de espaciado consistente (4px, 8px, 12px...)
+- [Layout](#) - Sistemas de grilla, breakpoints, contenedores
 
-### Behavioral Foundations
-Define how things move and respond:
-- [Animation](#) - Motion principles, durations, easing
+### Fundamentos Conductuales
+Definen cómo se mueven y responden las cosas:
+- [Animation](#) - Principios de movimiento, duraciones, easing
 
-### Iconographic Foundations
-Define visual symbols:
-- [Iconography](#) - Icon system, sizes, usage
+### Fundamentos Iconográficos
+Definen símbolos visuales:
+- [Iconografía](#) - Sistema de íconos, tamaños, uso
 
-## Token Naming Convention
+## Convención de Nombres de Tokens
 
-Bioma tokens follow a clear naming pattern:
+Los tokens de Bioma siguen un patrón de nombres claro:
 
 ### Foundation Tokens
 ```
 {category}/{value}
 ```
-Examples:
-- `brand/500` - Brand red at 500 weight
-- `neutral/950` - Darkest neutral
-- `spacing-4` - 16px spacing
+Ejemplos:
+- `brand/500` - Rojo de marca en peso 500
+- `neutral/950` - Neutral más oscuro
+- `spacing-4` - Espaciado de 16px
 
 ### Semantic Tokens
 ```
 {purpose}-{variant}
 ```
-Examples:
-- `text-primary` - Primary text color
-- `bg-default` - Default background
-- `primary-hover` - Primary action hover state
+Ejemplos:
+- `text-primary` - Color de texto primario
+- `bg-default` - Fondo predeterminado
+- `primary-hover` - Estado hover de acción primaria
 
-## Dark Mode Strategy
+## Estrategia de Dark Mode
 
 ```scss
-// Light Mode (default)
+// Light Mode (predeterminado)
 :root {
-  --text-primary: var(--neutral-950); // Dark text
-  --bg-default: var(--neutral-white);  // Light bg
+  --text-primary: var(--neutral-950); // Texto oscuro
+  --bg-default: var(--neutral-white);  // Fondo claro
 }
 
 // Dark Mode (override)
 [data-theme="dark"] {
-  --text-primary: var(--neutral-100);  // Light text
-  --bg-default: var(--neutral-950);    // Dark bg
+  --text-primary: var(--neutral-100);  // Texto claro
+  --bg-default: var(--neutral-950);    // Fondo oscuro
 }
 ```
 
-Components automatically adapt without code changes!
+¡Los componentes se adaptan automáticamente sin cambios en el código!
 
-## Best Practices
+## Mejores Prácticas
 
-### ✅ Do
-- Always use semantic tokens in components
-- Reference foundation tokens in semantic tokens
-- Use token names consistently across design and code
-- Document why tokens exist
+### ✅ Sí
+- Usá siempre tokens semánticos en componentes
+- Referenciá foundation tokens en tokens semánticos
+- Usá nombres de tokens consistentemente entre diseño y código
+- Documentá por qué existen los tokens
 
-### ❌ Don't
-- Hardcode values in components
-- Skip semantic tokens and use foundation tokens directly in components
-- Create tokens for one-off uses
-- Use generic names like "color1" or "spacing-A"
+### ❌ No
+- Hardcodear valores en componentes
+- Saltear tokens semánticos y usar foundation tokens directamente en componentes
+- Crear tokens para usos únicos
+- Usar nombres genéricos como "color1" o "spacing-A"
 
-## Token Coverage
+## Cobertura de Tokens
 
-Bioma includes **150+ tokens**:
+Bioma incluye **más de 150 tokens**:
 
-| Category | Count | Examples |
+| Categoría | Cantidad | Ejemplos |
 |----------|-------|----------|
-| Foundation | 68 | Colors, spacing, typography primitives |
-| Semantic | 47 | Text, background, border, action colors |
-| Typography | 21 | Font sizes, weights, line heights |
-| Effects | 14 | Shadows, transitions, z-index |
+| Foundation | 68 | Colores, espaciado, primitivos tipográficos |
+| Semantic | 47 | Texto, fondo, borde, colores de acción |
+| Typography | 21 | Tamaños de fuente, pesos, alturas de línea |
+| Effects | 14 | Sombras, transiciones, z-index |
 
-## Getting Started with Foundations
+## Empezando con Fundamentos
 
-1. **Explore [Design Tokens](#)** - Understand the complete token system
-2. **Review [Color](#)** - Learn the color palette and usage
-3. **Study [Typography](#)** - Master text styles and hierarchy
-4. **Practice [Spacing](#)** - Build consistent layouts
-5. **Apply in components** - Use tokens instead of hardcoded values
+1. **Explorá [Design Tokens](#)** - Entendé el sistema completo de tokens
+2. **Revisá [Color](#)** - Aprendé la paleta de colores y su uso
+3. **Estudiá [Tipografía](#)** - Dominá estilos de texto y jerarquía
+4. **Practicá [Espaciado](#)** - Construí layouts consistentes
+5. **Aplicá en componentes** - Usá tokens en lugar de valores hardcodeados
 
 ---
 
-Ready to dive deeper? Start with [Design Tokens](#) or explore a specific foundation.
+¿Listo para profundizar? Empezá con [Design Tokens](#) o explorá un fundamento específico.
