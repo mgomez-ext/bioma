@@ -1,0 +1,46 @@
+# Source files (only distribute compiled library)
+src/
+!src/styles/
+
+# Development and build files
+.angular/
+.storybook/
+.vscode/
+node_modules/
+coverage/
+dist/bioma-design-system/browser/
+
+# Documentation (kept in repo only)
+*.md.bak
+*.md.old
+SESSION-SUMMARY.md
+STATUS.md
+COMPONENT-TEMPLATE.md
+NEW-STRUCTURE.md
+STORYBOOK-CUSTOMIZATION.md
+documentation.json
+debug-storybook.log
+
+# Config files
+angular.json
+tsconfig*.json
+ng-package.json
+.editorconfig
+.gitignore
+
+# Test files
+*.spec.ts
+**/*.spec.ts
+
+# Git
+.git/
+.gitignore
+
+# NPM
+.npmignore
+
+# Build output (except library dist)
+/dist/bioma-design-system/browser/
+/tmp/
+/out-tsc/
+/storybook-static/

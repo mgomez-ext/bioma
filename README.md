@@ -1,59 +1,239 @@
-# BiomaDesignSystem
+# Bioma 2.0 Design System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+[![Angular](https://img.shields.io/badge/Angular-21.1-DD0031?logo=angular)](https://angular.dev)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/@bioma/design-system.svg)](https://www.npmjs.com/package/@bioma/design-system)
 
-## Development server
+A comprehensive Angular component library with a robust design token system for building consistent, accessible user interfaces.
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- 🎨 **Comprehensive Design Tokens** - 150+ semantic and foundation tokens for colors, spacing, typography, shadows, and more
+- 🧩 **Angular 21.1 Standalone Components** - Modern, tree-shakeable components
+- ♿ **Accessibility First** - WCAG-compliant components with built-in a11y features
+- 📱 **Responsive** - Mobile-first design with Bootstrap 5.3 integration
+- 🎭 **Theming Support** - Light/dark mode ready with semantic tokens
+- 📚 **Storybook Documentation** - Interactive component playground and documentation
+- 🔤 **Material Symbols** - 2,500+ icons via Google's Material Symbols
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Installation
 
 ```bash
-ng generate --help
+npm install @bioma/design-system
 ```
 
-## Building
+### Peer Dependencies
 
-To build the project run:
+This library requires the following peer dependencies:
 
 ```bash
-ng build
+npm install @angular/common @angular/core @angular/platform-browser rxjs
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Quick Start
 
-## Running unit tests
+### 1. Import Components
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Import standalone components directly into your Angular application:
+
+```typescript
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@bioma/design-system';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <bio-button
+      label="Click Me"
+      variant="filled"
+      size="large"
+      (clicked)="handleClick($event)">
+    </bio-button>
+  `
+})
+export class AppComponent {
+  handleClick(event: MouseEvent) {
+    console.log('Button clicked!', event);
+  }
+}
+```
+
+### 2. Import Design Tokens
+
+Add the design tokens stylesheet to your global styles:
+
+```scss
+// src/styles.scss
+@import '@bioma/design-system/src/styles/tokens';
+```
+
+Or import in your `angular.json`:
+
+```json
+{
+  "projects": {
+    "your-app": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "node_modules/@bioma/design-system/src/styles/tokens.scss",
+              "src/styles.scss"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### 3. Use Design Tokens
+
+Access design tokens via CSS custom properties:
+
+```scss
+.my-component {
+  color: var(--text-primary);
+  background-color: var(--bg-default);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+```
+
+## Available Components
+
+### Button Component
+
+Full-featured button with multiple variants, sizes, and states:
+
+```typescript
+import { ButtonComponent } from '@bioma/design-system';
+```
+
+**Properties:**
+- `label` - Button text
+- `variant` - `'filled' | 'outlined' | 'flat' | 'link'`
+- `size` - `'small' | 'medium' | 'large'`
+- `disabled` - Boolean
+- `fullWidth` - Boolean
+- `iconStart`, `iconEnd` - Material Symbol icon names
+- `(clicked)` - Click event emitter
+
+**Example:**
+```html
+<bio-button
+  label="Submit"
+  variant="filled"
+  size="large"
+  [iconStart]="true"
+  iconStartName="send"
+  (clicked)="onSubmit()">
+</bio-button>
+```
+
+### IconFont Component
+
+Material Symbols icon component:
+
+```typescript
+import { IconFontComponent } from '@bioma/design-system';
+```
+
+**Example:**
+```html
+<bio-icon-font
+  icon="home"
+  size="24"
+  type="rounded">
+</bio-icon-font>
+```
+
+### Token Documentation Components
+
+For building design system documentation:
+
+```typescript
+import { TokenTableComponent, TokenDocComponent } from '@bioma/design-system';
+```
+
+## Design Tokens Reference
+
+### Color Tokens
+
+```scss
+// Neutral palette
+--neutral-50, --neutral-100, ..., --neutral-950
+--neutral-white, --neutral-black
+
+// Brand palette (Bioma Red)
+--brand-50, --brand-100, ..., --brand-950
+
+// Semantic colors
+--text-primary, --text-secondary, --text-muted
+--bg-default, --bg-subtle, --bg-muted
+--border-subtle, --border-default, --border-strong
+```
+
+### Spacing Tokens
+
+```scss
+--spacing-0  // 0px
+--spacing-1  // 4px
+--spacing-2  // 8px
+--spacing-3  // 12px
+--spacing-4  // 16px (base)
+--spacing-6  // 24px
+--spacing-8  // 32px
+--spacing-12 // 48px
+--spacing-16 // 64px
+```
+
+### Typography, Shadows, and More
+
+See the [full token documentation](https://your-storybook-url.chromatic.com) in Storybook.
+
+## Development
+
+### Running Storybook Locally
 
 ```bash
-ng test
+git clone https://github.com/bioma/bioma-design-system.git
+cd bioma-design-system
+npm install
+npm run storybook
 ```
 
-## Running end-to-end tests
+Visit `http://localhost:6006` to explore components.
 
-For end-to-end (e2e) testing, run:
+### Building the Library
 
 ```bash
-ng e2e
+npm run build:lib
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Output: `dist/bioma-design-system/`
 
-## Additional Resources
+## Browser Support
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+Copyright © 2026 Bioma. All rights reserved.
+
+This is proprietary software. See [LICENSE](./LICENSE) for details.
+
+## Support
+
+For issues, questions, or feature requests, please contact the Bioma development team.
+
+---
+
+Built with ❤️ using Angular 21.1 and modern web standards.
