@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @mgomez-ext/bioma
+ * Public API Surface of @mgomezw/bioma
  */
 
 // Components
