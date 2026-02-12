@@ -2,7 +2,7 @@
 
 [![Angular](https://img.shields.io/badge/Angular-21.1-DD0031?logo=angular)](https://angular.dev)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](./LICENSE)
-[![npm version](https://img.shields.io/npm/v/@bioma/design-system.svg)](https://www.npmjs.com/package/@bioma/design-system)
+[![npm version](https://img.shields.io/npm/v/@sapuk-ai/bioma.svg)](https://www.npmjs.com/package/@sapuk-ai/bioma)
 
 A comprehensive Angular component library with a robust design token system for building consistent, accessible user interfaces.
 
@@ -19,7 +19,7 @@ A comprehensive Angular component library with a robust design token system for 
 ## Installation
 
 ```bash
-npm install @bioma/design-system
+npm install @sapuk-ai/bioma
 ```
 
 ### Peer Dependencies
@@ -38,7 +38,7 @@ Import standalone components directly into your Angular application:
 
 ```typescript
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@bioma/design-system';
+import { ButtonComponent } from '@sapuk-ai/bioma';
 
 @Component({
   selector: 'app-root',
@@ -66,7 +66,7 @@ Add the design tokens stylesheet to your global styles:
 
 ```scss
 // src/styles.scss
-@import '@bioma/design-system/src/styles/tokens';
+@import '@sapuk-ai/bioma/src/styles/tokens';
 ```
 
 Or import in your `angular.json`:
@@ -79,7 +79,7 @@ Or import in your `angular.json`:
         "build": {
           "options": {
             "styles": [
-              "node_modules/@bioma/design-system/src/styles/tokens.scss",
+              "node_modules/@sapuk-ai/bioma/src/styles/tokens.scss",
               "src/styles.scss"
             ]
           }
@@ -111,7 +111,7 @@ Access design tokens via CSS custom properties:
 Full-featured button with multiple variants, sizes, and states:
 
 ```typescript
-import { ButtonComponent } from '@bioma/design-system';
+import { ButtonComponent } from '@sapuk-ai/bioma';
 ```
 
 **Properties:**
@@ -140,7 +140,7 @@ import { ButtonComponent } from '@bioma/design-system';
 Material Symbols icon component:
 
 ```typescript
-import { IconFontComponent } from '@bioma/design-system';
+import { IconFontComponent } from '@sapuk-ai/bioma';
 ```
 
 **Example:**
@@ -157,7 +157,7 @@ import { IconFontComponent } from '@bioma/design-system';
 For building design system documentation:
 
 ```typescript
-import { TokenTableComponent, TokenDocComponent } from '@bioma/design-system';
+import { TokenTableComponent, TokenDocComponent } from '@sapuk-ai/bioma';
 ```
 
 ## Design Tokens Reference
@@ -201,8 +201,8 @@ See the [full token documentation](https://your-storybook-url.chromatic.com) in 
 ### Running Storybook Locally
 
 ```bash
-git clone https://github.com/bioma/bioma-design-system.git
-cd bioma-design-system
+git clone https://github.com/sapuk-ai/bioma.git
+cd bioma
 npm install
 npm run storybook
 ```
@@ -215,7 +215,7 @@ Visit `http://localhost:6006` to explore components.
 npm run build:lib
 ```
 
-Output: `dist/bioma-design-system/`
+Output: `dist/bioma/`
 
 ## Browser Support
 

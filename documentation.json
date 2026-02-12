@@ -723,7 +723,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\n  display: contents;\n}\n\ntr {\n  transition: background-color 0.15s ease;\n\n  &:hover {\n    background-color: #f1f5f9 !important;\n  }\n\n  &:last-child td {\n    border-bottom: none;\n  }\n}\n\ncode {\n  user-select: all;\n  cursor: pointer;\n\n  &:hover {\n    background-color: #e2e8f0 !important;\n  }\n}\n",
+                    "data": ":host {\n  display: contents;\n}\n\ntr {\n  transition: background-color 0.15s ease;\n\n  &.row-even {\n    background-color: var(--neutral-white);\n  }\n\n  &.row-odd {\n    background-color: var(--neutral-50);\n  }\n\n  &:hover {\n    background-color: var(--neutral-100) !important;\n  }\n\n  &:last-child td {\n    border-bottom: none;\n  }\n}\n\n// Cell Styles\n.cell-sample,\n.cell-name,\n.cell-value {\n  padding: var(--spacing-3) var(--spacing-4);\n  border-bottom: 1px solid var(--border-subtle);\n}\n\n// Sample Column - Color Preview\n.cell-sample {\n  .color-sample {\n    width: 48px;\n    height: 32px;\n    border-radius: var(--radius-sm);\n    border: 1px solid var(--border-subtle);\n  }\n}\n\n// Name Column\n.cell-name {\n  font-family: 'Courier New', monospace;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--text-primary);\n}\n\n// Value Column\n.cell-value {\n  .value-container {\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-1);\n  }\n\n  .value-primary {\n    font-family: 'Courier New', monospace;\n    font-size: 13px;\n    color: var(--text-secondary);\n    background-color: var(--bg-muted);\n    padding: 2px 6px;\n    border-radius: var(--radius-sm);\n    display: inline-block;\n    user-select: all;\n    cursor: pointer;\n\n    &:hover {\n      background-color: var(--neutral-200);\n    }\n  }\n\n  .value-rgb {\n    font-size: 12px;\n    color: var(--text-muted);\n    font-family: 'Courier New', monospace;\n  }\n\n  .value-usage {\n    font-size: 12px;\n    color: var(--text-tertiary);\n    margin-top: var(--spacing-1);\n  }\n\n  .mode-values {\n    display: flex;\n    gap: var(--spacing-3);\n    margin-top: var(--spacing-1);\n  }\n\n  .mode-value {\n    font-size: 12px;\n    color: var(--text-secondary);\n\n    .mode-label {\n      color: var(--text-muted);\n    }\n\n    .mode-code {\n      font-family: 'Courier New', monospace;\n      background-color: var(--bg-muted);\n      padding: 2px 4px;\n      border-radius: var(--radius-xs);\n      user-select: all;\n      cursor: pointer;\n\n      &:hover {\n        background-color: var(--neutral-200);\n      }\n    }\n  }\n}\n\n// All code elements - copyable behavior\ncode {\n  user-select: all;\n  cursor: pointer;\n}\n",
                     "styleUrl": "./token-doc.component.scss"
                 }
             ],
@@ -767,7 +767,7 @@
                     }
                 }
             },
-            "templateData": "<tr [style.background-color]=\"isEven ? '#ffffff' : '#f8f9fa'\">\n  <!-- Sample Column (Color Preview) -->\n  <td style=\"\n    padding: 12px 16px;\n    border-bottom: 1px solid #e3e8ee;\n  \">\n    <div *ngIf=\"showColorSample\"\n         [style.background-color]=\"colorValue\"\n         style=\"\n           width: 48px;\n           height: 32px;\n           border-radius: 6px;\n           border: 1px solid #e3e8ee;\n         \">\n    </div>\n  </td>\n\n  <!-- Name Column -->\n  <td style=\"\n    padding: 12px 16px;\n    border-bottom: 1px solid #e3e8ee;\n    font-family: 'Courier New', monospace;\n    font-size: 14px;\n    font-weight: 500;\n    color: #303b47;\n  \">\n    {{ prefix }}{{ token.name }}\n  </td>\n\n  <!-- Value Column -->\n  <td style=\"\n    padding: 12px 16px;\n    border-bottom: 1px solid #e3e8ee;\n  \">\n    <div style=\"display: flex; flex-direction: column; gap: 4px;\">\n      <!-- Primary Value (Hex or Value) -->\n      <code style=\"\n        font-family: 'Courier New', monospace;\n        font-size: 13px;\n        color: #63788d;\n        background-color: #f1f3f5;\n        padding: 2px 6px;\n        border-radius: 4px;\n        display: inline-block;\n      \">\n        {{ displayValue }}\n      </code>\n\n      <!-- RGB Value (if color) -->\n      <span *ngIf=\"token.rgb\" style=\"\n        font-size: 12px;\n        color: #8a99ab;\n        font-family: 'Courier New', monospace;\n      \">\n        {{ token.rgb }}\n      </span>\n\n      <!-- Usage Description -->\n      <span *ngIf=\"token.usage\" style=\"\n        font-size: 12px;\n        color: #70879e;\n        margin-top: 4px;\n      \">\n        {{ token.usage }}\n      </span>\n\n      <!-- Light/Dark Mode Values (for semantic tokens) -->\n      <div *ngIf=\"token.lightMode || token.darkMode\" style=\"\n        display: flex;\n        gap: 12px;\n        margin-top: 4px;\n      \">\n        <span *ngIf=\"token.lightMode\" style=\"\n          font-size: 12px;\n          color: #63788d;\n        \">\n          <span style=\"color: #8a99ab;\">Light:</span>\n          <code style=\"\n            font-family: 'Courier New', monospace;\n            background-color: #f1f3f5;\n            padding: 2px 4px;\n            border-radius: 3px;\n          \">{{ token.lightMode }}</code>\n        </span>\n\n        <span *ngIf=\"token.darkMode\" style=\"\n          font-size: 12px;\n          color: #63788d;\n        \">\n          <span style=\"color: #8a99ab;\">Dark:</span>\n          <code style=\"\n            font-family: 'Courier New', monospace;\n            background-color: #f1f3f5;\n            padding: 2px 4px;\n            border-radius: 3px;\n          \">{{ token.darkMode }}</code>\n        </span>\n      </div>\n    </div>\n  </td>\n</tr>\n"
+            "templateData": "<tr [class.row-even]=\"isEven\" [class.row-odd]=\"!isEven\">\n  <!-- Sample Column (Color Preview) -->\n  <td class=\"cell-sample\">\n    <div *ngIf=\"showColorSample\"\n         class=\"color-sample\"\n         [style.background-color]=\"colorValue\">\n    </div>\n  </td>\n\n  <!-- Name Column -->\n  <td class=\"cell-name\">\n    {{ prefix }}{{ token.name }}\n  </td>\n\n  <!-- Value Column -->\n  <td class=\"cell-value\">\n    <div class=\"value-container\">\n      <!-- Primary Value (Hex or Value) -->\n      <code class=\"value-primary\">\n        {{ displayValue }}\n      </code>\n\n      <!-- RGB Value (if color) -->\n      <span *ngIf=\"token.rgb\" class=\"value-rgb\">\n        {{ token.rgb }}\n      </span>\n\n      <!-- Usage Description -->\n      <span *ngIf=\"token.usage\" class=\"value-usage\">\n        {{ token.usage }}\n      </span>\n\n      <!-- Light/Dark Mode Values (for semantic tokens) -->\n      <div *ngIf=\"token.lightMode || token.darkMode\" class=\"mode-values\">\n        <span *ngIf=\"token.lightMode\" class=\"mode-value\">\n          <span class=\"mode-label\">Light:</span>\n          <code class=\"mode-code\">{{ token.lightMode }}</code>\n        </span>\n\n        <span *ngIf=\"token.darkMode\" class=\"mode-value\">\n          <span class=\"mode-label\">Dark:</span>\n          <code class=\"mode-code\">{{ token.darkMode }}</code>\n        </span>\n      </div>\n    </div>\n  </td>\n</tr>\n"
         },
         {
             "name": "TokenTableComponent",
@@ -873,6 +873,16 @@
                 "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"padding: 24px;\">\n        <h3 style=\"margin-bottom: 24px; font-family: Sora, sans-serif;\">Rounded Type - All Sizes</h3>\n        <div style=\"display: flex; align-items: flex-end; gap: 24px; margin-bottom: 48px;\">\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"16\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">16px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"20\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">20px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"24\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">24px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"32\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">32px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"40\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">40px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"48\" type=\"rounded\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">48px</span>\n          </div>\n        </div>\n\n        <h3 style=\"margin-bottom: 24px; font-family: Sora, sans-serif;\">Filled Type - All Sizes</h3>\n        <div style=\"display: flex; align-items: flex-end; gap: 24px;\">\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"16\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">16px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"20\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">20px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"24\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">24px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"32\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">32px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"40\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">40px</span>\n          </div>\n          <div style=\"display: flex; flex-direction: column; align-items: center; gap: 8px;\">\n            <bio-icon-font iconName=\"star\" size=\"48\" type=\"filled\"></bio-icon-font>\n            <span style=\"font-size: 12px; color: var(--text-secondary);\">48px</span>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
             },
             {
+                "name": "AllTokenTypes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"padding: 24px; font-family: Sora, sans-serif;\">\n        <h3 style=\"margin-bottom: 16px;\">Token Documentation Examples</h3>\n        <p style=\"margin-bottom: 24px; color: #737373;\">\n          The TokenDoc component displays individual token rows in design system documentation tables.\n        </p>\n\n        <table style=\"width: 100%; border-collapse: collapse; border: 1px solid #e3e8ee; font-family: Sora, sans-serif;\">\n          <thead>\n            <tr style=\"background-color: #f5f5f5; text-align: left;\">\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Sample</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Name</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Value</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Usage</th>\n            </tr>\n          </thead>\n          <tbody>\n            <app-token-doc\n              [token]=\"{\n                name: 'brand/500',\n                value: '#E30038',\n                hex: '#E30038',\n                rgb: 'rgb(227, 0, 56)',\n                usage: 'Primary brand color',\n                type: 'color'\n              }\"\n              [rowIndex]=\"0\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'neutral/700',\n                value: '#404040',\n                hex: '#404040',\n                usage: 'Primary text',\n                type: 'color'\n              }\"\n              [rowIndex]=\"1\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'spacing-4',\n                value: '16px',\n                usage: 'Base spacing',\n                type: 'spacing'\n              }\"\n              [rowIndex]=\"2\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'text/primary',\n                value: '{gray/800}',\n                lightMode: '{gray/800}',\n                darkMode: '{gray/50}',\n                usage: 'Primary text color',\n                type: 'semantic'\n              }\"\n              [rowIndex]=\"3\"\n            ></app-token-doc>\n          </tbody>\n        </table>\n      </div>\n    `,\n  }),\n}"
+            },
+            {
                 "name": "AllVariants",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -953,6 +963,26 @@
                 "defaultValue": "{\n  args: {\n    iconName: 'palette',\n    size: '32',\n    type: 'rounded',\n    color: 'subtle',\n  },\n}"
             },
             {
+                "name": "colorToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Token",
+                "defaultValue": "{\n  name: 'brand/500',\n  value: '#E30038',\n  hex: '#E30038',\n  rgb: 'rgb(227, 0, 56)',\n  usage: 'Primary brand color',\n  type: 'color',\n}"
+            },
+            {
+                "name": "ColorToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: 'brand/500',\n      value: '#E30038',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      usage: 'Primary brand color - Bioma red',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
                 "name": "CommonIcons",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -993,6 +1023,16 @@
                 "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1001,6 +1041,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    disabled: true,\n    size: 'large',\n    variant: 'filled',\n  },\n}"
+            },
+            {
+                "name": "EvenRow",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
             },
             {
                 "name": "Filled",
@@ -1096,11 +1146,31 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TokenDocComponent>",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/token-table/token-table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<TokenTableComponent>",
                 "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Tokens',\n  component: TokenTableComponent,\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "NeutralColorToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: 'neutral/700',\n      value: '#404040',\n      hex: '#404040',\n      rgb: 'rgb(64, 64, 64)',\n      usage: 'Primary text color',\n      type: 'color',\n    },\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
             },
             {
                 "name": "NeutralPalette",
@@ -1121,6 +1191,16 @@
                 "deprecationMessage": "",
                 "type": "Token[]",
                 "defaultValue": "[\n  { name: 'neutral/50', value: '#FAFAFA', hex: '#FAFAFA', rgb: 'rgb(250, 250, 250)', usage: 'Fondos muy claros', type: 'color' },\n  { name: 'neutral/100', value: '#F5F5F2', hex: '#F5F5F2', rgb: 'rgb(245, 245, 242)', usage: 'Fondos claros', type: 'color' },\n  { name: 'neutral/200', value: '#E3E3E3', hex: '#E3E3E3', rgb: 'rgb(227, 227, 227)', usage: 'Bordes sutiles', type: 'color' },\n  { name: 'neutral/300', value: '#C2C2BF', hex: '#C2C2BF', rgb: 'rgb(194, 194, 191)', usage: 'Bordes medios', type: 'color' },\n  { name: 'neutral/400', value: '#969696', hex: '#969696', rgb: 'rgb(150, 150, 150)', usage: 'Texto deshabilitado', type: 'color' },\n  { name: 'neutral/500', value: '#737373', hex: '#737373', rgb: 'rgb(115, 115, 115)', usage: 'Texto secundario', type: 'color' },\n  { name: 'neutral/600', value: '#575454', hex: '#575454', rgb: 'rgb(87, 84, 84)', usage: 'Texto secundario fuerte', type: 'color' },\n  { name: 'neutral/700', value: '#404040', hex: '#404040', rgb: 'rgb(64, 64, 64)', usage: 'Texto primario', type: 'color' },\n  { name: 'neutral/800', value: '#30302E', hex: '#30302E', rgb: 'rgb(48, 48, 46)', usage: 'Texto fuerte', type: 'color' },\n  { name: 'neutral/900', value: '#262626', hex: '#262626', rgb: 'rgb(38, 38, 38)', usage: 'Texto muy fuerte', type: 'color' },\n  { name: 'neutral/950', value: '#121212', hex: '#121212', rgb: 'rgb(18, 18, 18)', usage: 'Fondos dark mode', type: 'color' },\n  { name: 'neutral/white', value: '#FFFFFF', hex: '#FFFFFF', rgb: 'rgb(255, 255, 255)', usage: 'Blanco puro', type: 'color' },\n  { name: 'neutral/black', value: '#000000', hex: '#000000', rgb: 'rgb(0, 0, 0)', usage: 'Negro puro', type: 'color' },\n]"
+            },
+            {
+                "name": "OddRow",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
             },
             {
                 "name": "Outlined",
@@ -1153,6 +1233,16 @@
                 "defaultValue": "{\n  args: {\n    iconName: 'home',\n    size: '24',\n    type: 'rounded',\n    color: 'default',\n  },\n}"
             },
             {
+                "name": "Playground",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: 'custom-token',\n      value: '#123456',\n      hex: '#123456',\n      rgb: 'rgb(18, 52, 86)',\n      usage: 'Customize this token',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1163,6 +1253,16 @@
                 "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n      expanded: true,\n      sort: 'requiredFirst',\n    },\n\n    layout: 'centered',\n\n    actions: {\n      argTypesRegex: '^on[A-Z].*',\n    },\n\n    viewport: {\n      viewports: {\n        mobile: {\n          name: 'Mobile',\n          styles: {\n            width: '375px',\n            height: '667px',\n          },\n        },\n        tablet: {\n          name: 'Tablet',\n          styles: {\n            width: '768px',\n            height: '1024px',\n          },\n        },\n        desktop: {\n          name: 'Desktop',\n          styles: {\n            width: '1440px',\n            height: '900px',\n          },\n        },\n      },\n    },\n\n    options: {\n      storySort: {\n        order: [\n          'Bioma 2.0',\n          [\n            'Getting Started',\n            ['Introduction', 'Installation', 'Quick Start'],\n            'Foundations',\n            [\n              'Overview',\n              'Design Tokens',\n              ['Overview', 'Authoring Guide', 'Reading Guide', 'Usage Guide', 'All Design Tokens'],\n              'Color',\n              'Typography',\n              'Spacing',\n              'Layout',\n              'Border',\n              'Elevation',\n              'Animation',\n              'Iconography',\n            ],\n            'Components',\n            ['Overview', 'Button', 'Input', 'Checkbox', 'Radio'],\n            'Directives',\n            ['Overview'],\n            'Patterns',\n            ['Overview'],\n            'Objects',\n            ['Overview'],\n            'Data Visualization',\n            ['Overview'],\n            'Content',\n            ['Overview'],\n            'Accessibility',\n            ['Overview'],\n          ],\n        ],\n      },\n    },\n  },\n\n  decorators: [\n    componentWrapperDecorator(\n      (story) =>\n        `<div style=\"font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 24px;\">${story}</div>`\n    ),\n  ],\n}",
                 "rawdescription": "Bioma 2.0 Design System - Storybook Preview Configuration\n\nUses default Storybook styling with Sora typography.",
                 "description": "<p>Bioma 2.0 Design System - Storybook Preview Configuration</p>\n<p>Uses default Storybook styling with Sora typography.</p>\n"
+            },
+            {
+                "name": "RadiusToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: 'radius-md',\n      value: '8px',\n      usage: 'Medium border radius',\n      type: 'radius',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
             },
             {
                 "name": "Rounded",
@@ -1203,6 +1303,56 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    tokens: semanticTextTokens,\n    title: 'Tokens Semánticos - Text',\n    prefix: '',\n    showSampleColumn: false,\n  },\n}"
+            },
+            {
+                "name": "semanticToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Token",
+                "defaultValue": "{\n  name: 'text/primary',\n  value: '{gray/800}',\n  lightMode: '{gray/800}',\n  darkMode: '{gray/50}',\n  usage: 'Primary text color',\n  type: 'semantic',\n}"
+            },
+            {
+                "name": "SemanticToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: semanticToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+            },
+            {
+                "name": "SemanticTokenDarkMode",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: 'text/inverse',\n      value: '{neutral/white}',\n      lightMode: '{neutral/white}',\n      darkMode: '{gray/950}',\n      usage: 'Text on dark backgrounds',\n      type: 'semantic',\n    },\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+            },
+            {
+                "name": "shadowToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Token",
+                "defaultValue": "{\n  name: 'shadow/md',\n  value: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',\n  usage: 'Medium elevation shadow',\n  type: 'shadow',\n}"
+            },
+            {
+                "name": "ShadowToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: shadowToken,\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
             },
             {
                 "name": "Size16",
@@ -1285,6 +1435,26 @@
                 "defaultValue": "{\n  args: {\n    tokens: spacingTokens,\n    title: 'Escala de Espaciado',\n    prefix: '',\n    showSampleColumn: false,\n  },\n}"
             },
             {
+                "name": "spacingToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Token",
+                "defaultValue": "{\n  name: 'spacing-4',\n  value: '16px',\n  usage: 'Base spacing unit',\n  type: 'spacing',\n}"
+            },
+            {
+                "name": "SpacingToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: spacingToken,\n    rowIndex: 0,\n    prefix: 'spacing/',\n  },\n}"
+            },
+            {
                 "name": "spacingTokens",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1293,6 +1463,26 @@
                 "deprecationMessage": "",
                 "type": "Token[]",
                 "defaultValue": "[\n  { name: 'spacing-0', value: '0px', usage: 'Sin espacio', type: 'spacing' },\n  { name: 'spacing-1', value: '4px', usage: 'Espaciado mínimo', type: 'spacing' },\n  { name: 'spacing-2', value: '8px', usage: 'Espaciado XS', type: 'spacing' },\n  { name: 'spacing-3', value: '12px', usage: 'Espaciado SM', type: 'spacing' },\n  { name: 'spacing-4', value: '16px', usage: 'Espaciado MD (base)', type: 'spacing' },\n  { name: 'spacing-5', value: '20px', usage: 'Entre base y LG', type: 'spacing' },\n  { name: 'spacing-6', value: '24px', usage: 'Espaciado LG', type: 'spacing' },\n  { name: 'spacing-8', value: '32px', usage: 'Espaciado XL', type: 'spacing' },\n  { name: 'spacing-10', value: '40px', usage: 'Espaciado 2XL', type: 'spacing' },\n  { name: 'spacing-12', value: '48px', usage: 'Espaciado 3XL', type: 'spacing' },\n  { name: 'spacing-16', value: '64px', usage: 'Espaciado 4XL', type: 'spacing' },\n]"
+            },
+            {
+                "name": "typographyToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Token",
+                "defaultValue": "{\n  name: 'font-size/base',\n  value: '16px',\n  usage: 'Body text size',\n  type: 'typography',\n}"
+            },
+            {
+                "name": "TypographyToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: typographyToken,\n    rowIndex: 1,\n    prefix: 'typography/',\n  },\n}"
             },
             {
                 "name": "WithBothIcons",
@@ -1323,6 +1513,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: \"add\",\n    iconStart: true,\n    iconStartName: \"hom\",\n    size: 'large',\n    variant: \"flat\",\n    iconEnd: false,\n    disabled: false\n  },\n}"
+            },
+            {
+                "name": "WithPrefix",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    token: {\n      name: '500',\n      value: '#E30038',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      usage: 'Primary brand color',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: 'brand/',\n  },\n}"
             }
         ],
         "functions": [],
@@ -1399,6 +1599,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<IconFontComponent>",
                 "file": "src/app/components/icon-font/icon-font.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TokenDocComponent>",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1598,6 +1809,208 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {\n    iconName: 'star',\n    size: '48',\n    type: 'rounded',\n  },\n}"
+                }
+            ],
+            "src/app/components/token-doc/token-doc.stories.ts": [
+                {
+                    "name": "AllTokenTypes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"padding: 24px; font-family: Sora, sans-serif;\">\n        <h3 style=\"margin-bottom: 16px;\">Token Documentation Examples</h3>\n        <p style=\"margin-bottom: 24px; color: #737373;\">\n          The TokenDoc component displays individual token rows in design system documentation tables.\n        </p>\n\n        <table style=\"width: 100%; border-collapse: collapse; border: 1px solid #e3e8ee; font-family: Sora, sans-serif;\">\n          <thead>\n            <tr style=\"background-color: #f5f5f5; text-align: left;\">\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Sample</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Name</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Value</th>\n              <th style=\"padding: 12px 16px; border-bottom: 2px solid #e3e8ee;\">Usage</th>\n            </tr>\n          </thead>\n          <tbody>\n            <app-token-doc\n              [token]=\"{\n                name: 'brand/500',\n                value: '#E30038',\n                hex: '#E30038',\n                rgb: 'rgb(227, 0, 56)',\n                usage: 'Primary brand color',\n                type: 'color'\n              }\"\n              [rowIndex]=\"0\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'neutral/700',\n                value: '#404040',\n                hex: '#404040',\n                usage: 'Primary text',\n                type: 'color'\n              }\"\n              [rowIndex]=\"1\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'spacing-4',\n                value: '16px',\n                usage: 'Base spacing',\n                type: 'spacing'\n              }\"\n              [rowIndex]=\"2\"\n            ></app-token-doc>\n            <app-token-doc\n              [token]=\"{\n                name: 'text/primary',\n                value: '{gray/800}',\n                lightMode: '{gray/800}',\n                darkMode: '{gray/50}',\n                usage: 'Primary text color',\n                type: 'semantic'\n              }\"\n              [rowIndex]=\"3\"\n            ></app-token-doc>\n          </tbody>\n        </table>\n      </div>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "colorToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Token",
+                    "defaultValue": "{\n  name: 'brand/500',\n  value: '#E30038',\n  hex: '#E30038',\n  rgb: 'rgb(227, 0, 56)',\n  usage: 'Primary brand color',\n  type: 'color',\n}"
+                },
+                {
+                    "name": "ColorToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: 'brand/500',\n      value: '#E30038',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      usage: 'Primary brand color - Bioma red',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "EvenRow",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TokenDocComponent>",
+                    "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
+                },
+                {
+                    "name": "NeutralColorToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: 'neutral/700',\n      value: '#404040',\n      hex: '#404040',\n      rgb: 'rgb(64, 64, 64)',\n      usage: 'Primary text color',\n      type: 'color',\n    },\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "OddRow",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: colorToken,\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "Playground",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: 'custom-token',\n      value: '#123456',\n      hex: '#123456',\n      rgb: 'rgb(18, 52, 86)',\n      usage: 'Customize this token',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "RadiusToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: 'radius-md',\n      value: '8px',\n      usage: 'Medium border radius',\n      type: 'radius',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "semanticToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Token",
+                    "defaultValue": "{\n  name: 'text/primary',\n  value: '{gray/800}',\n  lightMode: '{gray/800}',\n  darkMode: '{gray/50}',\n  usage: 'Primary text color',\n  type: 'semantic',\n}"
+                },
+                {
+                    "name": "SemanticToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: semanticToken,\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "SemanticTokenDarkMode",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: 'text/inverse',\n      value: '{neutral/white}',\n      lightMode: '{neutral/white}',\n      darkMode: '{gray/950}',\n      usage: 'Text on dark backgrounds',\n      type: 'semantic',\n    },\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "shadowToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Token",
+                    "defaultValue": "{\n  name: 'shadow/md',\n  value: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',\n  usage: 'Medium elevation shadow',\n  type: 'shadow',\n}"
+                },
+                {
+                    "name": "ShadowToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: shadowToken,\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+                },
+                {
+                    "name": "spacingToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Token",
+                    "defaultValue": "{\n  name: 'spacing-4',\n  value: '16px',\n  usage: 'Base spacing unit',\n  type: 'spacing',\n}"
+                },
+                {
+                    "name": "SpacingToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: spacingToken,\n    rowIndex: 0,\n    prefix: 'spacing/',\n  },\n}"
+                },
+                {
+                    "name": "typographyToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Token",
+                    "defaultValue": "{\n  name: 'font-size/base',\n  value: '16px',\n  usage: 'Body text size',\n  type: 'typography',\n}"
+                },
+                {
+                    "name": "TypographyToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: typographyToken,\n    rowIndex: 1,\n    prefix: 'typography/',\n  },\n}"
+                },
+                {
+                    "name": "WithPrefix",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    token: {\n      name: '500',\n      value: '#E30038',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      usage: 'Primary brand color',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: 'brand/',\n  },\n}"
                 }
             ],
             "src/app/components/button/button.stories.ts": [
@@ -1981,6 +2394,19 @@
                     "kind": 184
                 }
             ],
+            "src/app/components/token-doc/token-doc.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TokenDocComponent>",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "src/app/components/token-table/token-table.stories.ts": [
                 {
                     "name": "Story",
@@ -2002,7 +2428,7 @@
         "children": []
     },
     "coverage": {
-        "count": 5,
+        "count": 4,
         "status": "low",
         "files": [
             {
@@ -2488,6 +2914,216 @@
                 "name": "Token",
                 "coveragePercent": 0,
                 "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AllTokenTypes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "colorToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ColorToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "EvenRow",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NeutralColorToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OddRow",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Playground",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "RadiusToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "semanticToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SemanticToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SemanticTokenDarkMode",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "shadowToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ShadowToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "spacingToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SpacingToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "typographyToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TypographyToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithPrefix",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/token-doc/token-doc.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

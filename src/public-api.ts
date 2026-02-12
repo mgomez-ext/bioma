@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @bioma/design-system
+ * Public API Surface of @sapuk-ai/bioma
  */
 
 // Components

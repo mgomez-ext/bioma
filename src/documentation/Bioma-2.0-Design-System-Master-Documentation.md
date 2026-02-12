@@ -183,17 +183,17 @@ Las variables semánticas se adaptan automáticamente al modo seleccionado en la
 
 ```bash
 # NPM
-npm install @bioma/design-system
+npm install @sapuk-ai/bioma
 
 # Yarn
-yarn add @bioma/design-system
+yarn add @sapuk-ai/bioma
 ```
 
 **Configuración en Angular:**
 
 ```typescript
 // app.module.ts
-import { BiomaModule } from '@bioma/design-system';
+import { BiomaModule } from '@sapuk-ai/bioma';
 
 @NgModule({
   imports: [
@@ -210,7 +210,7 @@ export class AppModule { }
 // styles.scss
 
 // 1. Importar tokens de Bioma
-@import '@bioma/design-system/tokens';
+@import '@sapuk-ai/bioma/tokens';
 
 // 2. Override de variables Bootstrap (opcional)
 @import 'bootstrap-overrides';
@@ -219,7 +219,7 @@ export class AppModule { }
 @import 'bootstrap/scss/bootstrap';
 
 // 4. Importar componentes Bioma
-@import '@bioma/design-system/components';
+@import '@sapuk-ai/bioma/components';
 ```
 
 #### 2. Configuración de Temas (Light/Dark)
@@ -3800,11 +3800,11 @@ it('should have no accessibility violations', async () => {
 
 ```bash
 # Cuando esté disponible
-npm install @company/bioma-design-system
+npm install @sapuk-ai/bioma
 
 # Uso
-import { Button, Input, Card } from '@company/bioma-design-system';
-import '@company/bioma-design-system/styles';
+import { Button, Input, Card } from '@sapuk-ai/bioma';
+import '@sapuk-ai/bioma/styles';
 ```
 
 **Roadmap de publicación:**
@@ -3820,7 +3820,7 @@ import '@company/bioma-design-system/styles';
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/company/bioma-design-system.git
+git clone https://github.com/sapuk-ai/bioma.git
 
 # Instalar dependencias
 npm install
@@ -3838,7 +3838,7 @@ npm run test
 **Estructura del repo:**
 
 ```
-bioma-design-system/
+bioma/
 ├── src/
 │   ├── components/     # Componentes Angular
 │   ├── styles/         # Tokens CSS

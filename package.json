@@ -1,5 +1,5 @@
 {
-  "name": "@bioma/design-system",
+  "name": "@sapuk-ai/bioma",
   "version": "0.1.0",
   "description": "Bioma 2.0 Design System - Angular component library with comprehensive design tokens",
   "keywords": [
@@ -14,22 +14,22 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bioma/bioma-design-system.git"
+    "url": "https://github.com/sapuk-ai/bioma.git"  
   },
-  "homepage": "https://github.com/bioma/bioma-design-system#readme",
+  "homepage": "https://github.com/sapuk-ai/bioma#readme",
   "bugs": {
-    "url": "https://github.com/bioma/bioma-design-system/issues"
+    "url": "https://github.com/sapuk-ai/bioma/issues"
   },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:lib": "ng-packagr -p ng-package.json",
-    "pack:lib": "cd dist/bioma-design-system && npm pack",
+    "pack:lib": "cd dist/bioma && npm pack",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "storybook": "ng run bioma-design-system:storybook",
-    "build-storybook": "ng run bioma-design-system:build-storybook"
+    "storybook": "ng run bioma:storybook",
+    "build-storybook": "ng run bioma:build-storybook"
   },
   "prettier": {
     "printWidth": 100,
