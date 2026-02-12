@@ -3,7 +3,7 @@ import { TokenDocComponent, Token } from './token-doc.component';
 import { CommonModule } from '@angular/common';
 
 const meta: Meta<TokenDocComponent> = {
-  title: 'Bioma 2.0/Components/TokenDoc',
+  title: '_Internal/TokenDoc',
   component: TokenDocComponent,
   decorators: [
     moduleMetadata({

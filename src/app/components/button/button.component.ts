@@ -108,17 +108,25 @@ export class ButtonComponent {
   @Output() clicked = new EventEmitter<MouseEvent>();
 
   /**
-   * Clases CSS dinámicas basadas en props
+   * Clases CSS dinámicas basadas en props.
+   * El estado se maneja via CSS (:hover, :active, :focus-visible) excepto
+   * cuando se pasa explícitamente para Storybook/demos.
    */
   get buttonClasses(): string[] {
-    return [
+    const classes = [
       'bio-button',
       `bio-button--${this.size}`,
       `bio-button--${this.variant}`,
-      `bio-button--${this.state}`,
       this.fullWidth ? 'bio-button--full-width' : '',
       this.disabled ? 'bio-button--disabled' : ''
-    ].filter(Boolean);
+    ];
+
+    // Estado forzado para Storybook (cuando se pasa explícitamente)
+    if (this.state && this.state !== 'default') {
+      classes.push(`bio-button--${this.state}`);
+    }
+
+    return classes.filter(Boolean);
   }
 
   /**
@@ -127,45 +135,6 @@ export class ButtonComponent {
   handleClick(event: MouseEvent): void {
     if (!this.disabled) {
       this.clicked.emit(event);
-    }
-  }
-
-  /**
-   * Manejadores de estados hover/focus/active
-   */
-  onMouseEnter(): void {
-    if (!this.disabled && this.state === 'default') {
-      this.state = 'hovered';
-    }
-  }
-
-  onMouseLeave(): void {
-    if (!this.disabled && this.state === 'hovered') {
-      this.state = 'default';
-    }
-  }
-
-  onFocus(): void {
-    if (!this.disabled) {
-      this.state = 'focused';
-    }
-  }
-
-  onBlur(): void {
-    if (!this.disabled && this.state === 'focused') {
-      this.state = 'default';
-    }
-  }
-
-  onMouseDown(): void {
-    if (!this.disabled) {
-      this.state = 'active';
-    }
-  }
-
-  onMouseUp(): void {
-    if (!this.disabled && this.state === 'active') {
-      this.state = 'hovered';
     }
   }
 }

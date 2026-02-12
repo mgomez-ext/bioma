@@ -3,7 +3,7 @@ import { TokenTableComponent } from './token-table.component';
 import { Token } from '../token-doc/token-doc.component';
 
 const meta: Meta<TokenTableComponent> = {
-  title: 'Bioma 2.0/Foundations/Tokens',
+  title: '_Internal/TokenTable',
   component: TokenTableComponent,
   tags: ['autodocs'],
 };

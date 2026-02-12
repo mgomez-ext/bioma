@@ -162,6 +162,11 @@
   color: var(--icon-subtle);
 }
 
+// Hereda color del padre (ej: iconos dentro de botones)
+.bio-icon-font:not([class*='--color-']) {
+  color: inherit;
+}
+
 // ========================================
 // TYPE VARIATIONS
 // ========================================

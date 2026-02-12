@@ -26,6 +26,11 @@ const meta: Meta<ButtonComponent> = {
       options: ['filled', 'outlined', 'flat', 'link'],
       description: 'Variante visual del botón',
     },
+    state: {
+      control: 'select',
+      options: ['default', 'hovered', 'active', 'disabled', 'focused'],
+      description: 'Estado visual (para demos)',
+    },
     iconStart: {
       control: 'boolean',
       description: 'Muestra ícono al inicio',
@@ -122,13 +127,13 @@ export const Small: Story = {
 // Con íconos
 export const WithIconStart: Story = {
   args: {
-    label: "add",
+    label: 'Add Item',
     iconStart: true,
-    iconStartName: "hom",
+    iconStartName: 'add',
     size: 'large',
-    variant: "flat",
+    variant: 'flat',
     iconEnd: false,
-    disabled: false
+    disabled: false,
   },
 };
 
@@ -151,6 +156,16 @@ export const WithBothIcons: Story = {
     iconEndName: 'arrow_forward',
     size: 'large',
     variant: 'filled',
+  },
+};
+
+// Estado focused (para demos)
+export const Focused: Story = {
+  args: {
+    label: 'Focused Button',
+    size: 'large',
+    variant: 'filled',
+    state: 'focused',
   },
 };
 
@@ -222,13 +237,13 @@ export const AllVariants: Story = {
           </div>
         </div>
 
-        <!-- With Icons -->
+        <!-- With Icons (Figma default: add + keyboard_arrow_down) -->
         <div>
           <h3 style="margin-bottom: 16px; font-family: Sora, sans-serif;">Buttons with Icons</h3>
-          <div style="display: flex; gap: 16px; align-items: center;">
-            <bio-button label="Add Item" variant="filled" size="large" [iconStart]="true" iconStartName="add"></bio-button>
+          <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            <bio-button label="Button" variant="filled" size="large" [iconStart]="true" [iconEnd]="true" iconStartName="add" iconEndName="keyboard_arrow_down"></bio-button>
             <bio-button label="Open Menu" variant="outlined" size="large" [iconEnd]="true" iconEndName="keyboard_arrow_down"></bio-button>
-            <bio-button label="Download" variant="flat" size="medium" [iconStart]="true" iconStartName="download"></bio-button>
+            <bio-button label="Add Item" variant="flat" size="medium" [iconStart]="true" iconStartName="add"></bio-button>
             <bio-button label="Learn More" variant="link" size="medium" [iconEnd]="true" iconEndName="arrow_forward"></bio-button>
           </div>
         </div>

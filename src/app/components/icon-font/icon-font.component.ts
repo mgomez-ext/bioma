@@ -41,8 +41,9 @@ export class IconFontComponent {
   /**
    * Color del icono usando tokens semánticos
    * @default 'default' (usa --icon-default token)
+   * 'inherit' = hereda del padre (ej: cuando está dentro de un botón)
    */
-  @Input() color: 'default' | 'primary' | 'inverse' | 'subtle' = 'default';
+  @Input() color: 'default' | 'primary' | 'inverse' | 'subtle' | 'inherit' = 'default';
 
   /**
    * Genera las clases CSS dinámicas para el componente
@@ -55,7 +56,7 @@ export class IconFontComponent {
       baseClass,
       typeClass,
       `${baseClass}--size-${this.size}`,
-      `${baseClass}--color-${this.color}`
+      ...(this.color !== 'inherit' ? [`${baseClass}--color-${this.color}`] : [])
     ];
   }
 

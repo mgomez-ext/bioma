@@ -48,6 +48,7 @@
   --spacing-5: 20px;
   --spacing-6: 24px;
   --spacing-8: 32px;
+  --spacing-9: 36px;
   --spacing-10: 40px;
   --spacing-12: 48px;
   --spacing-16: 64px;
@@ -145,6 +146,12 @@
   /* Focus State */
   --focus-ring: var(--brand-500);
   --focus-ring-offset: var(--neutral-white);
+  --border-focus: var(--focus-ring);
+
+  /* Interactive States (flat buttons, hover surfaces) */
+  --interactive-default: var(--neutral-100);
+  --interactive-hover: var(--neutral-200);
+  --interactive-active: var(--neutral-200);
 
   /* Icon Colors */
   --icon-default: var(--neutral-700);
@@ -196,6 +203,11 @@
   /* Tertiary Action - Dark Mode */
   --tertiary-hover: var(--neutral-800);
   --tertiary-active: var(--neutral-700);
+
+  /* Interactive States - Dark Mode */
+  --interactive-default: var(--neutral-800);
+  --interactive-hover: var(--neutral-700);
+  --interactive-active: var(--neutral-600);
 
   /* Focus State - Dark Mode */
   --focus-ring-offset: var(--neutral-950);

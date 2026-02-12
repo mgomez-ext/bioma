@@ -1,5 +1,6 @@
 // Button Component - Bioma 2.0 Design System
-// Usa tokens semánticos para asegurar consistencia y theming
+// Implementación según Figma: https://www.figma.com/design/nrxlxahxDQBOiAVQZVWijh (node-id=25685-1132)
+// Usa tokens semánticos para consistencia y theming
 
 .bio-button {
   // Reset de estilos de button
@@ -8,43 +9,44 @@
   cursor: pointer;
   user-select: none;
   text-decoration: none;
-  font-family: var(--font-family-body, 'Sora', sans-serif);
+  font-family: var(--font-primary);
 
   // Layout
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2, 8px);
+  gap: var(--spacing-2);
 
   // Transiciones suaves
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease,
-    transform 0.1s ease;
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    color var(--transition-fast),
+    opacity var(--transition-fast);
 
-  // Variante: Filled (default)
+  // ========================================
+  // VARIANTE: FILLED (default)
+  // Fondo primario, texto blanco
+  // ========================================
   &--filled {
-    background-color: var(--primary-default, #E30038);
-    color: var(--primary-strong, #FFFFFF);
-    border: 1px solid var(--primary-default, #E30038);
+    background-color: var(--primary-default);
+    color: var(--primary-strong);
+    border: 1px solid var(--primary-default);
 
-    &.bio-button--hovered {
-      background-color: var(--primary-hover, #C40030);
-      border-color: var(--primary-hover, #C40030);
+    &:hover:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
     }
 
-    &.bio-button--active {
-      background-color: var(--primary-hover, #C40030);
-      border-color: var(--primary-hover, #C40030);
-      transform: translateY(1px);
+    &:active:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
     }
 
-    &.bio-button--focused {
-      border: 2px solid var(--border-focus, #06B6D4);
-      border-style: solid;
+    &:focus-visible {
       outline: none;
+      box-shadow: 0 0 0 2px var(--border-focus);
     }
 
     &.bio-button--disabled {
@@ -53,25 +55,27 @@
     }
   }
 
-  // Variante: Outlined
+  // ========================================
+  // VARIANTE: OUTLINED
+  // Fondo blanco, borde secundario
+  // ========================================
   &--outlined {
-    background-color: var(--bg-primary, #FFFFFF);
-    color: var(--primary-default, #E30038);
-    border: 1px solid var(--border-default, #CCD6DE);
+    background-color: var(--bg-default);
+    color: var(--primary-default);
+    border: 1px solid var(--border-default);
 
-    &.bio-button--hovered {
-      background-color: var(--bg-secondary, #F2F2F5);
+    &:hover:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-hover);
     }
 
-    &.bio-button--active {
-      background-color: var(--bg-secondary, #F2F2F5);
-      border-color: var(--border-medium, #8A99AB);
-      transform: translateY(1px);
+    &:active:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-hover);
+      border-color: var(--border-strong);
     }
 
-    &.bio-button--focused {
-      border: 2px solid var(--border-focus, #06B6D4);
+    &:focus-visible {
       outline: none;
+      box-shadow: 0 0 0 2px var(--border-focus);
     }
 
     &.bio-button--disabled {
@@ -80,25 +84,27 @@
     }
   }
 
-  // Variante: Flat
+  // ========================================
+  // VARIANTE: FLAT
+  // Fondo sutil, sin borde
+  // ========================================
   &--flat {
-    background-color: transparent;
-    color: var(--primary-default, #E30038);
+    background-color: var(--interactive-default);
+    color: var(--primary-default);
     border: 1px solid transparent;
 
-    &.bio-button--hovered {
-      background-color: var(--bg-secondary, #F2F2F5);
+    &:hover:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-hover);
     }
 
-    &.bio-button--active {
-      background-color: var(--bg-secondary, #F2F2F5);
-      border-color: var(--border-subtle, #CCD6DE);
-      transform: translateY(1px);
+    &:active:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-hover);
+      border-color: var(--border-default);
     }
 
-    &.bio-button--focused {
-      border: 2px solid var(--border-focus, #06B6D4);
+    &:focus-visible {
       outline: none;
+      box-shadow: 0 0 0 2px var(--border-focus);
     }
 
     &.bio-button--disabled {
@@ -107,26 +113,28 @@
     }
   }
 
-  // Variante: Link
+  // ========================================
+  // VARIANTE: LINK
+  // Estilo de enlace, font-weight regular
+  // ========================================
   &--link {
     background-color: transparent;
-    color: var(--text-link, #0891B2);
+    color: var(--text-link);
     border: 1px solid transparent;
-    font-weight: var(--font-weight-regular, 400);
+    font-weight: var(--font-regular);
 
-    &.bio-button--hovered {
-      background-color: var(--bg-secondary, #F2F2F5);
+    &:hover:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-hover);
       text-decoration: underline;
     }
 
-    &.bio-button--active {
-      background-color: var(--bg-tertiary, #E3E8ED);
-      transform: translateY(1px);
+    &:active:not(:disabled):not(.bio-button--disabled) {
+      background-color: var(--interactive-active);
     }
 
-    &.bio-button--focused {
-      border: 2px solid var(--border-focus, #06B6D4);
+    &:focus-visible {
       outline: none;
+      box-shadow: 0 0 0 2px var(--border-focus);
     }
 
     &.bio-button--disabled {
@@ -136,34 +144,43 @@
     }
   }
 
-  // Tamaño: Large (default)
+  // ========================================
+  // TAMAÑOS (Figma: dimension/space/14, 12, 10)
+  // ========================================
   &--large {
-    height: 48px;
-    padding: var(--spacing-3, 12px) var(--spacing-6, 24px);
-    border-radius: var(--radius-md, 8px);
-    font-size: var(--font-size-body-md, 14px);
-    font-weight: var(--font-weight-bold, 700);
-    line-height: var(--line-height-body-md, 20px);
+    height: var(--spacing-12);
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-normal);
   }
 
-  // Tamaño: Medium
   &--medium {
-    height: 40px;
-    padding: var(--spacing-3, 12px) var(--spacing-5, 20px);
-    border-radius: var(--radius-md, 8px);
-    font-size: var(--font-size-body-md, 14px);
-    font-weight: var(--font-weight-bold, 700);
-    line-height: var(--line-height-body-md, 20px);
+    height: var(--spacing-10);
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-normal);
   }
 
-  // Tamaño: Small
   &--small {
-    height: 32px;
-    padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
-    border-radius: var(--radius-md, 8px);
-    font-size: var(--font-size-body-sm, 12px);
-    font-weight: var(--font-weight-bold, 700);
-    line-height: var(--line-height-body-sm, 16px);
+    height: var(--spacing-9); // dimension/space/10 (36px)
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-normal);
+  }
+
+  // Tamaño large: iconos 16px
+  // Tamaño medium/small: iconos 16px (Figma: iconfont x:5)
+  &--large .bio-button__icon,
+  &--medium .bio-button__icon,
+  &--small .bio-button__icon {
+    width: 16px;
+    height: 16px;
   }
 
   // Full width
@@ -177,61 +194,77 @@
     white-space: nowrap;
   }
 
-  // Icon containers
+  // Icon containers (Figma: left-icon, right-icon)
   &__icon-container {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     &--start {
-      margin-right: calc(var(--spacing-2, 8px) * -0.5);
+      margin-right: calc(var(--spacing-2) * -0.5);
     }
 
     &--end {
-      margin-left: calc(var(--spacing-2, 8px) * -0.5);
+      margin-left: calc(var(--spacing-2) * -0.5);
     }
   }
 
-  // Icons
+  // Iconos heredan el color del botón (Figma: iconfont fills)
   &__icon {
-    font-size: 20px;
-    line-height: 1.02;
-    color: var(--icon-default, var(--text-inverse));
-    color: var(--icon-primary, var(--text-primary));
-    color: var(--icon-inverse, var(--text-inverse));
-    color: var(--icon-subtle, var(--text-subtle));
-    color: var(--icon-disabled, var(--text-disabled));
-    color: var(--icon-focus, var(--text-focus));
-    color: var(--icon-error, var(--text-error));
-    color: var(--icon-success, var(--text-success));
-    color: var(--icon-warning, var(--text-warning));
-    color: var(--icon-info, var(--text-info));
-    color: var(--icon-link, var(--text-link));
-    color: var(--icon-brand, var(--text-brand));
-    color: var(--icon-neutral, var(--text-neutral));
+    color: currentColor;
   }
 
-  // Disabled state (global)
+  // Variante link: iconos usan link color
+  &--link &__icon {
+    color: currentColor;
+  }
+
+  // Estado disabled (global)
   &:disabled,
   &--disabled {
     pointer-events: none;
   }
 }
 
-// Hover effects for non-touch devices
-@media (hover: hover) {
-  .bio-button:hover:not(:disabled):not(.bio-button--disabled) {
-    // Handled by classes above
+// ========================================
+// ESTADOS FORZADOS (para Storybook)
+// ========================================
+.bio-button--hovered:not(:hover) {
+  &.bio-button--filled {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+  }
+  &.bio-button--outlined {
+    background-color: var(--interactive-hover);
+  }
+  &.bio-button--flat {
+    background-color: var(--interactive-hover);
+  }
+  &.bio-button--link {
+    background-color: var(--interactive-hover);
+    text-decoration: underline;
   }
 }
 
-// Focus visible for keyboard navigation
-.bio-button:focus-visible {
-  outline: 2px solid var(--border-focus, #06B6D4);
-  outline-offset: 2px;
+.bio-button--active:not(:active) {
+  &.bio-button--filled {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+  }
+  &.bio-button--outlined {
+    background-color: var(--interactive-hover);
+    border-color: var(--border-strong);
+  }
+  &.bio-button--flat {
+    background-color: var(--interactive-hover);
+    border-color: var(--border-default);
+  }
+  &.bio-button--link {
+    background-color: var(--interactive-active);
+  }
 }
 
-// Active state
-.bio-button:active:not(:disabled):not(.bio-button--disabled) {
-  // Handled by classes above
+.bio-button--focused:not(:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--border-focus);
 }

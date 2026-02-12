@@ -3,7 +3,7 @@ import { IconFontComponent } from './icon-font.component';
 import { CommonModule } from '@angular/common';
 
 const meta: Meta<IconFontComponent> = {
-  title: 'Bioma 2.0/Foundation/IconFont',
+  title: 'Bioma 2.0/Foundations/Iconography',
   component: IconFontComponent,
   decorators: [
     moduleMetadata({

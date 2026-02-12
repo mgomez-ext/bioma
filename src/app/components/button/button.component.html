@@ -2,36 +2,32 @@
   [type]="type"
   [disabled]="disabled"
   [class]="buttonClasses.join(' ')"
-  (click)="handleClick($event)"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()"
-  (focus)="onFocus()"
-  (blur)="onBlur()"
-  (mousedown)="onMouseDown()"
-  (mouseup)="onMouseUp()">
+  (click)="handleClick($event)">
 
-  <!-- Left Icon Container -->
+  <!-- Left Icon Container (Figma: left-icon) -->
   <span *ngIf="iconStart" class="bio-button__icon-container bio-button__icon-container--start">
     <bio-icon-font
       [iconName]="iconStartName"
-      size="20"
+      size="16"
       type="rounded"
+      color="inherit"
       class="bio-button__icon"
       aria-hidden="true">
     </bio-icon-font>
   </span>
 
-  <!-- Button Label -->
+  <!-- Button Label (Figma: button-label) -->
   <span class="bio-button__label">
     {{ label }}
   </span>
 
-  <!-- Right Icon Container -->
+  <!-- Right Icon Container (Figma: right-icon) -->
   <span *ngIf="iconEnd" class="bio-button__icon-container bio-button__icon-container--end">
     <bio-icon-font
       [iconName]="iconEndName"
-      size="20"
+      size="16"
       type="rounded"
+      color="inherit"
       class="bio-button__icon"
       aria-hidden="true">
     </bio-icon-font>
