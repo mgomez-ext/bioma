@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @sapuk-ai/bioma
+ * Public API Surface of @mgomezw/bioma
  */
 
 // Components

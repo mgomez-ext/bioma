@@ -183,17 +183,17 @@ Las variables semánticas se adaptan automáticamente al modo seleccionado en la
 
 ```bash
 # NPM
-npm install @sapuk-ai/bioma
+npm install @mgomezw/bioma
 
 # Yarn
-yarn add @sapuk-ai/bioma
+yarn add @mgomezw/bioma
 ```
 
 **Configuración en Angular:**
 
 ```typescript
 // app.module.ts
-import { BiomaModule } from '@sapuk-ai/bioma';
+import { BiomaModule } from '@mgomezw/bioma';
 
 @NgModule({
   imports: [
@@ -210,7 +210,7 @@ export class AppModule { }
 // styles.scss
 
 // 1. Importar tokens de Bioma
-@import '@sapuk-ai/bioma/tokens';
+@import '@mgomezw/bioma/tokens';
 
 // 2. Override de variables Bootstrap (opcional)
 @import 'bootstrap-overrides';
@@ -219,7 +219,7 @@ export class AppModule { }
 @import 'bootstrap/scss/bootstrap';
 
 // 4. Importar componentes Bioma
-@import '@sapuk-ai/bioma/components';
+@import '@mgomezw/bioma/components';
 ```
 
 #### 2. Configuración de Temas (Light/Dark)
@@ -3800,11 +3800,11 @@ it('should have no accessibility violations', async () => {
 
 ```bash
 # Cuando esté disponible
-npm install @sapuk-ai/bioma
+npm install @mgomezw/bioma
 
 # Uso
-import { Button, Input, Card } from '@sapuk-ai/bioma';
-import '@sapuk-ai/bioma/styles';
+import { Button, Input, Card } from '@mgomezw/bioma';
+import '@mgomezw/bioma/styles';
 ```
 
 **Roadmap de publicación:**

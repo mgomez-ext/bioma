@@ -78,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - TypeScript declaration files (.d.ts)
 
 - **Library Distribution**:
-  - Scoped NPM package: @sapuk-ai/bioma
+  - Scoped NPM package: @mgomezw/bioma
   - Proper package.json with exports
   - Clean distribution via .npmignore
   - License: Proprietary (All Rights Reserved)

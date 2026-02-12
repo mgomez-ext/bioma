@@ -15,13 +15,13 @@ Get started with Bioma 2.0 in your Angular project.
 ## Install via npm
 
 ```bash
-npm install @sapuk-ai/bioma
+npm install @mgomezw/bioma
 ```
 
 Or with yarn:
 
 ```bash
-yarn add @sapuk-ai/bioma
+yarn add @mgomezw/bioma
 ```
 
 ## Setup
@@ -33,7 +33,7 @@ Add Bioma styles to your `angular.json`:
 ```json
 {
   "styles": [
-    "node_modules/@sapuk-ai/bioma/styles/tokens.css",
+    "node_modules/@mgomezw/bioma/styles/tokens.css",
     "src/styles.scss"
   ]
 }
@@ -56,7 +56,7 @@ Components are standalone and can be imported individually:
 
 ```typescript
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@sapuk-ai/bioma';
+import { ButtonComponent } from '@mgomezw/bioma';
 
 @Component({
   selector: 'app-root',
@@ -105,7 +105,7 @@ document.body.setAttribute('data-theme', 'light');
 Bioma includes full TypeScript definitions:
 
 ```typescript
-import { ButtonSize, ButtonVariant } from '@sapuk-ai/bioma';
+import { ButtonSize, ButtonVariant } from '@mgomezw/bioma';
 
 const size: ButtonSize = 'large';
 const variant: ButtonVariant = 'filled';
@@ -120,7 +120,7 @@ Verify the tokens.css file is imported in angular.json and the path is correct.
 Check that the Google Fonts links are in your index.html and the network request is successful.
 
 ### Components not found
-Ensure @sapuk-ai/bioma is installed and imported correctly in your component.
+Ensure @mgomezw/bioma is installed and imported correctly in your component.
 
 ## Next Steps
 
