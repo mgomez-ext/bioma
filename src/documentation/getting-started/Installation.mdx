@@ -1,0 +1,133 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Getting Started/Installation" />
+
+# Installation
+
+Get started with Bioma 2.0 in your Angular project.
+
+## Prerequisites
+
+- Node.js 18+
+- Angular 21+
+- npm or yarn
+
+## Install via npm
+
+```bash
+npm install @bioma/design-system
+```
+
+Or with yarn:
+
+```bash
+yarn add @bioma/design-system
+```
+
+## Setup
+
+### 1. Import Styles
+
+Add Bioma styles to your `angular.json`:
+
+```json
+{
+  "styles": [
+    "node_modules/@bioma/design-system/styles/tokens.css",
+    "src/styles.scss"
+  ]
+}
+```
+
+### 2. Import Fonts
+
+Add to your `index.html`:
+
+```html
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+</head>
+```
+
+### 3. Import Components
+
+Components are standalone and can be imported individually:
+
+```typescript
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@bioma/design-system';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <bio-button label="Click me" variant="filled"></bio-button>
+  `
+})
+export class AppComponent {}
+```
+
+## Using Design Tokens
+
+Tokens are available as CSS custom properties:
+
+```scss
+.my-component {
+  background-color: var(--primary-default);
+  color: var(--text-primary);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+}
+```
+
+## Dark Mode
+
+Enable dark mode by adding the `data-theme` attribute:
+
+```html
+<body data-theme="dark">
+  <!-- Your app -->
+</body>
+```
+
+Toggle programmatically:
+
+```typescript
+document.body.setAttribute('data-theme', 'dark');
+// or
+document.body.setAttribute('data-theme', 'light');
+```
+
+## TypeScript Support
+
+Bioma includes full TypeScript definitions:
+
+```typescript
+import { ButtonSize, ButtonVariant } from '@bioma/design-system';
+
+const size: ButtonSize = 'large';
+const variant: ButtonVariant = 'filled';
+```
+
+## Troubleshooting
+
+### Styles not loading
+Verify the tokens.css file is imported in angular.json and the path is correct.
+
+### Fonts not displaying
+Check that the Google Fonts links are in your index.html and the network request is successful.
+
+### Components not found
+Ensure @bioma/design-system is installed and imported correctly in your component.
+
+## Next Steps
+
+- Explore [Design Tokens](#) to understand the token system
+- Browse [Components](#) to see what's available
+- Check [Quick Start](#) for a complete example
+
+---
+
+Need help? Contact design-system@bioma.com

@@ -1,0 +1,46 @@
+.token-table-container {
+  margin: 24px 0;
+}
+
+.table-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #303b47;
+  margin-bottom: 16px;
+  font-family: 'Sora', sans-serif;
+}
+
+.token-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Sora', sans-serif;
+
+  thead {
+    background-color: #f8f9fa;
+
+    tr {
+      th {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #63788d;
+        border-bottom: 1px solid #e3e8ee;
+
+        &.sample-column {
+          width: 80px;
+        }
+
+        &.value-column {
+          width: 200px;
+        }
+      }
+    }
+  }
+}

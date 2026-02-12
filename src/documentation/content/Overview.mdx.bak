@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Bioma 2.0/Content/Overview" />
+
+# Content
+
+Writing guidelines and voice & tone principles for Bioma.
+
+## Coming Soon
+
+Content guidelines will include:
+
+- Voice & tone
+- Writing style guide
+- Microcopy guidelines
+- Error messages
+- Success messages
+- Empty states
+
+---
+
+Check back soon for content guidelines.

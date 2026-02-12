@@ -1,0 +1,156 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Introducción" />
+
+# 🧬 Bioma 2.0 Design System
+
+**Versión:** 2.0
+**Última actualización:** Febrero 2026
+**Estado:** En desarrollo activo
+
+---
+
+## ¿Qué es Bioma?
+
+Bioma es el sistema de diseño oficial que proporciona los componentes, patrones y directrices necesarios para crear experiencias consistentes, accesibles y escalables. Este sistema unifica diseño y desarrollo mediante una nomenclatura compartida y tokens sincronizados.
+
+---
+
+## 🎯 Filosofía del Sistema
+
+Bioma se construye sobre cuatro principios fundamentales:
+
+### 1. Configuración sobre Customización
+
+En lugar de crear múltiples componentes para cada caso de uso, Bioma ofrece componentes altamente configurables a través de propiedades. Un único componente `Input` con diferentes props reemplaza a múltiples variantes específicas.
+
+**Ejemplo:**
+```html
+<!-- Un solo componente, múltiples configuraciones -->
+<bio-input type="text" />
+<bio-input type="email" icon="mail" />
+<bio-input type="password" showToggle="true" />
+```
+
+### 2. Paridad Figma ↔ Código
+
+Cada componente en Figma tiene un equivalente exacto en código. Los nombres de propiedades, valores de variantes y estructura son idénticos, eliminando la fricción en el handoff.
+
+**Beneficio:** Los diseñadores y desarrolladores hablan el mismo idioma.
+
+### 3. Accesibilidad por Diseño
+
+Todos los componentes cumplen con **WCAG 2.1 AA** como mínimo. La accesibilidad no es un añadido, es un requisito fundamental desde el diseño inicial.
+
+**Incluye:**
+- Soporte completo de teclado
+- Screen readers optimizados
+- Contraste de colores verificado
+- Indicadores de foco visibles
+
+### 4. Escalabilidad y Mantenibilidad
+
+El sistema está diseñado para crecer sin fragmentación. Una arquitectura de tokens de dos niveles (Foundation + Semantic) permite agregar temas, variantes y componentes sin refactorización mayor.
+
+---
+
+## 👥 Audiencias
+
+Esta documentación está diseñada para tres audiencias principales:
+
+### 👨‍🎨 Diseñadores
+- Cómo usar componentes en Figma
+- Guías de uso y mejores prácticas
+- Construcción de nuevos componentes
+- Proceso de contribución
+
+### 👨‍💻 Desarrolladores
+- Implementación en Angular + Bootstrap
+- API de componentes y props
+- Ejemplos de código
+- Integración y configuración
+
+### 📊 Product Managers
+- Capacidades del sistema
+- Estado de componentes
+- Roadmap y prioridades
+- Criterios de adopción
+
+---
+
+## 📚 Estructura de la Documentación
+
+### Foundations (Fundamentos)
+Los bloques básicos del sistema: colores, tipografía, espaciado, sizing, radius, shadows, grid e iconografía.
+
+### Components (Componentes)
+Catálogo completo de componentes organizados por categoría:
+- **Forms:** Inputs, selects, checkboxes, etc.
+- **Actions:** Buttons, enlaces, etc.
+- **Feedback:** Alerts, toasts, progress, etc.
+- **Navigation:** Menus, tabs, breadcrumbs, etc.
+- **Data Display:** Tables, cards, listas, etc.
+- **Overlays:** Modals, dropdowns, tooltips, etc.
+
+### Patterns (Patrones)
+Soluciones reutilizables para problemas comunes de diseño.
+
+### Guides (Guías)
+Guías técnicas de implementación, contribución y mejores prácticas.
+
+---
+
+## 🚀 Cómo Usar Esta Documentación
+
+### Para encontrar un componente:
+Navega usando el menú lateral → **Components** → Selecciona la categoría
+
+### Para entender los fundamentos:
+Ve a **Foundations** para comprender el sistema de tokens, colores, tipografía y espaciado
+
+### Para implementar en código:
+Cada componente incluye una sección **"Code Implementation"** con ejemplos específicos de Angular
+
+### Para contribuir:
+Consulta la sección **Guides** para el proceso de contribución
+
+---
+
+## 🎨 Stack Tecnológico
+
+- **Angular 21** - Framework principal
+- **Bootstrap 5.3** - Sistema de estilos base
+- **Material Symbols** - Iconografía
+- **Sass** - Preprocesador CSS
+- **Storybook** - Documentación interactiva
+
+---
+
+## 📖 Recursos Adicionales
+
+### Documentación Externa
+- [Roadmap del Proyecto](../../../docs/BIOMA-2.0-ROADMAP.md)
+- [Checklist de Documentación](../../../docs/CHECKLIST-Completar-Documentacion.md)
+- [Guías de Nomenclatura](../../../docs/references/Bioma-Nomenclature-Standards.md)
+
+### Enlaces Útiles
+- [Angular Documentation](https://angular.dev/)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/)
+- [Material Symbols](https://fonts.google.com/icons)
+
+---
+
+## 🎯 Estado Actual
+
+**Milestone Actual:** Setup y Configuración ✅
+
+**Próximos Pasos:**
+1. Sistema de Tokens (75% completado)
+2. Primer Componente (Button)
+3. Componentes Core (Inputs, Typography, Layout)
+
+Ver el [Roadmap completo](../../../docs/BIOMA-2.0-ROADMAP.md) para más detalles.
+
+---
+
+**¿Listo para comenzar?** Explora la documentación usando el menú lateral 👈

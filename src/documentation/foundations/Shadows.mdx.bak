@@ -1,0 +1,322 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Shadows" />
+
+# Shadows (Sombras)
+
+El sistema de sombras de Bioma 2.0 crea profundidad y jerarquía visual mediante una escala progresiva de elevación. Incluye **drop shadows** (externas) e **inner shadows** (internas) para diferentes efectos de elevación y profundidad.
+
+## Principios Clave
+
+- **Elevación**: Sombras más pronunciadas = mayor elevación
+- **Realismo sutil**: Sombras suaves y naturales, no artificiales
+- **Consistencia**: Mismo nivel de sombra para componentes con igual jerarquía
+- **Accesibilidad**: Las sombras son decorativas, no deben ser el único indicador
+
+---
+
+## Arquitectura de Tokens
+
+```
+Foundation Tokens (Nivel 1)
+└─ Shadows (12 tokens)
+   ├─ Drop Shadows (7 tokens): 3xs → xl
+   │  └─ Multi-layer para realismo
+   └─ Inner Shadows (5 tokens): xs → xl
+      └─ Para efectos de profundidad interna
+```
+
+**Scope en Figma**: `EFFECT_FLOAT`
+
+**⚠️ Nota**: Figma Variables aún no soporta Effects complejos nativamente. Los shadows se mantienen como Styles en Figma pero se documentan aquí para uso en código.
+
+---
+
+## Drop Shadows (Externas)
+
+Sombras externas para crear sensación de elevación:
+
+| Token | Uso Principal | Ejemplos |
+|-------|---------------|----------|
+| `shadow/drop-3xs` | **Mínima** | Hover sutil, divisores elevados |
+| `shadow/drop-2xs` | **Muy sutil** | Badges, small components |
+| `shadow/drop-xs` | Sutil | Inputs focus, chips |
+| `shadow/drop-sm` | **Pequeña** | Buttons, small cards |
+| `shadow/drop-md` | **Estándar** | Cards, dropdowns |
+| `shadow/drop-lg` | **Elevada** | Modales, popovers |
+| `shadow/drop-xl` | **Máxima** | Dialogs, overlays importantes |
+
+### CSS Variables - Drop Shadows
+
+```css
+:root {
+  /* Drop Shadows - Progressive elevation */
+  --shadow-drop-3xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --shadow-drop-2xs: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  --shadow-drop-xs:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --shadow-drop-sm:
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+
+  --shadow-drop-md:
+    0 8px 16px rgba(0, 0, 0, 0.10),
+    0 4px 8px rgba(0, 0, 0, 0.06);
+
+  --shadow-drop-lg:
+    0 16px 32px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+
+  --shadow-drop-xl:
+    0 24px 48px rgba(0, 0, 0, 0.16),
+    0 12px 24px rgba(0, 0, 0, 0.10);
+}
+```
+
+---
+
+## Inner Shadows (Internas)
+
+Sombras internas para crear efectos de profundidad y pressed states:
+
+| Token | Uso Principal |
+|-------|---------------|
+| `shadow/inner-xs` | Pressed states sutiles |
+| `shadow/inner-sm` | Input inset, wells |
+| `shadow/inner-md` | Contenedores hundidos |
+| `shadow/inner-lg` | Efectos de profundidad |
+| `shadow/inner-xl` | Efectos dramáticos (raro) |
+
+### CSS Variables - Inner Shadows
+
+```css
+:root {
+  /* Inner Shadows - Inset depth */
+  --shadow-inner-xs: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-inner-sm: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-inner-md: inset 0 3px 6px rgba(0, 0, 0, 0.10);
+  --shadow-inner-lg: inset 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-inner-xl: inset 0 6px 12px rgba(0, 0, 0, 0.16);
+}
+```
+
+---
+
+## Uso por Componente
+
+### Botones
+
+```scss
+.btn {
+  box-shadow: var(--shadow-drop-sm);
+
+  &:hover {
+    box-shadow: var(--shadow-drop-md);  // Elevar en hover
+  }
+
+  &:active {
+    box-shadow: var(--shadow-inner-xs);  // Hundir en pressed
+  }
+}
+```
+
+### Cards
+
+```scss
+.card {
+  box-shadow: var(--shadow-drop-md);
+
+  &:hover {
+    box-shadow: var(--shadow-drop-lg);
+  }
+}
+```
+
+### Dropdowns y Popovers
+
+```scss
+.dropdown,
+.popover {
+  box-shadow: var(--shadow-drop-lg);
+}
+```
+
+### Modales y Dialogs
+
+```scss
+.modal,
+.dialog {
+  box-shadow: var(--shadow-drop-xl);
+}
+```
+
+### Inputs con Inner Shadow
+
+```scss
+.input {
+  box-shadow: var(--shadow-inner-xs);
+
+  &:focus {
+    box-shadow: none;  // Remover inner en focus
+    border-color: var(--border-focus);
+  }
+}
+```
+
+---
+
+## Patrones de Interacción
+
+### Elevación en Hover
+
+```scss
+// Patrón: Elevar componentes interactivos en hover
+.interactive-card {
+  box-shadow: var(--shadow-drop-sm);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-drop-md);
+    transform: translateY(-2px);
+  }
+}
+```
+
+### Pressed State
+
+```scss
+// Patrón: Hundir componentes en pressed/active
+.btn {
+  box-shadow: var(--shadow-drop-sm);
+
+  &:active {
+    box-shadow: var(--shadow-inner-xs);
+    transform: translateY(1px);
+  }
+}
+```
+
+### Jerarquía Visual
+
+```scss
+// Diferentes niveles de elevación para establecer jerarquía
+.page-header {
+  box-shadow: var(--shadow-drop-2xs); // Sutil
+}
+
+.card {
+  box-shadow: var(--shadow-drop-md); // Estándar
+}
+
+.floating-action-button {
+  box-shadow: var(--shadow-drop-lg); // Elevada
+}
+
+.modal {
+  box-shadow: var(--shadow-drop-xl); // Máxima jerarquía
+}
+```
+
+---
+
+## Guía de Decisión
+
+**¿Qué sombra usar?**
+
+| Componente | Shadow Recomendada | Jerarquía |
+|-----------|-------------------|-----------|
+| Divisores, separadores | `drop-3xs` | Mínima |
+| Badges, tags | `drop-2xs` | Muy sutil |
+| Chips, tooltips pequeños | `drop-xs` | Sutil |
+| **Buttons, small cards** | `drop-sm` | Pequeña ⭐ |
+| **Cards estándar, dropdowns** | `drop-md` | Estándar ⭐ |
+| **Modales, popovers** | `drop-lg` | Elevada ⭐ |
+| Dialogs importantes | `drop-xl` | Máxima |
+| Inputs (default) | `inner-xs` | Inset sutil |
+| Wells, contenedores hundidos | `inner-sm` | Inset moderado |
+
+---
+
+## Mejores Prácticas
+
+### ✅ SÍ hacer
+
+```scss
+// ✅ Usar sombras para jerarquía
+.card-primary {
+  box-shadow: var(--shadow-drop-lg); // Más importante
+}
+
+.card-secondary {
+  box-shadow: var(--shadow-drop-sm); // Menos importante
+}
+
+// ✅ Transiciones suaves
+.card {
+  transition: box-shadow 0.2s ease;
+}
+
+// ✅ Combinar con transform para realismo
+.btn:active {
+  box-shadow: var(--shadow-inner-xs);
+  transform: translateY(1px);
+}
+```
+
+### ❌ NO hacer
+
+```scss
+// ❌ No mezclar sombras inconsistentemente
+.card-a { box-shadow: var(--shadow-drop-xl); }
+.card-b { box-shadow: var(--shadow-drop-xs); } // Sin razón clara
+
+// ❌ No usar sombras como único indicador de interactividad
+.button {
+  box-shadow: var(--shadow-drop-lg); // Demasiado prominente sin contexto
+}
+
+// ❌ No usar valores arbitrarios
+.custom {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); // Usar tokens
+}
+```
+
+---
+
+## Accesibilidad
+
+- **No confiar solo en sombras**: Las sombras son decorativas, no deben ser el único indicador de estado o interactividad
+- **Contraste adecuado**: Asegurar contraste suficiente en contenido independientemente de las sombras
+- **Focus visible**: Los estados de focus deben ser claramente visibles, no solo con sombras
+- **Motion**: Respetar `prefers-reduced-motion` en transiciones de sombras
+
+```scss
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none; // Desactivar transiciones de sombras
+  }
+}
+```
+
+---
+
+## Migración y Estado Actual
+
+### ✅ Completado
+- Definición de escalas drop e inner
+- Nomenclatura consistente (3xs → xl)
+- Multi-layer shadows para realismo
+
+### 🚧 En Proceso
+- Implementación como CSS variables
+- Conversión desde Figma Styles
+- Documentación de uso por componente
+
+### ❌ Pendiente
+- Soporte nativo en Figma Variables
+- Semantic tokens para v3.0 (ej: `button/shadow`, `card/shadow`)
+- Shadows responsive (reducción en mobile para performance)

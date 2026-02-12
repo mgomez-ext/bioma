@@ -1,0 +1,120 @@
+:host {
+  display: contents;
+}
+
+tr {
+  transition: background-color 0.15s ease;
+
+  &.row-even {
+    background-color: var(--neutral-white);
+  }
+
+  &.row-odd {
+    background-color: var(--neutral-50);
+  }
+
+  &:hover {
+    background-color: var(--neutral-100) !important;
+  }
+
+  &:last-child td {
+    border-bottom: none;
+  }
+}
+
+// Cell Styles
+.cell-sample,
+.cell-name,
+.cell-value {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+// Sample Column - Color Preview
+.cell-sample {
+  .color-sample {
+    width: 48px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+  }
+}
+
+// Name Column
+.cell-name {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+// Value Column
+.cell-value {
+  .value-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+  }
+
+  .value-primary {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background-color: var(--bg-muted);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    user-select: all;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--neutral-200);
+    }
+  }
+
+  .value-rgb {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+  }
+
+  .value-usage {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-1);
+  }
+
+  .mode-values {
+    display: flex;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-1);
+  }
+
+  .mode-value {
+    font-size: 12px;
+    color: var(--text-secondary);
+
+    .mode-label {
+      color: var(--text-muted);
+    }
+
+    .mode-code {
+      font-family: 'Courier New', monospace;
+      background-color: var(--bg-muted);
+      padding: 2px 4px;
+      border-radius: var(--radius-xs);
+      user-select: all;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--neutral-200);
+      }
+    }
+  }
+}
+
+// All code elements - copyable behavior
+code {
+  user-select: all;
+  cursor: pointer;
+}

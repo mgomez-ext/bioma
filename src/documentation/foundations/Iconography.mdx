@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations/Iconography" />
+
+# Iconography
+
+Bioma uses Material Symbols Rounded for a consistent, comprehensive icon system.
+
+## Icon System
+
+**Library**: Material Symbols Rounded  
+**Style**: Rounded (outlined) and Filled (solid)  
+**Sizes**: 16px, 20px, 24px, 32px, 40px, 48px
+
+## Using Icons
+
+### IconFont Component
+
+```html
+<bio-icon-font
+  iconName="home"
+  size="24"
+  type="rounded">
+</bio-icon-font>
+```
+
+### Icon Sizes
+
+| Size | Usage |
+|------|-------|
+| 16px | Inline with small text |
+| 20px | Buttons, inputs |
+| 24px | Default size |
+| 32px | Large buttons, cards |
+| 40px | Hero sections |
+| 48px | Large displays |
+
+## Icon Colors
+
+```scss
+--icon-default: var(--neutral-700);  // Default icons
+--icon-subtle: var(--neutral-500);   // Muted icons
+--icon-inverse: var(--neutral-white); // On dark backgrounds
+--icon-primary: var(--brand-500);    // Brand icons
+```
+
+## Common Icons
+
+- `home` - Home/Dashboard
+- `search` - Search functionality
+- `settings` - Settings/Preferences
+- `add` - Add/Create actions
+- `close` - Close/Cancel
+- `check` - Confirm/Success
+- `arrow_forward` - Next/Forward
+- `arrow_back` - Back/Previous
+- `more_vert` - More options menu
+
+## Best Practices
+
+- Use 24px as default size
+- Match icon size to adjacent text
+- Use consistent icon style (rounded or filled)
+- Provide text labels for accessibility
+- Use primary color for brand actions
+
+---
+
+Explore the [IconFont component](#) or see [all Material Symbols](https://fonts.google.com/icons).

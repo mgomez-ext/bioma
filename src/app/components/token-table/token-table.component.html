@@ -1,0 +1,21 @@
+<div class="token-table-container">
+  <h3 *ngIf="title" class="table-title">{{ title }}</h3>
+
+  <table role="table" class="token-table">
+    <thead>
+      <tr>
+        <th *ngIf="showSampleColumn" class="sample-column">Sample</th>
+        <th class="name-column">Name</th>
+        <th class="value-column">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <app-token-doc
+        *ngFor="let token of tokens; let i = index"
+        [token]="token"
+        [rowIndex]="i"
+        [prefix]="prefix">
+      </app-token-doc>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,212 @@
+/**
+ * IconFont Component Styles
+ * Material Symbols Icon System para Bioma 2.0
+ */
+
+// Base styles para iconos
+.bio-icon-font {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 400; // Default weight
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+}
+
+// ========================================
+// FONT FAMILIES
+// ========================================
+
+// Material Symbols Rounded (outlined style)
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+// Material Symbols Rounded Filled (solid style)
+.material-symbols-rounded-filled {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+// ========================================
+// SIZES
+// ========================================
+
+.bio-icon-font--size-16 {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 20;
+  }
+}
+
+.bio-icon-font--size-20 {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 1.02;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 20;
+  }
+}
+
+.bio-icon-font--size-24 {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+  }
+}
+
+.bio-icon-font--size-32 {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 40;
+  }
+}
+
+.bio-icon-font--size-40 {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 40;
+  }
+}
+
+.bio-icon-font--size-48 {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+
+  &.material-symbols-rounded,
+  &.material-symbols-rounded-filled {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48;
+  }
+}
+
+// ========================================
+// COLORS (usando tokens semánticos)
+// ========================================
+
+.bio-icon-font--color-default {
+  color: var(--icon-default);
+}
+
+.bio-icon-font--color-primary {
+  color: var(--icon-primary);
+}
+
+.bio-icon-font--color-inverse {
+  color: var(--icon-inverse);
+}
+
+.bio-icon-font--color-subtle {
+  color: var(--icon-subtle);
+}
+
+// ========================================
+// TYPE VARIATIONS
+// ========================================
+
+// Filled type - activa el relleno
+.material-symbols-rounded-filled {
+  --icon-fill: 1;
+}
+
+// Rounded type - sin relleno (outline)
+.material-symbols-rounded {
+  --icon-fill: 0;
+}
+
+// ========================================
+// STATES & INTERACTIONS
+// ========================================
+
+// Cuando el icono está dentro de un botón disabled
+button:disabled .bio-icon-font,
+.bio-button--disabled .bio-icon-font {
+  opacity: 0.5;
+  color: var(--text-disabled);
+}
+
+// Hover state (opcional, para iconos clickeables)
+.bio-icon-font--clickable {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--icon-primary);
+  }
+}
+
+// ========================================
+// ACCESSIBILITY
+// ========================================
+
+// Para screen readers
+.bio-icon-font[aria-label] {
+  // El aria-label se aplica en el HTML
+}
+
+// Si el icono es decorativo
+.bio-icon-font[aria-hidden="true"] {
+  pointer-events: none;
+}

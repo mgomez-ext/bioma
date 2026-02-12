@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Bioma 2.0/Data Visualization/Overview" />
+
+# Data Visualization
+
+Guidelines and components for displaying data visually.
+
+## Coming Soon
+
+Data visualization will include:
+
+- Chart guidelines
+- Color palettes for data
+- Accessibility considerations
+- Chart components
+
+---
+
+Check back soon for data visualization guidelines.

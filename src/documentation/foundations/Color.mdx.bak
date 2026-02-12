@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Bioma 2.0/Foundations/Color" />
+
+# Color
+
+Color is one of the most impactful design elements in Bioma. Our color system provides a comprehensive palette designed for clarity, accessibility, and emotional resonance.
+
+## Color Philosophy
+
+Bioma's color system is built on three principles:
+
+1. **Purpose-Driven**: Every color has a clear purpose and meaning
+2. **Accessible**: All color combinations meet WCAG AA standards  
+3. **Adaptive**: Colors work beautifully in both light and dark modes
+
+## Brand Palette
+
+**Bioma Red** (#E30038) is our primary brand color, representing energy, passion, and action.
+
+See the [complete token reference](#) for all color values and usage guidelines.
+
+## Semantic Colors
+
+### Text Colors
+- `--text-strong` - Headings and emphasis
+- `--text-primary` - Body text
+- `--text-secondary` - Supporting text
+- `--text-link` - Interactive links
+
+### Background Colors
+- `--bg-default` - Primary backgrounds
+- `--bg-subtle` - Secondary backgrounds
+- `--bg-inverse` - Dark backgrounds
+
+### Action Colors
+- `--primary-default` - Primary actions (brand red)
+- `--primary-hover` - Hover states
+- `--primary-active` - Active states
+
+---
+
+Explore [All Design Tokens](#) for the complete color reference.

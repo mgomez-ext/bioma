@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations/Border" />
+
+# Border
+
+Borders define boundaries and create visual separation in Bioma interfaces.
+
+## Border Radius
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| --radius-none | 0px | Square corners |
+| --radius-xs | 2px | Subtle rounding |
+| --radius-sm | 4px | Small components |
+| --radius-md | 8px | Default radius |
+| --radius-lg | 12px | Cards, panels |
+| --radius-xl | 16px | Large components |
+| --radius-2xl | 24px | Hero elements |
+| --radius-full | 9999px | Pills, circles |
+
+## Border Colors
+
+```scss
+--border-subtle: var(--neutral-200);   // Light borders
+--border-default: var(--neutral-300);  // Default borders
+--border-strong: var(--neutral-400);   // Emphasized borders
+--border-inverse: var(--neutral-white); // On dark backgrounds
+```
+
+## Usage
+
+```scss
+.card {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+}
+
+.button {
+  border-radius: var(--radius-md);
+}
+
+.avatar {
+  border-radius: var(--radius-full);
+}
+```
+
+---
+
+See [All Design Tokens](#) for complete border reference.

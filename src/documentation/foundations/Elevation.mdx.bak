@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Bioma 2.0/Foundations/Elevation" />
+
+# Elevation
+
+Elevation uses shadows to create depth and hierarchy in Bioma interfaces.
+
+## Shadow Scale
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| --shadow-xs | 0 1px 2px rgba(0,0,0,0.05) | Subtle depth |
+| --shadow-sm | 0 1px 3px rgba(0,0,0,0.1) | Small elements |
+| --shadow-md | 0 4px 6px rgba(0,0,0,0.1) | Cards, dropdowns |
+| --shadow-lg | 0 10px 15px rgba(0,0,0,0.1) | Modals, popovers |
+| --shadow-xl | 0 20px 25px rgba(0,0,0,0.1) | Large overlays |
+
+## Usage
+
+```scss
+.card {
+  box-shadow: var(--shadow-md);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.dropdown {
+  box-shadow: var(--shadow-sm);
+}
+
+.modal {
+  box-shadow: var(--shadow-xl);
+}
+```
+
+## Best Practices
+
+- Use elevation to indicate interactivity
+- Higher elevation for temporary elements
+- Consistent elevation for similar components
+- Combine with transitions for smooth effects
+
+---
+
+See [All Design Tokens](#) for complete elevation reference.

@@ -1,0 +1,47 @@
+<tr [class.row-even]="isEven" [class.row-odd]="!isEven">
+  <!-- Sample Column (Color Preview) -->
+  <td class="cell-sample">
+    <div *ngIf="showColorSample"
+         class="color-sample"
+         [style.background-color]="colorValue">
+    </div>
+  </td>
+
+  <!-- Name Column -->
+  <td class="cell-name">
+    {{ prefix }}{{ token.name }}
+  </td>
+
+  <!-- Value Column -->
+  <td class="cell-value">
+    <div class="value-container">
+      <!-- Primary Value (Hex or Value) -->
+      <code class="value-primary">
+        {{ displayValue }}
+      </code>
+
+      <!-- RGB Value (if color) -->
+      <span *ngIf="token.rgb" class="value-rgb">
+        {{ token.rgb }}
+      </span>
+
+      <!-- Usage Description -->
+      <span *ngIf="token.usage" class="value-usage">
+        {{ token.usage }}
+      </span>
+
+      <!-- Light/Dark Mode Values (for semantic tokens) -->
+      <div *ngIf="token.lightMode || token.darkMode" class="mode-values">
+        <span *ngIf="token.lightMode" class="mode-value">
+          <span class="mode-label">Light:</span>
+          <code class="mode-code">{{ token.lightMode }}</code>
+        </span>
+
+        <span *ngIf="token.darkMode" class="mode-value">
+          <span class="mode-label">Dark:</span>
+          <code class="mode-code">{{ token.darkMode }}</code>
+        </span>
+      </div>
+    </div>
+  </td>
+</tr>

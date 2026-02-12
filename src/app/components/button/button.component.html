@@ -1,0 +1,39 @@
+<button
+  [type]="type"
+  [disabled]="disabled"
+  [class]="buttonClasses.join(' ')"
+  (click)="handleClick($event)"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (mousedown)="onMouseDown()"
+  (mouseup)="onMouseUp()">
+
+  <!-- Left Icon Container -->
+  <span *ngIf="iconStart" class="bio-button__icon-container bio-button__icon-container--start">
+    <bio-icon-font
+      [iconName]="iconStartName"
+      size="20"
+      type="rounded"
+      class="bio-button__icon"
+      aria-hidden="true">
+    </bio-icon-font>
+  </span>
+
+  <!-- Button Label -->
+  <span class="bio-button__label">
+    {{ label }}
+  </span>
+
+  <!-- Right Icon Container -->
+  <span *ngIf="iconEnd" class="bio-button__icon-container bio-button__icon-container--end">
+    <bio-icon-font
+      [iconName]="iconEndName"
+      size="20"
+      type="rounded"
+      class="bio-button__icon"
+      aria-hidden="true">
+    </bio-icon-font>
+  </span>
+</button>

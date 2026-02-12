@@ -1,0 +1,277 @@
+/**
+ * BIOMA 2.0 DESIGN TOKENS
+ * Sistema de tokens en 2 niveles:
+ * 1. Foundation Tokens (primitivos)
+ * 2. Semantic Tokens (contextuales)
+ */
+
+:root {
+  /* ========================================
+   * FOUNDATION TOKENS - LEVEL 1
+   * Valores primitivos, absolutos
+   * ======================================== */
+
+  /* Neutral Palette */
+  --neutral-50: #FAFAFA;
+  --neutral-100: #F5F5F2;
+  --neutral-200: #E3E3E3;
+  --neutral-300: #C2C2BF;
+  --neutral-400: #969696;
+  --neutral-500: #737373;
+  --neutral-600: #575454;
+  --neutral-700: #404040;
+  --neutral-800: #30302E;
+  --neutral-900: #262626;
+  --neutral-950: #121212;
+  --neutral-white: #FFFFFF;
+  --neutral-black: #000000;
+
+  /* Brand Palette - Bioma Red */
+  --brand-50: #FFEDED;
+  --brand-100: #FFD1D4;
+  --brand-200: #FFA3AB;
+  --brand-300: #FF4D61;
+  --brand-400: #F52B4A;
+  --brand-500: #E30038;  /* ⭐ Principal */
+  --brand-600: #C40030;
+  --brand-700: #BA1F38;
+  --brand-800: #9C0024;
+  --brand-900: #700017;
+  --brand-950: #45000A;
+
+  /* Spacing Scale */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* Border Radius */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* ========================================
+   * SEMANTIC TOKENS - LEVEL 2
+   * Tokens contextuales que referencian primitivos
+   * ======================================== */
+
+  /* Text Colors */
+  --text-strong: var(--neutral-950);
+  --text-primary: var(--neutral-800);
+  --text-secondary: var(--neutral-700);
+  --text-tertiary: var(--neutral-600);
+  --text-muted: var(--neutral-500);
+  --text-disabled: var(--neutral-300);
+  --text-inverse: var(--neutral-white);
+  --text-link: #0066CC;  /* Cerulean/600 */
+  --text-link-hover: #0052A3;
+
+  /* Background Colors */
+  --bg-default: var(--neutral-white);
+  --bg-subtle: var(--neutral-50);
+  --bg-muted: var(--neutral-100);
+  --bg-inverse: var(--neutral-950);
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Border Colors */
+  --border-subtle: var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-strong: var(--neutral-400);
+  --border-inverse: var(--neutral-white);
+
+  /* Primary Action (Brand Red) */
+  --primary-default: var(--brand-500);
+  --primary-hover: var(--brand-600);
+  --primary-active: var(--brand-700);
+  --primary-disabled: var(--neutral-300);
+  --primary-subtle: var(--brand-50);
+  --primary-strong: var(--neutral-white);
+
+  /* Secondary Action */
+  --secondary-default: var(--neutral-white);
+  --secondary-hover: var(--neutral-50);
+  --secondary-active: var(--neutral-100);
+  --secondary-border: var(--neutral-300);
+  --secondary-border-hover: var(--neutral-400);
+
+  /* Tertiary Action */
+  --tertiary-default: transparent;
+  --tertiary-hover: var(--neutral-50);
+  --tertiary-active: var(--neutral-100);
+
+  /* Success Colors */
+  --success-default: #10B981;
+  --success-hover: #059669;
+  --success-subtle: #D1FAE5;
+  --success-strong: #065F46;
+
+  /* Warning Colors */
+  --warning-default: #F59E0B;
+  --warning-hover: #D97706;
+  --warning-subtle: #FEF3C7;
+  --warning-strong: #92400E;
+
+  /* Error Colors */
+  --error-default: #EF4444;
+  --error-hover: #DC2626;
+  --error-subtle: #FEE2E2;
+  --error-strong: #991B1B;
+
+  /* Info Colors */
+  --info-default: #3B82F6;
+  --info-hover: #2563EB;
+  --info-subtle: #DBEAFE;
+  --info-strong: #1E40AF;
+
+  /* Focus State */
+  --focus-ring: var(--brand-500);
+  --focus-ring-offset: var(--neutral-white);
+
+  /* Icon Colors */
+  --icon-default: var(--neutral-700);
+  --icon-subtle: var(--neutral-500);
+  --icon-inverse: var(--neutral-white);
+  --icon-primary: var(--brand-500);
+}
+
+/* ========================================
+ * DARK MODE OVERRIDES
+ * Tokens semánticos adaptativos para modo oscuro
+ * ======================================== */
+
+[data-theme="dark"] {
+  /* Text Colors - Dark Mode */
+  --text-strong: var(--neutral-white);
+  --text-primary: var(--neutral-50);
+  --text-secondary: var(--neutral-300);
+  --text-tertiary: var(--neutral-400);
+  --text-muted: var(--neutral-500);
+  --text-disabled: var(--neutral-600);
+  --text-inverse: var(--neutral-950);
+  --text-link: #60A5FA;
+  --text-link-hover: #93C5FD;
+
+  /* Background Colors - Dark Mode */
+  --bg-default: var(--neutral-950);
+  --bg-subtle: var(--neutral-900);
+  --bg-muted: var(--neutral-800);
+  --bg-inverse: var(--neutral-white);
+
+  /* Border Colors - Dark Mode */
+  --border-subtle: var(--neutral-800);
+  --border-default: var(--neutral-700);
+  --border-strong: var(--neutral-600);
+  --border-inverse: var(--neutral-950);
+
+  /* Primary Action - Dark Mode */
+  --primary-subtle: var(--brand-950);
+  --primary-strong: var(--neutral-white);
+
+  /* Secondary Action - Dark Mode */
+  --secondary-default: var(--neutral-800);
+  --secondary-hover: var(--neutral-700);
+  --secondary-active: var(--neutral-600);
+  --secondary-border: var(--neutral-600);
+  --secondary-border-hover: var(--neutral-500);
+
+  /* Tertiary Action - Dark Mode */
+  --tertiary-hover: var(--neutral-800);
+  --tertiary-active: var(--neutral-700);
+
+  /* Focus State - Dark Mode */
+  --focus-ring-offset: var(--neutral-950);
+
+  /* Icon Colors - Dark Mode */
+  --icon-default: var(--neutral-300);
+  --icon-subtle: var(--neutral-500);
+  --icon-inverse: var(--neutral-950);
+}
+
+/* ========================================
+ * TYPOGRAPHY TOKENS
+ * ======================================== */
+
+:root {
+  /* Font Families */
+  --font-primary: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+  /* Font Sizes */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-base: 16px;
+  --font-lg: 18px;
+  --font-xl: 20px;
+  --font-2xl: 24px;
+  --font-3xl: 30px;
+  --font-4xl: 36px;
+  --font-5xl: 48px;
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+}
+
+/* ========================================
+ * Z-INDEX SCALE
+ * ======================================== */
+
+:root {
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ========================================
+ * TRANSITION TOKENS
+ * ======================================== */
+
+:root {
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}

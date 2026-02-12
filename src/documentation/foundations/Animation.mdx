@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations/Animation" />
+
+# Animation
+
+Motion principles and timing functions for creating smooth, purposeful animations in Bioma.
+
+## Transition Speeds
+
+| Token | Duration | Usage |
+|-------|----------|-------|
+| --transition-fast | 150ms | Quick feedback (hover, focus) |
+| --transition-base | 250ms | Default transitions |
+| --transition-slow | 350ms | Complex animations |
+
+## Easing Functions
+
+```scss
+--ease-in: cubic-bezier(0.4, 0, 1, 1);
+--ease-out: cubic-bezier(0, 0, 0.2, 1);
+--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);  // Default
+```
+
+## Usage
+
+```scss
+.button {
+  transition: background-color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--primary-hover);
+  }
+}
+
+.modal {
+  transition: opacity var(--transition-base) var(--ease-in-out);
+}
+```
+
+## Best Practices
+
+- Use fast transitions for immediate feedback
+- Use slow transitions for complex state changes
+- Be consistent with easing functions
+- Avoid animating expensive properties (use transform/opacity)
+
+---
+
+See [All Design Tokens](#) for complete animation reference.

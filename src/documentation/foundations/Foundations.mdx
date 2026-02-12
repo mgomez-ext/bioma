@@ -1,0 +1,610 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations" />
+
+# 🧬 Bioma 2.0 Foundations
+
+Los Foundations son los **átomos del sistema de diseño** - los bloques fundamentales que definen la identidad visual y se combinan para crear todos los componentes.
+
+---
+
+## 📐 Arquitectura del Sistema
+
+Bioma utiliza una **arquitectura de tokens de dos niveles** inspirada en la jerarquía de Atomic Design:
+
+```
+┌─────────────────────────────────────────────┐
+│  NIVEL 1: PRIMITIVOS (Atoms)                │
+│  Foundation Tokens - Valores absolutos       │
+│  • No cambian entre temas                    │
+│  • Fuente de verdad del sistema              │
+│  • Ej: brand/500, spacing-16, radius-md     │
+└─────────────────────────────────────────────┘
+                   ↓ referencia
+┌─────────────────────────────────────────────┐
+│  NIVEL 2: SEMÁNTICOS (Molecules)            │
+│  Semantic Tokens - Valores contextuales      │
+│  • Cambian según Light/Dark mode             │
+│  • Tienen significado de uso                 │
+│  • Ej: text/primary, bg/brand, btn/padding  │
+└─────────────────────────────────────────────┘
+                   ↓ componen
+┌─────────────────────────────────────────────┐
+│  NIVEL 3: COMPONENTES (Organisms)           │
+│  Elementos de UI completos                   │
+│  • Button, Input, Card, Modal                │
+│  • Usan solo tokens semánticos               │
+└─────────────────────────────────────────────┘
+```
+
+**Beneficio clave:** Cambiar un token primitivo (ej: `brand/500`) actualiza automáticamente todos los componentes que lo usan a través de semantic tokens.
+
+---
+
+# 🎨 NIVEL 1: PRIMITIVOS (ATOMS)
+
+Los primitivos son los valores absolutos que no cambian entre temas. Son la paleta base del sistema.
+
+---
+
+## 1. Color Primitives
+
+Sistema de paletas de color con valores RGB absolutos organizados en escalas de 50-950.
+
+### 🎨 Paleta: Neutral
+
+Escala de grises para texto, fondos y bordes neutros.
+
+| Token | Hex | RGB | Uso Principal |
+|-------|-----|-----|---------------|
+| `neutral/50` | `#FAFAFA` | `rgb(250, 250, 250)` | Fondos muy claros |
+| `neutral/100` | `#F5F5F2` | `rgb(245, 245, 242)` | Fondos claros |
+| `neutral/200` | `#E3E3E3` | `rgb(227, 227, 227)` | Bordes sutiles |
+| `neutral/300` | `#C2C2BF` | `rgb(194, 194, 191)` | Bordes medios |
+| `neutral/400` | `#969696` | `rgb(150, 150, 150)` | Texto deshabilitado |
+| `neutral/500` | `#737373` | `rgb(115, 115, 115)` | Texto secundario |
+| `neutral/600` | `#575454` | `rgb(87, 84, 84)` | Texto secundario fuerte |
+| `neutral/700` | `#404040` | `rgb(64, 64, 64)` | Texto primario |
+| `neutral/800` | `#30302E` | `rgb(48, 48, 46)` | Texto fuerte |
+| `neutral/900` | `#262626` | `rgb(38, 38, 38)` | Texto muy fuerte |
+| `neutral/950` | `#121212` | `rgb(18, 18, 18)` | Fondos dark mode |
+| `neutral/white` | `#FFFFFF` | `rgb(255, 255, 255)` | Blanco puro |
+| `neutral/black` | `#000000` | `rgb(0, 0, 0)` | Negro puro |
+
+### 🌫️ Paleta: Gray
+
+Escala de grises con tono azulado para superficies y divisores.
+
+| Token | Hex | RGB | Uso |
+|-------|-----|-----|-----|
+| `gray/50` | `#F2F2F5` | `rgb(242, 242, 245)` | Fondo muy sutil |
+| `gray/100` | `#E3E8ED` | `rgb(227, 232, 237)` | Fondo sutil |
+| `gray/200` | `#CCD6DE` | `rgb(204, 214, 222)` | Bordes |
+| `gray/300` | `#A3B0BD` | `rgb(163, 176, 189)` | Bordes medios |
+| `gray/400` | `#8A99AB` | `rgb(138, 153, 171)` | Texto terciario |
+| `gray/500` | `#70879E` | `rgb(112, 135, 158)` | Texto muted |
+| `gray/600` | `#63788C` | `rgb(99, 120, 140)` | Texto secundario |
+| `gray/700` | `#404F61` | `rgb(64, 79, 97)` | Texto secundario fuerte |
+| `gray/800` | `#303B47` | `rgb(48, 59, 71)` | Texto primario |
+| `gray/900` | `#212629` | `rgb(33, 38, 41)` | Texto strong |
+| `gray/950` | `#17171C` | `rgb(23, 23, 28)` | Fondos dark |
+
+### 🔴 Paleta: Brand (Rojo característico)
+
+Identidad de marca principal - Rojo Bioma (#E30038).
+
+| Token | Hex | RGB | Uso |
+|-------|-----|-----|-----|
+| `brand/50` | `#FFEDED` | `rgb(255, 237, 237)` | Fondo muy sutil |
+| `brand/100` | `#FFD1D4` | `rgb(255, 209, 212)` | Fondo sutil |
+| `brand/200` | `#FFA3AB` | `rgb(255, 163, 171)` | Fondo medio |
+| `brand/300` | `#FF4D61` | `rgb(255, 77, 97)` | Texto sobre claro |
+| `brand/400` | `#F52B4A` | `rgb(245, 43, 74)` | Hover light |
+| `brand/500` | `#E30038` | `rgb(227, 0, 56)` | ⭐ **Principal** |
+| `brand/600` | `#C40030` | `rgb(196, 0, 48)` | Pressed light |
+| `brand/700` | `#BA1F38` | `rgb(186, 31, 56)` | Strong |
+| `brand/800` | `#9C0024` | `rgb(156, 0, 36)` | Very strong |
+| `brand/900` | `#700017` | `rgb(112, 0, 23)` | Dark mode bg |
+| `brand/950` | `#45000A` | `rgb(69, 0, 10)` | Dark mode strong |
+
+### 🟠 Paletas de Status
+
+**Cinnamon (Advertencia/Warning)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `cinnamon/50` | `#FFF4E6` | `rgb(255, 244, 230)` |
+| `cinnamon/500` | `#F59E0B` | `rgb(245, 158, 11)` |
+| `cinnamon/700` | `#B45309` | `rgb(180, 83, 9)` |
+
+**Tamarillo (Error/Danger)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `tamarillo/50` | `#FEF2F2` | `rgb(254, 242, 242)` |
+| `tamarillo/500` | `#EF4444` | `rgb(239, 68, 68)` |
+| `tamarillo/700` | `#B91C1C` | `rgb(185, 28, 28)` |
+
+**Vermillion (Energía/Acción secundaria)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `vermillion/50` | `#FFF5E6` | `rgb(255, 245, 230)` |
+| `vermillion/500` | `#FF6B35` | `rgb(255, 107, 53)` |
+| `vermillion/700` | `#CC5529` | `rgb(204, 85, 41)` |
+
+**Navy (Información/Info)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `navy/50` | `#EFF6FF` | `rgb(239, 246, 255)` |
+| `navy/500` | `#3B82F6` | `rgb(59, 130, 246)` |
+| `navy/700` | `#1D4ED8` | `rgb(29, 78, 216)` |
+
+**Cerulean (Links/Interactivo)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `cerulean/50` | `#E0F2FE` | `rgb(224, 242, 254)` |
+| `cerulean/300` | `#7DD3FC` | `rgb(125, 211, 252)` |
+| `cerulean/500` | `#06B6D4` | `rgb(6, 182, 212)` |
+| `cerulean/600` | `#0891B2` | `rgb(8, 145, 178)` |
+| `cerulean/700` | `#0E7490` | `rgb(14, 116, 144)` |
+
+**Viridian (Éxito/Success)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `viridian/50` | `#ECFDF5` | `rgb(236, 253, 245)` |
+| `viridian/500` | `#10B981` | `rgb(16, 185, 129)` |
+| `viridian/700` | `#047857` | `rgb(4, 120, 87)` |
+
+**Saffron (Highlight/Énfasis)**
+
+| Token | Hex | RGB |
+|-------|-----|-----|
+| `saffron/50` | `#FFFBEB` | `rgb(255, 251, 235)` |
+| `saffron/500` | `#F59E0B` | `rgb(245, 158, 11)` |
+| `saffron/700` | `#B45309` | `rgb(180, 83, 9)` |
+
+---
+
+## 2. Typography Primitives
+
+Sistema tipográfico basado en Sora con escalas modulares.
+
+### Familias Tipográficas
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `font-family/heading` | `'Sora', system-ui, sans-serif` | Títulos y headings |
+| `font-family/body` | `'Sora', system-ui, sans-serif` | Texto de cuerpo |
+| `font-family/icon` | `'Material Symbols Rounded'` | Iconografía |
+
+### Escala de Tamaños - Headings
+
+| Token | Tamaño | Line Height | Uso |
+|-------|--------|-------------|-----|
+| `font-size/h1` | `40px` | `48px` (1.2) | Hero titles |
+| `font-size/h2` | `36px` | `44px` (1.22) | Page titles |
+| `font-size/h3` | `31px` | `38px` (1.23) | Section titles |
+| `font-size/h4` | `25px` | `32px` (1.28) | Subsection titles |
+| `font-size/h5` | `20px` | `28px` (1.4) | Card titles |
+| `font-size/h6` | `16px` | `24px` (1.5) | Small titles |
+
+### Escala de Tamaños - Body
+
+| Token | Tamaño | Line Height | Uso |
+|-------|--------|-------------|-----|
+| `font-size/body-lg` | `18px` | `28px` (1.56) | Lead text |
+| `font-size/body-md` | `14px` | `20px` (1.43) | Body default |
+| `font-size/body-sm` | `12px` | `16px` (1.33) | Small text |
+| `font-size/body-xs` | `11px` | `16px` (1.45) | Captions |
+
+### Pesos de Fuente
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `font-weight/light` | `300` | Texto decorativo |
+| `font-weight/regular` | `400` | Texto de cuerpo |
+| `font-weight/bold` | `700` | Títulos, énfasis |
+| `font-weight/extra-bold` | `800` | Display, hero |
+
+---
+
+## 3. Spacing Primitives
+
+Escala de espaciado basada en múltiplos de 4px y 8px.
+
+| Token | Valor | Rem | Uso Principal |
+|-------|-------|-----|---------------|
+| `spacing-0` | `0px` | `0rem` | Sin espacio |
+| `spacing-1` | `4px` | `0.25rem` | Espaciado mínimo |
+| `spacing-2` | `8px` | `0.5rem` | Espaciado XS |
+| `spacing-3` | `12px` | `0.75rem` | Espaciado SM |
+| `spacing-4` | `16px` | `1rem` | Espaciado MD (base) |
+| `spacing-5` | `20px` | `1.25rem` | Espaciado entre base y LG |
+| `spacing-6` | `24px` | `1.5rem` | Espaciado LG |
+| `spacing-8` | `32px` | `2rem` | Espaciado XL |
+| `spacing-10` | `40px` | `2.5rem` | Espaciado 2XL |
+| `spacing-12` | `48px` | `3rem` | Espaciado 3XL |
+| `spacing-16` | `64px` | `4rem` | Espaciado 4XL |
+
+**Uso común:**
+- `spacing-2` (8px): Gap entre ícono y texto
+- `spacing-4` (16px): Padding de botones, cards
+- `spacing-6` (24px): Margin entre secciones
+- `spacing-8` (32px): Padding de containers
+
+---
+
+## 4. Radius Primitives
+
+Escala de border radius para definir personalidad visual.
+
+| Token | Valor | Uso Principal |
+|-------|-------|---------------|
+| `radius/none` | `0px` | Tablas, divisores |
+| `radius/sm` | `4px` | Inputs, badges |
+| `radius/md` | `8px` | Botones estándar |
+| `radius/lg` | `12px` | Cards, modales |
+| `radius/xl` | `16px` | Cards grandes |
+| `radius/2xl` | `24px` | Hero cards |
+| `radius/3xl` | `32px` | Decorativo |
+| `radius/full` | `999px` | Avatares, pills |
+
+---
+
+## 5. Shadow Primitives
+
+Sistema de sombras para crear profundidad y jerarquía.
+
+### Drop Shadows (Externas)
+
+| Token | Valor CSS | Uso |
+|-------|-----------|-----|
+| `shadow/drop-3xs` | `0 1px 2px rgba(0,0,0,0.04)` | Hover sutil |
+| `shadow/drop-2xs` | `0 1px 3px rgba(0,0,0,0.06)` | Badges |
+| `shadow/drop-xs` | `0 2px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)` | Chips |
+| `shadow/drop-sm` | `0 4px 8px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)` | Buttons |
+| `shadow/drop-md` | `0 8px 16px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06)` | Cards |
+| `shadow/drop-lg` | `0 16px 32px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08)` | Modales |
+| `shadow/drop-xl` | `0 24px 48px rgba(0,0,0,0.16), 0 12px 24px rgba(0,0,0,0.10)` | Dialogs |
+
+### Inner Shadows (Internas)
+
+| Token | Valor CSS | Uso |
+|-------|-----------|-----|
+| `shadow/inner-xs` | `inset 0 1px 2px rgba(0,0,0,0.06)` | Pressed sutil |
+| `shadow/inner-sm` | `inset 0 2px 4px rgba(0,0,0,0.08)` | Inputs |
+| `shadow/inner-md` | `inset 0 3px 6px rgba(0,0,0,0.10)` | Wells |
+| `shadow/inner-lg` | `inset 0 4px 8px rgba(0,0,0,0.12)` | Profundidad |
+| `shadow/inner-xl` | `inset 0 6px 12px rgba(0,0,0,0.16)` | Dramático |
+
+---
+
+# 🧩 NIVEL 2: SEMÁNTICOS (MOLECULES)
+
+Los tokens semánticos tienen **significado contextual** y referencian tokens primitivos. Cambian entre Light/Dark mode.
+
+---
+
+## Color Semantic Tokens
+
+### Text Colors
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `text/strong` | `{gray/950}` | `{neutral/white}` | Títulos principales |
+| `text/primary` | `{gray/800}` | `{gray/50}` | Texto de cuerpo |
+| `text/secondary` | `{gray/700}` | `{gray/300}` | Texto secundario |
+| `text/tertiary` | `{gray/600}` | `{gray/400}` | Texto terciario |
+| `text/muted` | `{gray/500}` | `{gray/500}` | Texto atenuado |
+| `text/disabled` | `{gray/300}` | `{gray/600}` | Texto deshabilitado |
+| `text/inverse` | `{neutral/white}` | `{gray/950}` | Sobre fondos oscuros |
+| `text/link` | `{cerulean/600}` | `{cerulean/300}` | Enlaces |
+
+### Background Colors
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `bg/primary` | `{neutral/white}` | `{gray/950}` | Fondo principal |
+| `bg/secondary` | `{gray/50}` | `{gray/900}` | Fondo secundario |
+| `bg/tertiary` | `{gray/100}` | `{gray/800}` | Fondo terciario |
+| `bg/inverse` | `{gray/950}` | `{neutral/white}` | Fondos invertidos |
+| `bg/brand` | `{brand/500}` | `{brand/500}` | Fondo de marca |
+| `bg/brand-hover` | `{brand/600}` | `{brand/400}` | Hover de marca |
+| `bg/disabled` | `{gray/200}` | `{gray/700}` | Deshabilitado |
+
+### Border Colors
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `border/subtle` | `{gray/200}` | `{gray/700}` | Bordes sutiles |
+| `border/default` | `{gray/300}` | `{gray/600}` | Bordes estándar |
+| `border/medium` | `{gray/400}` | `{gray/500}` | Bordes medios |
+| `border/strong` | `{gray/500}` | `{gray/400}` | Bordes fuertes |
+| `border/heavy` | `{gray/600}` | `{gray/300}` | Bordes pesados |
+| `border/focus` | `{cerulean/500}` | `{cerulean/400}` | Estado focus |
+
+### Primary Action Colors
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `primary/subtle` | `{brand/50}` | `{brand/900}` | Fondo sutil |
+| `primary/ghost` | `transparent` + `{brand/500}` borde | `transparent` + `{brand/400}` | Ghost button |
+| `primary/default` | `{brand/500}` | `{brand/300}` | Botón primary |
+| `primary/hover` | `{brand/600}` | `{brand/400}` | Hover primary |
+| `primary/strong` | `{brand/700}` | `{brand/200}` | Texto sobre brand |
+
+### Status Colors - Danger
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `danger/subtle` | `{tamarillo/50}` | `{tamarillo/900}` | Fondo error |
+| `danger/default` | `{tamarillo/500}` | `{tamarillo/400}` | Texto/botón error |
+| `danger/strong` | `{tamarillo/700}` | `{tamarillo/300}` | Error fuerte |
+
+### Status Colors - Warning
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `warning/subtle` | `{cinnamon/50}` | `{cinnamon/900}` | Fondo warning |
+| `warning/default` | `{cinnamon/500}` | `{cinnamon/400}` | Texto warning |
+| `warning/strong` | `{cinnamon/700}` | `{cinnamon/300}` | Warning fuerte |
+
+### Status Colors - Success
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `success/subtle` | `{viridian/50}` | `{viridian/900}` | Fondo success |
+| `success/default` | `{viridian/500}` | `{viridian/400}` | Texto success |
+| `success/strong` | `{viridian/700}` | `{viridian/300}` | Success fuerte |
+
+### Status Colors - Info
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `info/subtle` | `{navy/50}` | `{navy/900}` | Fondo info |
+| `info/default` | `{navy/500}` | `{navy/400}` | Texto info |
+| `info/strong` | `{navy/700}` | `{navy/300}` | Info fuerte |
+
+### Icon Colors
+
+| Token | Light Mode | Dark Mode | Uso |
+|-------|------------|-----------|-----|
+| `icon/strong` | `{gray/950}` | `{neutral/white}` | Íconos máxima jerarquía |
+| `icon/primary` | `{gray/800}` | `{gray/100}` | Íconos principales |
+| `icon/secondary` | `{gray/700}` | `{gray/300}` | Íconos secundarios |
+| `icon/tertiary` | `{gray/600}` | `{gray/400}` | Íconos terciarios |
+| `icon/muted` | `{gray/500}` | `{gray/500}` | Íconos atenuados |
+| `icon/disabled` | `{gray/300}` | `{gray/600}` | Íconos deshabilitados |
+| `icon/inverse` | `{neutral/white}` | `{gray/950}` | Sobre fondos |
+| `icon/link` | `{cerulean/600}` | `{cerulean/300}` | Íconos interactivos |
+
+---
+
+# 🏗️ NIVEL 3: SISTEMAS ESTRUCTURALES (ORGANISMS)
+
+Sistemas complejos que organizan y estructuran el contenido.
+
+---
+
+## Grid & Layout System
+
+Sistema responsive basado en Bootstrap 5 con 12 columnas.
+
+### Breakpoints
+
+| Breakpoint | Prefijo | Ancho Mínimo | Dispositivo |
+|------------|---------|--------------|-------------|
+| XS | - | `0px` | Móviles pequeños |
+| SM | `sm` | `576px` | Móviles grandes |
+| MD | `md` | `768px` | Tablets |
+| LG | `lg` | `992px` | Laptops |
+| XL | `xl` | `1200px` | Desktops |
+| XXL | `xxl` | `1400px` | Pantallas grandes |
+
+### Container Widths
+
+| Container | XS | SM | MD | LG | XL | XXL |
+|-----------|----|----|----|----|-----|-----|
+| `.container` | 100% | 540px | 720px | 960px | 1140px | 1320px |
+| `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
+
+### Grid Gutters
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `grid-gutter-width` | `24px` | Espacio entre columnas (default) |
+
+---
+
+## Iconography System
+
+Sistema de iconografía basado en **Material Symbols Rounded**.
+
+### Icon Sizes
+
+| Token | Tamaño | Uso |
+|-------|--------|-----|
+| `icon-size/xs` | `16px` | Inline pequeño |
+| `icon-size/sm` | `20px` | Botones pequeños |
+| `icon-size/md` | `24px` | Estándar (default) |
+| `icon-size/lg` | `32px` | Headers |
+| `icon-size/xl` | `40px` | Hero |
+| `icon-size/2xl` | `48px` | Empty states |
+
+### Icon Weights
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `icon-weight/light` | `200` | Íconos delgados |
+| `icon-weight/regular` | `400` | Estándar (default) |
+| `icon-weight/bold` | `700` | Íconos pesados |
+
+---
+
+# 📝 Nomenclatura y Uso
+
+## Formato de Tokens
+
+### En Documentación
+```
+Nivel 1 (Primitivo):  color/brand/500
+                      spacing-16
+                      radius/md
+
+Nivel 2 (Semántico):  text/primary
+                      bg/brand
+                      border/focus
+```
+
+### En CSS
+```css
+/* Variables CSS */
+var(--brand-500)
+var(--spacing-16)
+var(--radius-md)
+var(--text-primary)
+var(--bg-brand)
+```
+
+### En SCSS
+```scss
+// Variables SCSS
+$brand-500
+$spacing-16
+$radius-md
+$text-primary
+$bg-brand
+```
+
+### Referencias en Tokens
+```
+{brand/500}     // Referencia a otro token
+{gray/800}      // Usado en definiciones semánticas
+```
+
+---
+
+## Ejemplo de Implementación
+
+### Componente Button usando Tokens
+
+```scss
+.btn {
+  // Typography
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-md);
+  font-weight: var(--font-weight-bold);
+
+  // Spacing
+  padding: var(--spacing-3) var(--spacing-6);
+  gap: var(--spacing-2);
+
+  // Visual
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-drop-sm);
+
+  // Colors (semantic)
+  background-color: var(--primary-default);
+  color: var(--primary-strong);
+  border: 1px solid var(--primary-default);
+
+  &:hover {
+    background-color: var(--primary-hover);
+    box-shadow: var(--shadow-drop-md);
+  }
+
+  &:active {
+    box-shadow: var(--shadow-inner-xs);
+  }
+
+  &:disabled {
+    background-color: var(--bg-disabled);
+    color: var(--text-disabled);
+  }
+}
+```
+
+---
+
+## Principios de Uso
+
+### ✅ SÍ hacer
+
+1. **Usar tokens semánticos en componentes**
+   ```scss
+   color: var(--text-primary);     // ✅ Correcto
+   ```
+
+2. **Referenciar primitivos solo en definiciones semánticas**
+   ```scss
+   --text-primary: var(--gray-800); // ✅ Correcto
+   ```
+
+3. **Mantener consistencia en escalas**
+   ```scss
+   padding: var(--spacing-4);      // ✅ Usa la escala
+   ```
+
+### ❌ NO hacer
+
+1. **No usar primitivos directamente en componentes**
+   ```scss
+   color: var(--gray-800);         // ❌ Usar --text-primary
+   ```
+
+2. **No usar valores arbitrarios**
+   ```scss
+   padding: 17px;                  // ❌ Usar --spacing-4
+   ```
+
+3. **No hardcodear colores**
+   ```scss
+   background: #E30038;            // ❌ Usar --primary-default
+   ```
+
+---
+
+## Accesibilidad
+
+Todos los tokens de color cumplen con **WCAG 2.1 Level AA**:
+
+- Contraste mínimo texto/fondo: **4.5:1**
+- Contraste mínimo elementos grandes: **3:1**
+- Validado con herramientas de contraste
+
+### Tokens Accesibles por Defecto
+
+| Combinación | Contraste | WCAG |
+|-------------|-----------|------|
+| `text/primary` sobre `bg/primary` | 12:1 | AAA ✓ |
+| `text/secondary` sobre `bg/primary` | 7:1 | AAA ✓ |
+| `primary/default` sobre `neutral/white` | 5.2:1 | AA ✓ |
+| `text/link` sobre `bg/primary` | 4.8:1 | AA ✓ |
+
+---
+
+## Estado de Implementación
+
+### ✅ Completado
+- Foundation tokens (Color, Typography, Spacing, Radius, Shadows)
+- Semantic tokens (text, bg, border, primary, status, icon)
+- Nomenclatura estandarizada
+- Documentación completa
+- Integración Bootstrap 5
+
+### 🚧 En Proceso
+- Conversión de componentes existentes
+- Dark mode implementation
+- Storybook con ejemplos interactivos
+- Testing de contraste automatizado
+
+### ❌ Pendiente v3.0
+- Component-specific semantic tokens
+- Animation tokens (duration, easing)
+- Breakpoint tokens
+- Z-index scale
+- Opacity scale

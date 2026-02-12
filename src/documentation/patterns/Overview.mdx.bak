@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Bioma 2.0/Patterns/Overview" />
+
+# Patterns
+
+Reusable design patterns and compositions for common UI scenarios.
+
+## Pattern Categories
+
+### Forms
+- Login forms
+- Registration forms
+- Search forms
+- Filter forms
+
+### Navigation
+- Top navigation
+- Side navigation  
+- Breadcrumb navigation
+- Pagination
+
+### Content Display
+- Card layouts
+- List layouts
+- Table layouts
+- Grid layouts
+
+### Feedback
+- Empty states
+- Error states
+- Loading states
+- Success states
+
+---
+
+Patterns coming soon. Components are being built first.

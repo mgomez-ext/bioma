@@ -1,0 +1,172 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations/Índice" />
+
+# 🎨 Foundations (Fundamentos)
+
+Los foundations son los bloques básicos del sistema de diseño. Definen las decisiones visuales fundamentales que se aplican consistentemente en todos los componentes.
+
+---
+
+## 📦 Componentes de Foundations
+
+### 🎨 Color
+Sistema de colores con tokens semánticos, paletas y guías de uso.
+
+**Incluye:**
+- Colores primitivos (paleta base)
+- Colores semánticos (primary, secondary, danger, etc.)
+- Colores de superficie y fondos
+- Estados interactivos (hover, active, disabled)
+
+[Ver documentación de Color →](#)
+
+---
+
+### ✍️ Typography
+Sistema tipográfico con escalas, pesos y jerarquías.
+
+**Incluye:**
+- Familias tipográficas
+- Escala de tamaños
+- Pesos (weights)
+- Line heights
+- Letter spacing
+
+[Ver documentación de Typography →](#)
+
+---
+
+### 📏 Spacing
+Sistema de espaciado basado en escala 8px.
+
+**Incluye:**
+- Escala de espaciado (4, 8, 12, 16, 24, 32, 48, 64px)
+- Uso en padding y margin
+- Espaciado entre componentes
+- Espaciado interno de componentes
+
+[Ver documentación de Spacing →](#)
+
+---
+
+### 📐 Sizing
+Sistema de tamaños para componentes.
+
+**Incluye:**
+- Alturas estándar (sm, md, lg, xl)
+- Anchos de contenedores
+- Proporciones
+- Responsive breakpoints
+
+[Ver documentación de Sizing →](#)
+
+---
+
+### ⭕ Radius
+Sistema de border radius.
+
+**Incluye:**
+- Escalas de radius (none, sm, md, lg, full)
+- Uso por tipo de componente
+- Combinaciones con otros tokens
+
+[Ver documentación de Radius →](#)
+
+---
+
+### 🌑 Shadows
+Sistema de sombras y elevación.
+
+**Incluye:**
+- Niveles de elevación (1-5)
+- Sombras internas
+- Estados de foco
+- Depth y jerarquía visual
+
+[Ver documentación de Shadows →](#)
+
+---
+
+### 📱 Grid & Layout
+Sistema de grillas y layouts responsivos.
+
+**Incluye:**
+- Grid de 12 columnas (Bootstrap)
+- Breakpoints responsivos
+- Containers y márgenes
+- Flexbox utilities
+
+[Ver documentación de Grid & Layout →](#)
+
+---
+
+### 🎭 Iconografía
+Sistema de iconos y guías de uso.
+
+**Incluye:**
+- Librería Material Symbols
+- Tamaños estándar
+- Estilos (Outlined, Filled, Rounded)
+- Guías de uso y accesibilidad
+
+[Ver documentación de Iconografía →](#)
+
+---
+
+## 🔗 Sistema de Design Tokens
+
+Bioma utiliza una arquitectura de tokens de **dos niveles**:
+
+### Nivel 1: Foundation Tokens (Primitivos)
+Valores básicos sin significado semántico.
+
+```scss
+// Ejemplos
+$color-blue-500: #0066CC;
+$spacing-4: 16px;
+$radius-md: 6px;
+```
+
+### Nivel 2: Semantic Tokens
+Valores con significado de uso.
+
+```scss
+// Ejemplos
+$color-primary: $color-blue-500;
+$button-padding: $spacing-4;
+$button-radius: $radius-md;
+```
+
+**Beneficio:** Cambiar un token primitivo actualiza todos los componentes que lo usan.
+
+---
+
+## 📖 Integración con Bootstrap
+
+Bioma extiende Bootstrap 5.3 con tokens personalizados:
+
+```scss
+// Importar en styles.scss
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+// Sobrescribir variables de Bootstrap
+$primary: $color-primary;
+$border-radius: $radius-md;
+$spacer: $spacing-base;
+
+@import 'bootstrap/scss/bootstrap';
+```
+
+---
+
+## 🎯 Próximos Pasos
+
+1. **Explorar cada foundation** usando el menú lateral
+2. **Ver los tokens en acción** en la documentación de componentes
+3. **Implementar en tu proyecto** usando las guías de cada sección
+
+---
+
+**Documentación completa:** Ver [Master Documentation](../../Bioma-2.0-Design-System-Master-Documentation.md)

@@ -1,0 +1,237 @@
+// Button Component - Bioma 2.0 Design System
+// Usa tokens semánticos para asegurar consistencia y theming
+
+.bio-button {
+  // Reset de estilos de button
+  border: none;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  font-family: var(--font-family-body, 'Sora', sans-serif);
+
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 8px);
+
+  // Transiciones suaves
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  // Variante: Filled (default)
+  &--filled {
+    background-color: var(--primary-default, #E30038);
+    color: var(--primary-strong, #FFFFFF);
+    border: 1px solid var(--primary-default, #E30038);
+
+    &.bio-button--hovered {
+      background-color: var(--primary-hover, #C40030);
+      border-color: var(--primary-hover, #C40030);
+    }
+
+    &.bio-button--active {
+      background-color: var(--primary-hover, #C40030);
+      border-color: var(--primary-hover, #C40030);
+      transform: translateY(1px);
+    }
+
+    &.bio-button--focused {
+      border: 2px solid var(--border-focus, #06B6D4);
+      border-style: solid;
+      outline: none;
+    }
+
+    &.bio-button--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // Variante: Outlined
+  &--outlined {
+    background-color: var(--bg-primary, #FFFFFF);
+    color: var(--primary-default, #E30038);
+    border: 1px solid var(--border-default, #CCD6DE);
+
+    &.bio-button--hovered {
+      background-color: var(--bg-secondary, #F2F2F5);
+    }
+
+    &.bio-button--active {
+      background-color: var(--bg-secondary, #F2F2F5);
+      border-color: var(--border-medium, #8A99AB);
+      transform: translateY(1px);
+    }
+
+    &.bio-button--focused {
+      border: 2px solid var(--border-focus, #06B6D4);
+      outline: none;
+    }
+
+    &.bio-button--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // Variante: Flat
+  &--flat {
+    background-color: transparent;
+    color: var(--primary-default, #E30038);
+    border: 1px solid transparent;
+
+    &.bio-button--hovered {
+      background-color: var(--bg-secondary, #F2F2F5);
+    }
+
+    &.bio-button--active {
+      background-color: var(--bg-secondary, #F2F2F5);
+      border-color: var(--border-subtle, #CCD6DE);
+      transform: translateY(1px);
+    }
+
+    &.bio-button--focused {
+      border: 2px solid var(--border-focus, #06B6D4);
+      outline: none;
+    }
+
+    &.bio-button--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // Variante: Link
+  &--link {
+    background-color: transparent;
+    color: var(--text-link, #0891B2);
+    border: 1px solid transparent;
+    font-weight: var(--font-weight-regular, 400);
+
+    &.bio-button--hovered {
+      background-color: var(--bg-secondary, #F2F2F5);
+      text-decoration: underline;
+    }
+
+    &.bio-button--active {
+      background-color: var(--bg-tertiary, #E3E8ED);
+      transform: translateY(1px);
+    }
+
+    &.bio-button--focused {
+      border: 2px solid var(--border-focus, #06B6D4);
+      outline: none;
+    }
+
+    &.bio-button--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+  }
+
+  // Tamaño: Large (default)
+  &--large {
+    height: 48px;
+    padding: var(--spacing-3, 12px) var(--spacing-6, 24px);
+    border-radius: var(--radius-md, 8px);
+    font-size: var(--font-size-body-md, 14px);
+    font-weight: var(--font-weight-bold, 700);
+    line-height: var(--line-height-body-md, 20px);
+  }
+
+  // Tamaño: Medium
+  &--medium {
+    height: 40px;
+    padding: var(--spacing-3, 12px) var(--spacing-5, 20px);
+    border-radius: var(--radius-md, 8px);
+    font-size: var(--font-size-body-md, 14px);
+    font-weight: var(--font-weight-bold, 700);
+    line-height: var(--line-height-body-md, 20px);
+  }
+
+  // Tamaño: Small
+  &--small {
+    height: 32px;
+    padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+    border-radius: var(--radius-md, 8px);
+    font-size: var(--font-size-body-sm, 12px);
+    font-weight: var(--font-weight-bold, 700);
+    line-height: var(--line-height-body-sm, 16px);
+  }
+
+  // Full width
+  &--full-width {
+    width: 100%;
+  }
+
+  // Label
+  &__label {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  // Icon containers
+  &__icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &--start {
+      margin-right: calc(var(--spacing-2, 8px) * -0.5);
+    }
+
+    &--end {
+      margin-left: calc(var(--spacing-2, 8px) * -0.5);
+    }
+  }
+
+  // Icons
+  &__icon {
+    font-size: 20px;
+    line-height: 1.02;
+    color: var(--icon-default, var(--text-inverse));
+    color: var(--icon-primary, var(--text-primary));
+    color: var(--icon-inverse, var(--text-inverse));
+    color: var(--icon-subtle, var(--text-subtle));
+    color: var(--icon-disabled, var(--text-disabled));
+    color: var(--icon-focus, var(--text-focus));
+    color: var(--icon-error, var(--text-error));
+    color: var(--icon-success, var(--text-success));
+    color: var(--icon-warning, var(--text-warning));
+    color: var(--icon-info, var(--text-info));
+    color: var(--icon-link, var(--text-link));
+    color: var(--icon-brand, var(--text-brand));
+    color: var(--icon-neutral, var(--text-neutral));
+  }
+
+  // Disabled state (global)
+  &:disabled,
+  &--disabled {
+    pointer-events: none;
+  }
+}
+
+// Hover effects for non-touch devices
+@media (hover: hover) {
+  .bio-button:hover:not(:disabled):not(.bio-button--disabled) {
+    // Handled by classes above
+  }
+}
+
+// Focus visible for keyboard navigation
+.bio-button:focus-visible {
+  outline: 2px solid var(--border-focus, #06B6D4);
+  outline-offset: 2px;
+}
+
+// Active state
+.bio-button:active:not(:disabled):not(.bio-button--disabled) {
+  // Handled by classes above
+}
