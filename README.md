@@ -2,7 +2,7 @@
 
 [![Angular](https://img.shields.io/badge/Angular-21.1-DD0031?logo=angular)](https://angular.dev)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](./LICENSE)
-[![npm version](https://img.shields.io/npm/v/@mgomezw/bioma.svg)](https://www.npmjs.com/package/@mgomezw/bioma)
+[![npm version](https://img.shields.io/npm/v/@mgomez-ext/bioma.svg)](https://www.npmjs.com/package/@mgomez-ext/bioma)
 
 A comprehensive Angular component library with a robust design token system for building consistent, accessible user interfaces.
 
@@ -19,7 +19,7 @@ A comprehensive Angular component library with a robust design token system for 
 ## Installation
 
 ```bash
-npm install @mgomezw/bioma
+npm install @mgomez-ext/bioma
 ```
 
 ### Peer Dependencies
@@ -38,7 +38,7 @@ Import standalone components directly into your Angular application:
 
 ```typescript
 import { Component } from '@angular/core';
-import { ButtonComponent } from '@mgomezw/bioma';
+import { ButtonComponent } from '@mgomez-ext/bioma';
 
 @Component({
   selector: 'app-root',
@@ -66,7 +66,7 @@ Add the design tokens stylesheet to your global styles:
 
 ```scss
 // src/styles.scss
-@import '@mgomezw/bioma/src/styles/tokens';
+@import '@mgomez-ext/bioma/src/styles/tokens';
 ```
 
 Or import in your `angular.json`:
@@ -79,7 +79,7 @@ Or import in your `angular.json`:
         "build": {
           "options": {
             "styles": [
-              "node_modules/@mgomezw/bioma/src/styles/tokens.scss",
+              "node_modules/@mgomez-ext/bioma/src/styles/tokens.scss",
               "src/styles.scss"
             ]
           }
@@ -111,7 +111,7 @@ Access design tokens via CSS custom properties:
 Full-featured button with multiple variants, sizes, and states:
 
 ```typescript
-import { ButtonComponent } from '@mgomezw/bioma';
+import { ButtonComponent } from '@mgomez-ext/bioma';
 ```
 
 **Properties:**
@@ -140,7 +140,7 @@ import { ButtonComponent } from '@mgomezw/bioma';
 Material Symbols icon component:
 
 ```typescript
-import { IconFontComponent } from '@mgomezw/bioma';
+import { IconFontComponent } from '@mgomez-ext/bioma';
 ```
 
 **Example:**
@@ -157,7 +157,7 @@ import { IconFontComponent } from '@mgomezw/bioma';
 For building design system documentation:
 
 ```typescript
-import { TokenTableComponent, TokenDocComponent } from '@mgomezw/bioma';
+import { TokenTableComponent, TokenDocComponent } from '@mgomez-ext/bioma';
 ```
 
 ## Design Tokens Reference
@@ -201,7 +201,7 @@ See the [full token documentation](https://your-storybook-url.chromatic.com) in 
 ### Running Storybook Locally
 
 ```bash
-git clone https://github.com/mgomezw/bioma.git
+git clone https://github.com/mgomez-ext/bioma.git
 cd bioma
 npm install
 npm run storybook

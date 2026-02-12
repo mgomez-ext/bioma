@@ -1,5 +1,5 @@
 {
-  "name": "@mgomezw/bioma",
+  "name": "@mgomez-ext/bioma",
   "version": "0.1.0",
   "description": "Bioma 2.0 Design System - Angular component library with comprehensive design tokens",
   "keywords": [
@@ -14,11 +14,11 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgomezw/bioma.git"  
+    "url": "https://github.com/mgomez-ext/bioma.git"  
   },
-  "homepage": "https://github.com/mgomezw/bioma#readme",
+  "homepage": "https://github.com/mgomez-ext/bioma#readme",
   "bugs": {
-    "url": "https://github.com/mgomezw/bioma/issues"
+    "url": "https://github.com/mgomez-ext/bioma/issues"
   },
   "scripts": {
     "ng": "ng",

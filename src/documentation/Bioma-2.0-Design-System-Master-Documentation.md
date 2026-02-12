@@ -183,17 +183,17 @@ Las variables semánticas se adaptan automáticamente al modo seleccionado en la
 
 ```bash
 # NPM
-npm install @mgomezw/bioma
+npm install @mgomez-ext/bioma
 
 # Yarn
-yarn add @mgomezw/bioma
+yarn add @mgomez-ext/bioma
 ```
 
 **Configuración en Angular:**
 
 ```typescript
 // app.module.ts
-import { BiomaModule } from '@mgomezw/bioma';
+import { BiomaModule } from '@mgomez-ext/bioma';
 
 @NgModule({
   imports: [
@@ -210,7 +210,7 @@ export class AppModule { }
 // styles.scss
 
 // 1. Importar tokens de Bioma
-@import '@mgomezw/bioma/tokens';
+@import '@mgomez-ext/bioma/tokens';
 
 // 2. Override de variables Bootstrap (opcional)
 @import 'bootstrap-overrides';
@@ -219,7 +219,7 @@ export class AppModule { }
 @import 'bootstrap/scss/bootstrap';
 
 // 4. Importar componentes Bioma
-@import '@mgomezw/bioma/components';
+@import '@mgomez-ext/bioma/components';
 ```
 
 #### 2. Configuración de Temas (Light/Dark)
@@ -3800,11 +3800,11 @@ it('should have no accessibility violations', async () => {
 
 ```bash
 # Cuando esté disponible
-npm install @mgomezw/bioma
+npm install @mgomez-ext/bioma
 
 # Uso
-import { Button, Input, Card } from '@mgomezw/bioma';
-import '@mgomezw/bioma/styles';
+import { Button, Input, Card } from '@mgomez-ext/bioma';
+import '@mgomez-ext/bioma/styles';
 ```
 
 **Roadmap de publicación:**
@@ -3820,7 +3820,7 @@ import '@mgomezw/bioma/styles';
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/mgomezw/bioma.git
+git clone https://github.com/mgomez-ext/bioma.git
 
 # Instalar dependencias
 npm install

@@ -78,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - TypeScript declaration files (.d.ts)
 
 - **Library Distribution**:
-  - Scoped NPM package: @mgomezw/bioma
+  - Scoped NPM package: @mgomez-ext/bioma
   - Proper package.json with exports
   - Clean distribution via .npmignore
   - License: Proprietary (All Rights Reserved)
@@ -102,4 +102,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tagged as v0.1.0
 - Comprehensive .gitignore for Angular projects
 
-[0.1.0]: https://github.com/mgomezw/bioma/releases/tag/v0.1.0
+[0.1.0]: https://github.com/mgomez-ext/bioma/releases/tag/v0.1.0
