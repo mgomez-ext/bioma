@@ -1146,21 +1146,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/token-doc/token-doc.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<TokenDocComponent>",
-                "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/token-table/token-table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<TokenTableComponent>",
                 "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Tokens',\n  component: TokenTableComponent,\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TokenDocComponent>",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Components/TokenDoc',\n  component: TokenDocComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, TokenDocComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    token: {\n      control: 'object',\n      description: 'Token object with name, value, and optional metadata',\n    },\n    rowIndex: {\n      control: 'number',\n      description: 'Row index for zebra striping (even/odd rows)',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefix to prepend to token name display',\n    },\n  },\n}"
             },
             {
                 "name": "NeutralColorToken",
@@ -1608,8 +1608,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<TokenDocComponent>",
-                "file": "src/app/components/token-doc/token-doc.stories.ts",
+                "rawtype": "StoryObj<TokenTableComponent>",
+                "file": "src/app/components/token-table/token-table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1619,8 +1619,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<TokenTableComponent>",
-                "file": "src/app/components/token-table/token-table.stories.ts",
+                "rawtype": "StoryObj<TokenDocComponent>",
+                "file": "src/app/components/token-doc/token-doc.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2394,19 +2394,6 @@
                     "kind": 184
                 }
             ],
-            "src/app/components/token-doc/token-doc.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<TokenDocComponent>",
-                    "file": "src/app/components/token-doc/token-doc.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "src/app/components/token-table/token-table.stories.ts": [
                 {
                     "name": "Story",
@@ -2414,6 +2401,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<TokenTableComponent>",
                     "file": "src/app/components/token-table/token-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/components/token-doc/token-doc.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TokenDocComponent>",
+                    "file": "src/app/components/token-doc/token-doc.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

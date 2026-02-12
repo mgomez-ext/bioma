@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "bioma-design-system": {
+    "bioma": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bioma-design-system:build:production"
+              "buildTarget": "bioma:build:production"
             },
             "development": {
-              "buildTarget": "bioma-design-system:build:development"
+              "buildTarget": "bioma:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
           "builder": "@storybook/angular:start-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "bioma-design-system:build",
+            "browserTarget": "bioma:build",
             "compodoc": true,
             "compodocArgs": [
               "--exportFormat",
@@ -92,7 +92,7 @@
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "bioma-design-system:build",
+            "browserTarget": "bioma:build",
             "compodoc": true,
             "compodocArgs": [
               "--exportFormat",
