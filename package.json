@@ -1,10 +1,31 @@
 {
-  "name": "bioma-design-system",
+  "name": "@bioma/design-system",
   "version": "0.1.0",
+  "description": "Bioma 2.0 Design System - Angular component library with comprehensive design tokens",
+  "keywords": [
+    "angular",
+    "design-system",
+    "ui-components",
+    "bioma",
+    "tokens",
+    "component-library"
+  ],
+  "author": "Bioma",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bioma/bioma-design-system.git"
+  },
+  "homepage": "https://github.com/bioma/bioma-design-system#readme",
+  "bugs": {
+    "url": "https://github.com/bioma/bioma-design-system/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib": "ng-packagr -p ng-package.json",
+    "pack:lib": "cd dist/bioma-design-system && npm pack",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run bioma-design-system:storybook",
@@ -22,7 +43,7 @@
       }
     ]
   },
-  "private": true,
+  "private": false,
   "packageManager": "npm@11.6.2",
   "dependencies": {
     "@angular/common": "^21.1.0",
@@ -37,6 +58,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^21.1.4",
     "@angular/build": "^21.1.4",
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
@@ -46,6 +68,7 @@
     "@storybook/addon-themes": "^10.1.11",
     "@storybook/angular": "^10.1.11",
     "jsdom": "^27.1.0",
+    "ng-packagr": "^21.1.0",
     "sass": "^1.83.4",
     "storybook": "^10.1.11",
     "typescript": "~5.9.2",
