@@ -1,0 +1,11 @@
+{
+  "projectId": "YOUR_PROJECT_ID_HERE",
+  "buildScriptName": "build-storybook",
+  "onlyChanged": true,
+  "externals": [
+    "node_modules/**",
+    "dist/**"
+  ],
+  "skip": "dependabot/**",
+  "autoAcceptChanges": false
+}

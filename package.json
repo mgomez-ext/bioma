@@ -14,7 +14,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgomez-ext/bioma.git"  
+    "url": "https://github.com/mgomez-ext/bioma.git"
   },
   "homepage": "https://github.com/mgomez-ext/bioma#readme",
   "bugs": {
@@ -29,7 +29,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run bioma:storybook",
-    "build-storybook": "ng run bioma:build-storybook"
+    "build-storybook": "ng run bioma:build-storybook",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "prettier": {
     "printWidth": 100,
@@ -67,6 +68,7 @@
     "@storybook/addon-docs": "^10.1.11",
     "@storybook/addon-themes": "^10.1.11",
     "@storybook/angular": "^10.1.11",
+    "chromatic": "^15.1.0",
     "jsdom": "^27.1.0",
     "ng-packagr": "^21.1.0",
     "sass": "^1.83.4",
