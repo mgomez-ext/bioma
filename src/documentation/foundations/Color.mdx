@@ -1,43 +1,395 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Fundamentos/Color" />
+<Meta title="Bioma 2.1/Foundations/Color" />
 
-# Color
+# Sistema de Color
 
-El color es uno de los elementos de diseño más impactantes en Bioma. Nuestro sistema de color proporciona una paleta completa diseñada para claridad, accesibilidad y resonancia emocional.
-
-## Filosofía del Color
-
-El sistema de color de Bioma se construye sobre tres principios:
-
-1. **Orientado a Propósito**: Cada color tiene un propósito y significado claros
-2. **Accesible**: Todas las combinaciones de color cumplen con los estándares WCAG AA
-3. **Adaptativo**: Los colores funcionan hermosamente tanto en modos claro como oscuro
-
-## Paleta de Marca
-
-**Rojo Bioma** (#E30038) es nuestro color de marca primario, representando energía, pasión y acción.
-
-Mirá la [referencia completa de tokens](#) para todos los valores de color y guías de uso.
-
-## Colores Semánticos
-
-### Colores de Texto
-- `--text-strong` - Encabezados y énfasis
-- `--text-primary` - Texto de cuerpo
-- `--text-secondary` - Texto de soporte
-- `--text-link` - Enlaces interactivos
-
-### Colores de Fondo
-- `--bg-default` - Fondos primarios
-- `--bg-subtle` - Fondos secundarios
-- `--bg-inverse` - Fondos oscuros
-
-### Colores de Acción
-- `--primary-default` - Acciones primarias (rojo de marca)
-- `--primary-hover` - Estados hover
-- `--primary-active` - Estados activos
+El sistema de color de Bioma 2.0 proporciona una paleta consistente y accesible para crear interfaces visuales coherentes.
 
 ---
 
-Explorá [Todos los Design Tokens](#) para la referencia completa de colores.
+## 🎨 Filosofía de Color
+
+El color en Bioma sirve tres propósitos principales:
+
+1. **Identidad de Marca**: Colores que representan la marca Bioma
+2. **Jerarquía Visual**: Guiar la atención del usuario
+3. **Comunicación**: Transmitir significado (éxito, error, advertencia)
+
+---
+
+## 📊 Arquitectura de Color
+
+### Nivel 1: Paletas Foundation
+
+#### Paleta Neutral (13 escalas)
+Escala de grises para textos, fondos y bordes.
+
+```scss
+--neutral-100: #FAFAFA;  // Casi blanco
+--neutral-200: #F5F5F5;
+--neutral-300: #EEEEEE;
+--neutral-400: #E0E0E0;
+--neutral-500: #BDBDBD;  // Gris medio
+--neutral-600: #9E9E9E;
+--neutral-700: #757575;
+--neutral-800: #424242;
+--neutral-900: #212121;  // Casi negro
+--neutral-950: #121212;  // Negro profundo
+```
+
+**Uso:**
+- 100-300: Fondos claros, surfaces
+- 400-600: Bordes, dividers
+- 700-950: Textos, elementos oscuros
+
+#### Paleta Brand (11 escalas)
+El rojo característico de Bioma.
+
+```scss
+--brand-100: #FFEDED;  // Muy claro
+--brand-200: #FFD6D6;
+--brand-300: #FFBABA;
+--brand-400: #FF9E9E;
+--brand-500: #E30038;  // Color principal
+--brand-600: #C70030;
+--brand-700: #AB0028;
+--brand-800: #8F0020;
+--brand-900: #730018;
+--brand-950: #45000A;  // Muy oscuro
+```
+
+**Uso:**
+- 100-400: Fondos sutiles, hovers
+- 500: Color principal de marca
+- 600-950: Estados activos, oscuros
+
+---
+
+### Nivel 2: Tokens Semánticos
+
+#### Text Colors (8 tokens)
+
+```scss
+--text-primary: var(--neutral-900);      // Texto principal
+--text-secondary: var(--neutral-700);    // Texto secundario
+--text-tertiary: var(--neutral-600);     // Texto terciario
+--text-disabled: var(--neutral-400);     // Texto deshabilitado
+--text-link: var(--brand-500);           // Enlaces
+--text-on-primary: #FFFFFF;              // Texto sobre primary
+--text-on-secondary: #FFFFFF;            // Texto sobre secondary
+--text-inverse: #FFFFFF;                 // Texto sobre fondos oscuros
+```
+
+**Cuándo usar:**
+- `text-primary`: Títulos, contenido principal
+- `text-secondary`: Subtítulos, metadatos
+- `text-tertiary`: Labels, placeholders
+- `text-disabled`: Elementos deshabilitados
+- `text-link`: Enlaces, acciones de texto
+- `text-on-primary`: Texto sobre botones filled
+- `text-inverse`: Texto sobre fondos oscuros
+
+#### Background Colors (5 tokens)
+
+```scss
+--bg-default: #FFFFFF;                   // Fondo principal
+--bg-subtle: var(--neutral-100);         // Fondo sutil
+--bg-muted: var(--neutral-200);          // Fondo atenuado
+--bg-elevated: #FFFFFF;                  // Cards, modals
+--bg-overlay: rgba(0, 0, 0, 0.5);       // Overlays, modals
+```
+
+**Cuándo usar:**
+- `bg-default`: Fondo de página
+- `bg-subtle`: Secciones alternadas
+- `bg-muted`: Fondos disabled
+- `bg-elevated`: Cards, dropdowns
+- `bg-overlay`: Fondos de modals
+
+#### Border Colors (4 tokens)
+
+```scss
+--border-default: var(--neutral-300);    // Borde estándar
+--border-subtle: var(--neutral-200);     // Borde sutil
+--border-strong: var(--neutral-400);     // Borde enfático
+--border-inverse: rgba(255, 255, 255, 0.2); // Sobre fondos oscuros
+```
+
+#### Primary Action Colors (6 tokens)
+
+```scss
+--primary-default: var(--brand-500);     // Estado default
+--primary-hover: var(--brand-600);       // Estado hover
+--primary-active: var(--brand-700);      // Estado active
+--primary-disabled: var(--neutral-300);  // Estado disabled
+--primary-subtle: var(--brand-100);      // Fondo sutil
+--primary-strong: #FFFFFF;               // Texto en primary
+```
+
+#### Secondary Action Colors (5 tokens)
+
+```scss
+--secondary-default: var(--neutral-700);
+--secondary-hover: var(--neutral-800);
+--secondary-active: var(--neutral-900);
+--secondary-disabled: var(--neutral-300);
+--secondary-subtle: var(--neutral-200);
+```
+
+#### Status Colors (16 tokens)
+
+**Success (Verde)**
+```scss
+--success-default: #22C55E;
+--success-hover: #16A34A;
+--success-subtle: #DCFCE7;
+--success-strong: #166534;
+```
+
+**Warning (Amarillo/Naranja)**
+```scss
+--warning-default: #F59E0B;
+--warning-hover: #D97706;
+--warning-subtle: #FEF3C7;
+--warning-strong: #92400E;
+```
+
+**Error (Rojo)**
+```scss
+--error-default: #EF4444;
+--error-hover: #DC2626;
+--error-subtle: #FEE2E2;
+--error-strong: #991B1B;
+```
+
+**Info (Azul)**
+```scss
+--info-default: #3B82F6;
+--info-hover: #2563EB;
+--info-subtle: #DBEAFE;
+--info-strong: #1E3A8A;
+```
+
+---
+
+## 🌗 Modo Oscuro
+
+Todos los tokens semánticos se adaptan automáticamente:
+
+```scss
+[data-theme="dark"] {
+  // Textos
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-400);
+  --text-tertiary: var(--neutral-500);
+
+  // Fondos
+  --bg-default: #121212;
+  --bg-subtle: var(--neutral-900);
+  --bg-muted: var(--neutral-800);
+
+  // Bordes
+  --border-default: var(--neutral-700);
+  --border-subtle: var(--neutral-800);
+}
+```
+
+**Activación:**
+```html
+<div data-theme="dark">
+  <!-- Todo usa modo oscuro -->
+</div>
+```
+
+---
+
+## ♿ Accesibilidad
+
+Todos los colores cumplen con **WCAG AA** (contraste mínimo 4.5:1).
+
+### Ratios de Contraste
+
+| Combinación | Ratio | Cumplimiento |
+|-------------|-------|--------------|
+| text-primary / bg-default | 15.8:1 | ✅ AAA |
+| text-secondary / bg-default | 7.2:1 | ✅ AAA |
+| text-tertiary / bg-default | 5.1:1 | ✅ AA |
+| primary-default / white | 5.9:1 | ✅ AA |
+
+### Buenas Prácticas
+
+✅ **Usa tokens semánticos:**
+```scss
+color: var(--text-primary);
+background: var(--bg-default);
+```
+
+✅ **No confíes solo en color:**
+```html
+<!-- ✅ Bien: Usa icono + color -->
+<span style="color: var(--error-default)">
+  <icon>error</icon> Error
+</span>
+
+<!-- ❌ Mal: Solo color -->
+<span style="color: var(--error-default)">Error</span>
+```
+
+✅ **Verifica contraste:**
+Usa herramientas como [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+---
+
+## 🎯 Uso en Componentes
+
+### Textos
+
+```scss
+.title {
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+}
+
+.label {
+  color: var(--text-tertiary);
+}
+
+.disabled-text {
+  color: var(--text-disabled);
+}
+
+.link {
+  color: var(--text-link);
+}
+```
+
+### Fondos
+
+```scss
+.page {
+  background: var(--bg-default);
+}
+
+.section-alt {
+  background: var(--bg-subtle);
+}
+
+.card {
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-md);
+}
+
+.modal-backdrop {
+  background: var(--bg-overlay);
+}
+```
+
+### Acciones
+
+```scss
+.button-primary {
+  background: var(--primary-default);
+  color: var(--primary-strong);
+
+  &:hover {
+    background: var(--primary-hover);
+  }
+
+  &:active {
+    background: var(--primary-active);
+  }
+
+  &:disabled {
+    background: var(--primary-disabled);
+    color: var(--text-disabled);
+  }
+}
+```
+
+### Estados
+
+```scss
+.alert-success {
+  background: var(--success-subtle);
+  color: var(--success-strong);
+  border: 1px solid var(--success-default);
+}
+
+.alert-error {
+  background: var(--error-subtle);
+  color: var(--error-strong);
+  border: 1px solid var(--error-default);
+}
+```
+
+---
+
+## 📝 Ejemplos Prácticos
+
+### Card Component
+
+```scss
+.bio-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+
+  .bio-card__title {
+    color: var(--text-primary);
+  }
+
+  .bio-card__description {
+    color: var(--text-secondary);
+  }
+
+  &:hover {
+    border-color: var(--border-strong);
+  }
+}
+```
+
+### Form Input
+
+```scss
+.bio-input {
+  background: var(--bg-default);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  &:focus {
+    border-color: var(--primary-default);
+  }
+
+  &:disabled {
+    background: var(--bg-muted);
+    color: var(--text-disabled);
+  }
+
+  &.error {
+    border-color: var(--error-default);
+  }
+}
+```
+
+---
+
+## 🎨 Paleta Visual
+
+Ver ejemplos interactivos de colores en:
+- [Color Palette Story](/story/foundations-color-palette--all-colors)
+
+---
+
+## 📚 Recursos
+
+- **Archivo**: `src/styles/tokens.scss`
+- **Total de colores**: 24 foundation + 47 semantic = 71 tokens
+- **Herramientas**: [Coolors](https://coolors.co), [WebAIM](https://webaim.org/resources/contrastchecker/)

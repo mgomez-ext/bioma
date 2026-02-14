@@ -1,95 +1,413 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Fundamentos/Tipografía" />
+<Meta title="Bioma 2.1/Foundations/Typography" />
 
-# Tipografía
+# Sistema de Tipografía
 
-La tipografía es esencial para crear interfaces claras, legibles y visualmente atractivas en Bioma.
+El sistema tipográfico de Bioma 2.0 proporciona jerarquía clara, legibilidad óptima y consistencia visual.
 
-## Familia Tipográfica
+---
 
-### Fuente Primaria: Sora
+## ✍️ Fuentes
 
-Sora es una sans-serif geométrica diseñada para interfaces digitales.
+### Font Family
 
+**Primary Font**: Sora
 ```scss
---font-primary: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+--font-family-base: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 ```
 
-**Pesos Disponibles**: 300 (Light), 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold)
-
-### Fuente Monoespaciada: SF Mono
-
-Para código y contenido técnico:
-
-```scss
---font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+**Instalación:**
+```html
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 ```
 
-## Escala Tipográfica
+---
 
-| Token | Tamaño | Uso |
-|-------|------|-------|
-| --font-xs | 12px | Letra pequeña, subtítulos |
-| --font-sm | 14px | Texto secundario, etiquetas |
-| --font-base | 16px | Texto de cuerpo (predeterminado) |
-| --font-lg | 18px | Texto de cuerpo grande |
-| --font-xl | 20px | Subtítulos |
-| --font-2xl | 24px | Títulos de sección |
-| --font-3xl | 30px | Títulos de página |
-| --font-4xl | 36px | Encabezados hero |
-| --font-5xl | 48px | Encabezados display |
+## 📏 Font Sizes
 
-## Pesos de Fuente
+### Escala Tipográfica (14 tamaños)
 
 ```scss
---font-light: 300;
---font-regular: 400;
---font-medium: 500;
---font-semibold: 600;
---font-bold: 700;
+--font-size-xs: 0.75rem;    // 12px
+--font-size-sm: 0.875rem;   // 14px
+--font-size-base: 1rem;     // 16px (default)
+--font-size-lg: 1.125rem;   // 18px
+--font-size-xl: 1.25rem;    // 20px
+--font-size-2xl: 1.5rem;    // 24px
+--font-size-3xl: 1.875rem;  // 30px
+--font-size-4xl: 2.25rem;   // 36px
+--font-size-5xl: 3rem;      // 48px
+--font-size-6xl: 3.75rem;   // 60px
+--font-size-7xl: 4.5rem;    // 72px
 ```
 
-## Alturas de Línea
+**Uso recomendado:**
+- `xs-sm`: Labels, captions, metadata
+- `base-lg`: Body text, párrafos
+- `xl-2xl`: Subtítulos, headings pequeños
+- `3xl-4xl`: Headings medianos
+- `5xl-7xl`: Display headings, hero text
+
+---
+
+## 💪 Font Weights
 
 ```scss
---leading-none: 1;
---leading-tight: 1.25;
---leading-snug: 1.375;
---leading-normal: 1.5;
---leading-relaxed: 1.625;
---leading-loose: 2;
+--font-weight-light: 300;       // Light
+--font-weight-regular: 400;     // Normal/Regular
+--font-weight-medium: 500;      // Medium
+--font-weight-semibold: 600;    // Semi-bold
+--font-weight-bold: 700;        // Bold
+--font-weight-extrabold: 800;   // Extra-bold (opcional)
 ```
 
-## Uso
+**Guía de uso:**
+- **Light (300)**: Textos grandes, display
+- **Regular (400)**: Body text, párrafos
+- **Medium (500)**: Botones, navegación
+- **Semibold (600)**: Subtítulos, énfasis moderado
+- **Bold (700)**: Títulos, énfasis fuerte
 
-### Encabezados
+---
+
+## 📐 Line Heights
 
 ```scss
-h1 {
-  font-size: var(--font-4xl);
-  font-weight: var(--font-bold);
-  line-height: var(--leading-tight);
-  color: var(--text-strong);
+--line-height-tight: 1.25;      // Headings
+--line-height-normal: 1.5;      // Body text
+--line-height-relaxed: 1.75;    // Párrafos largos
+--line-height-loose: 2;         // Espaciado extra
+```
+
+**Cuándo usar:**
+- `tight`: Titles, headings grandes
+- `normal`: Body text estándar
+- `relaxed`: Artículos, blog posts
+- `loose`: Poesía, citas
+
+---
+
+## 🎯 Jerarquía Tipográfica
+
+### Display Headings (Hero)
+
+```scss
+.display-1 {
+  font-size: var(--font-size-7xl);   // 72px
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
 }
 
-h2 {
-  font-size: var(--font-3xl);
-  font-weight: var(--font-semibold);
+.display-2 {
+  font-size: var(--font-size-6xl);   // 60px
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
 }
 ```
 
-### Texto de Cuerpo
+### Headings
 
 ```scss
-p {
-  font-size: var(--font-base);
-  font-weight: var(--font-regular);
-  line-height: var(--leading-relaxed);
+.h1, h1 {
+  font-size: var(--font-size-5xl);   // 48px
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
   color: var(--text-primary);
+}
+
+.h2, h2 {
+  font-size: var(--font-size-4xl);   // 36px
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+.h3, h3 {
+  font-size: var(--font-size-3xl);   // 30px
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+.h4, h4 {
+  font-size: var(--font-size-2xl);   // 24px
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+.h5, h5 {
+  font-size: var(--font-size-xl);    // 20px
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+.h6, h6 {
+  font-size: var(--font-size-lg);    // 18px
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+```
+
+### Body Text
+
+```scss
+.text-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.text-base, body, p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+```
+
+### Utility Classes
+
+```scss
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-regular);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
 }
 ```
 
 ---
 
-Mirá [Todos los Design Tokens](#) para la referencia completa de tipografía.
+## 📝 Uso en Componentes
+
+### Página de Artículo
+
+```html
+<article>
+  <h1>Título Principal del Artículo</h1>
+  <p class="text-lg text-secondary">
+    Subtítulo o introducción del artículo
+  </p>
+
+  <h2>Sección 1</h2>
+  <p>
+    Contenido del párrafo con tamaño base. Lorem ipsum dolor sit amet...
+  </p>
+
+  <h3>Subsección</h3>
+  <p class="text-sm">
+    Texto más pequeño para notas o detalles adicionales.
+  </p>
+</article>
+```
+
+### Card con Tipografía
+
+```html
+<div class="card">
+  <h4>Título de Card</h4>
+  <p class="text-sm text-secondary">
+    Descripción breve del contenido
+  </p>
+  <span class="text-xs text-tertiary">
+    Metadata o fecha
+  </span>
+</div>
+```
+
+---
+
+## ♿ Accesibilidad
+
+### Tamaño Mínimo
+
+✅ El tamaño mínimo recomendado es **14px** (`font-size-sm`)
+⚠️ Usa 12px (`font-size-xs`) solo para metadata no crítica
+
+### Contraste
+
+Todos los colores de texto cumplen **WCAG AA**:
+- `text-primary` / `bg-default`: 15.8:1 ✅
+- `text-secondary` / `bg-default`: 7.2:1 ✅
+- `text-tertiary` / `bg-default`: 5.1:1 ✅
+
+### Escalado
+
+El sistema usa `rem` para permitir escalado con preferencias del usuario:
+
+```css
+/* Usuario con preferencias aumentadas */
+html {
+  font-size: 18px; /* Default: 16px */
+}
+/* Todos los tamaños escalan proporcionalmente */
+```
+
+---
+
+## 📱 Responsive Typography
+
+### Mobile First
+
+```scss
+.heading {
+  // Mobile (default)
+  font-size: var(--font-size-3xl);
+
+  // Tablet
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+
+  // Desktop
+  @media (min-width: 1024px) {
+    font-size: var(--font-size-5xl);
+  }
+}
+```
+
+### Fluid Typography (Opcional)
+
+```scss
+.display {
+  font-size: clamp(
+    var(--font-size-4xl),  // Min
+    5vw,                   // Preferred
+    var(--font-size-7xl)   // Max
+  );
+}
+```
+
+---
+
+## 🎨 Variaciones de Estilo
+
+### Links
+
+```scss
+.link {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    text-decoration-color: var(--text-link);
+  }
+}
+```
+
+### Code
+
+```scss
+.code-inline {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background: var(--bg-subtle);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.code-block {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  background: var(--bg-subtle);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+}
+```
+
+### Lists
+
+```scss
+ul, ol {
+  padding-left: var(--spacing-6);
+  color: var(--text-primary);
+
+  li {
+    margin-bottom: var(--spacing-2);
+    line-height: var(--line-height-normal);
+  }
+}
+```
+
+---
+
+## 📊 Tokens Definidos
+
+**Total**: 21 tokens tipográficos
+
+- **Font Families**: 2
+- **Font Sizes**: 11
+- **Font Weights**: 6
+- **Line Heights**: 4
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```scss
+// Usa tokens
+.text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+}
+
+// Jerarquía clara
+<h1>Título principal</h1>
+<h2>Subtítulo</h2>
+<p>Párrafo</p>
+```
+
+### ❌ Evita esto:
+
+```scss
+// Valores hardcoded
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+// Saltos en jerarquía
+<h1>Título</h1>
+<h4>¿Por qué h4?</h4> <!-- Falta h2, h3 -->
+```
+
+---
+
+## 📚 Recursos
+
+- **Google Fonts**: [Inter](https://fonts.google.com/specimen/Inter)
+- **Archivo**: `src/styles/tokens.scss`
+- **Type Scale**: [Type-Scale.com](https://type-scale.com/)

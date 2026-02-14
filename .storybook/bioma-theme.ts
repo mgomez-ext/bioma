@@ -13,14 +13,14 @@ export default create({
   fontCode: '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
 
   // Brand
-  brandTitle: 'Bioma 2.0 Design System',
+  brandTitle: 'Bioma 2.1 Design System',
   brandUrl: 'https://bioma.com',
   brandImage: undefined,
   brandTarget: '_self',
 
   // UI Colors - Bioma light theme
-  colorPrimary: '#E30038',        // brand/500 - Bioma Red
-  colorSecondary: '#E30038',      // brand/500
+  colorPrimary: '#E20039',        // brand/500 - Bioma Red
+  colorSecondary: '#E20039',      // brand/500
 
   // UI
   appBg: '#FFFFFF',               // neutral/white
@@ -47,8 +47,8 @@ export default create({
   inputBorderRadius: 8,           // radius-md
 
   // Buttons
-  buttonBg: '#E30038',            // primary-default
-  buttonBorder: '#E30038',        // primary-default
+  buttonBg: '#E20039',            // primary-default
+  buttonBorder: '#E20039',        // primary-default
   booleanBg: '#F5F5F5',          // neutral/100
-  booleanSelectedBg: '#E30038',   // brand/500
+  booleanSelectedBg: '#E20039',   // brand/500
 });

@@ -1,76 +1,150 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Comenzar/Introducción" />
+<Meta title="Bioma 2.1/Getting Started/Introduction" />
 
-# Bienvenido al Sistema de Diseño Bioma 2.0
+# Bienvenido a Bioma 2.0 Design System
 
-Bioma 2.0 es un sistema de diseño integral que proporciona los bloques de construcción para crear experiencias digitales consistentes, accesibles y hermosas.
-
-## ¿Qué es Bioma?
-
-Bioma es más que una biblioteca de componentes—es un lenguaje de diseño completo que incluye:
-
-- **Design Tokens**: Un sistema de tokens semánticos con más de 150 tokens para colores, espaciado, tipografía y más
-- **Componentes**: Componentes de UI pre-construidos y accesibles desarrollados con Angular
-- **Fundamentos**: Principios de diseño base para color, tipografía, espaciado y layout
-- **Patrones**: Soluciones reutilizables para problemas de diseño comunes
-- **Guías**: Mejores prácticas para crear experiencias cohesivas
-
-## Características Clave
-
-### 🎨 Sistema de Tokens Semánticos
-Bioma utiliza una arquitectura de tokens de dos niveles:
-- **Tokens de Fundamento**: Valores primitivos (colores, escalas de espaciado)
-- **Tokens Semánticos**: Tokens contextuales que referencian fundamentos
-
-### 🌙 Soporte para Modo Oscuro
-Cada componente y token está diseñado pensando en modos claro y oscuro, asegurando experiencias hermosas en cualquier contexto.
-
-### ♿ Accesibilidad Primero
-Todos los componentes cumplen con los estándares WCAG AA e incluyen etiquetas ARIA apropiadas, navegación por teclado y gestión de foco.
-
-### 📦 Tokens Independientes del Framework
-Aunque los componentes están construidos con Angular, los design tokens pueden usarse en cualquier framework o plataforma.
-
-## Principios de Diseño
-
-### Consistencia
-Mantener consistencia visual y funcional en todos los puntos de contacto a través de componentes y patrones compartidos.
-
-### Accesibilidad
-Crear experiencias inclusivas que funcionen para todos, independientemente de la capacidad o dispositivo.
-
-### Eficiencia
-Acelerar el diseño y desarrollo con componentes reutilizables y documentación clara.
-
-### Flexibilidad
-Adaptarse a diferentes contextos mientras se mantiene la identidad central de Bioma.
-
-## Comenzar
-
-### Para Diseñadores
-1. Revisa los [Fundamentos](#) para entender los principios de diseño base
-2. Explora [Componentes](#) para ver los elementos de UI disponibles
-3. Consulta [Patrones](#) para soluciones de diseño comunes
-
-### Para Desarrolladores
-1. Sigue la guía de [Instalación](#) para configurar el sistema
-2. Revisa [Design Tokens](#) para entender la arquitectura de tokens
-3. Comienza a construir con [Componentes](#)
-
-## Versión
-
-**Versión Actual**: 0.1.0
-**Estado**: En Desarrollo
-**Última Actualización**: Febrero 2026
-
-## Soporte
-
-Para preguntas, problemas o contribuciones:
-- GitHub: [Bioma Design System](https://github.com/mgomez-ext/bioma)
-- Email: design-system@bioma.com
-- Slack: #bioma
+Bioma 2.0 es un sistema de diseño completo construido con Angular 21, diseñado para crear experiencias de usuario consistentes, accesibles y escalables.
 
 ---
 
-¿Listo para sumergirte? Comienza con nuestros [Fundamentos](#) o ve directo a [Componentes](#).
+## 🎯 ¿Qué es Bioma?
+
+Bioma 2.0 es más que una librería de componentes. Es un ecosistema completo que incluye:
+
+- **Sistema de Tokens de Diseño**: Foundation tokens y semantic tokens para colores, tipografía, espaciado y más
+- **Componentes Angular**: Componentes standalone reutilizables y bien documentados
+- **Documentación Interactiva**: Storybook con ejemplos en vivo y guías de uso
+- **Modo Oscuro**: Soporte nativo para temas claro y oscuro
+- **Accesibilidad**: Cumplimiento de estándares WCAG AA
+- **TypeScript**: Type-safety completo en todos los componentes
+
+---
+
+## ✨ Características Clave
+
+### Sistema de Tokens de Diseño
+150+ tokens organizados en tres niveles:
+- **Foundation Tokens**: Valores primitivos (colores base, escalas de spacing)
+- **Semantic Tokens**: Tokens contextuales (primary, secondary, success, error)
+- **Component Tokens**: Tokens específicos para componentes
+
+### Componentes Standalone
+Todos los componentes son standalone de Angular 21, lo que significa:
+- ✅ Mejor tree-shaking
+- ✅ Importación más simple
+- ✅ Sin NgModules necesarios
+- ✅ Carga más rápida
+
+### Storybook Interactivo
+Cada componente incluye:
+- Documentación completa con ejemplos
+- Playground interactivo
+- Guías de uso y mejores prácticas
+- Código de ejemplo copiable
+
+### Theming Flexible
+Cambia entre temas claro y oscuro automáticamente:
+```html
+<div data-theme="light">...</div>
+<div data-theme="dark">...</div>
+```
+
+---
+
+## 🚀 Para Empezar
+
+### 1. Instalación
+Ve a la sección [Installation](/docs/getting-started-installation--docs) para instrucciones detalladas de cómo instalar Bioma en tu proyecto.
+
+### 2. Quick Start
+Revisa la guía [Quick Start](/docs/getting-started-quickstart--docs) para crear tu primer componente en minutos.
+
+### 3. Explora los Fundamentos
+Aprende sobre los [Design Tokens](/docs/foundations-overview--docs) que hacen que Bioma sea consistente y escalable.
+
+### 4. Componentes
+Explora nuestra librería de [componentes](/docs/components-overview--docs) listos para usar.
+
+---
+
+## 🎨 Filosofía de Diseño
+
+### Atomic Design
+Bioma sigue los principios de Atomic Design:
+
+**Atoms** → Elementos básicos (botones, inputs, íconos)
+**Molecules** → Combinaciones simples (campos de búsqueda, cards)
+**Organisms** → Secciones complejas (navegación, formularios)
+
+### Design Tokens First
+Todos los estilos utilizan tokens semánticos en lugar de valores hardcoded:
+
+```scss
+// ✅ Bien - Usa tokens
+background: var(--primary-default);
+padding: var(--spacing-4);
+
+// ❌ Mal - Valores hardcoded
+background: #E30038;
+padding: 16px;
+```
+
+### Accesibilidad Primero
+- Contraste WCAG AA cumplido
+- Navegación por teclado completa
+- ARIA labels apropiados
+- Soporte para screen readers
+
+---
+
+## 📚 Estructura de Documentación
+
+```
+📦 Bioma 2.0
+├── 🏠 Getting Started
+│   ├── Introduction (estás aquí)
+│   ├── Installation
+│   └── Quick Start
+│
+├── 🎨 Foundations
+│   ├── Overview
+│   ├── Design Tokens
+│   ├── Color
+│   ├── Typography
+│   ├── Spacing
+│   ├── Layout
+│   ├── Border
+│   ├── Elevation
+│   ├── Animation
+│   └── Iconography
+│
+└── 🧩 Components
+    └── (ver sección de componentes)
+```
+
+---
+
+## 🤝 Contribuir
+
+Bioma es un sistema vivo que evoluciona con las necesidades del equipo.
+
+**¿Cómo contribuir?**
+- Reporta bugs o inconsistencias
+- Sugiere nuevos componentes
+- Propone mejoras a componentes existentes
+- Comparte casos de uso
+
+---
+
+## 📞 Soporte
+
+**Repositorio**: [github.com/mgomez-ext/bioma](https://github.com/mgomez-ext/bioma)
+**Versión actual**: 0.1.0
+**Última actualización**: Febrero 2026
+
+---
+
+## 🎯 Siguiente Paso
+
+👉 [Instala Bioma en tu proyecto](/docs/getting-started-installation--docs)

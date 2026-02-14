@@ -100,7 +100,8 @@
               "-d",
               "."
             ],
-            "outputDir": "storybook-static"
+            "outputDir": "storybook-static",
+            "webpackStatsJson": true
           }
         }
       }

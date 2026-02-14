@@ -1,48 +1,432 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Elevation" />
+<Meta title="Bioma 2.1/Foundations/Elevation" />
 
-# Elevation
+# Sistema de Elevación
 
-Elevation uses shadows to create depth and hierarchy in Bioma interfaces.
+El sistema de elevación de Bioma 2.0 utiliza sombras para crear profundidad y jerarquía visual.
 
-## Shadow Scale
+---
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| --shadow-xs | 0 1px 2px rgba(0,0,0,0.05) | Subtle depth |
-| --shadow-sm | 0 1px 3px rgba(0,0,0,0.1) | Small elements |
-| --shadow-md | 0 4px 6px rgba(0,0,0,0.1) | Cards, dropdowns |
-| --shadow-lg | 0 10px 15px rgba(0,0,0,0.1) | Modals, popovers |
-| --shadow-xl | 0 20px 25px rgba(0,0,0,0.1) | Large overlays |
+## ⛰️ Shadow Tokens
 
-## Usage
+### 5 Niveles de Elevación
 
 ```scss
-.card {
-  box-shadow: var(--shadow-md);
+--shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+--shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+             0 1px 2px -1px rgba(0, 0, 0, 0.1);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+             0 2px 4px -2px rgba(0, 0, 0, 0.1);
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+             0 4px 6px -4px rgba(0, 0, 0, 0.1);
+--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+             0 8px 10px -6px rgba(0, 0, 0, 0.1);
+```
 
-  &:hover {
-    box-shadow: var(--shadow-lg);
-  }
+---
+
+## 🎯 Guía de Uso
+
+### `shadow-xs` - Elevación Mínima
+**Altura**: ~1px
+
+```scss
+.subtle-elevation {
+  box-shadow: var(--shadow-xs);
 }
+```
 
-.dropdown {
+**Uso**: Bordes sutiles, dividers elevados, elementos ligeramente separados del fondo.
+
+**Ejemplos**: Cards planas con sombra muy sutil, separadores.
+
+---
+
+### `shadow-sm` - Elevación Pequeña
+**Altura**: ~2-4px
+
+```scss
+.small-elevation {
   box-shadow: var(--shadow-sm);
 }
+```
 
-.modal {
+**Uso**: Cards estándar, botones elevados, inputs en foco.
+
+**Ejemplos**: Cards de producto, botones secondary, chips.
+
+---
+
+### `shadow-md` - Elevación Media (BASE)
+**Altura**: ~4-8px
+
+```scss
+.medium-elevation {
+  box-shadow: var(--shadow-md);
+}
+```
+
+**Uso**: Cards destacados, dropdowns, popovers.
+
+**Ejemplos**: Cards hover, menús desplegables, tooltips.
+
+---
+
+### `shadow-lg` - Elevación Grande
+**Altura**: ~10-15px
+
+```scss
+.large-elevation {
+  box-shadow: var(--shadow-lg);
+}
+```
+
+**Uso**: Modales, drawers, elementos flotantes importantes.
+
+**Ejemplos**: Modales de confirmación, sidebars flotantes.
+
+---
+
+### `shadow-xl` - Elevación Máxima
+**Altura**: ~20-25px
+
+```scss
+.xl-elevation {
   box-shadow: var(--shadow-xl);
 }
 ```
 
-## Best Practices
+**Uso**: Modales críticos, elementos de máxima prioridad.
 
-- Use elevation to indicate interactivity
-- Higher elevation for temporary elements
-- Consistent elevation for similar components
-- Combine with transitions for smooth effects
+**Ejemplos**: Modales de alerta, full-screen overlays.
 
 ---
 
-See [All Design Tokens](#) for complete elevation reference.
+## 📝 Ejemplos de Componentes
+
+### Cards
+
+```scss
+.bio-card {
+  // Default
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+
+  // Hover
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  // Focused
+  &:focus-within {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.bio-card--flat {
+  box-shadow: none;
+  border: 1px solid var(--border-default);
+}
+
+.bio-card--elevated {
+  box-shadow: var(--shadow-lg);
+}
+```
+
+### Buttons
+
+```scss
+.bio-button {
+  // Filled buttons tienen sombra sutil
+  &--filled {
+    box-shadow: var(--shadow-xs);
+
+    &:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  // Outlined y flat sin sombra
+  &--outlined,
+  &--flat {
+    box-shadow: none;
+  }
+}
+
+// Botón flotante (FAB)
+.bio-button--fab {
+  box-shadow: var(--shadow-lg);
+
+  &:hover {
+    box-shadow: var(--shadow-xl);
+  }
+}
+```
+
+### Dropdowns
+
+```scss
+.bio-dropdown {
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+}
+
+.bio-dropdown__menu {
+  box-shadow: var(--shadow-lg);
+}
+```
+
+### Modales
+
+```scss
+.bio-modal {
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-xl);
+}
+
+.bio-modal__backdrop {
+  background: var(--bg-overlay);
+}
+```
+
+### Tooltips
+
+```scss
+.bio-tooltip {
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
+}
+```
+
+---
+
+## 🎨 Patrones de Interacción
+
+### Elevación en Hover
+
+```scss
+.interactive-card {
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+```
+
+### Elevación en Pressed
+
+```scss
+.button {
+  box-shadow: var(--shadow-sm);
+
+  &:active {
+    box-shadow: var(--shadow-xs);
+    transform: translateY(1px);
+  }
+}
+```
+
+### Elevación en Focus
+
+```scss
+.input {
+  box-shadow: none;
+  border: 1px solid var(--border-default);
+
+  &:focus {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-default);
+  }
+}
+```
+
+---
+
+## 🌗 Modo Oscuro
+
+En modo oscuro, las sombras se adaptan para mantener contraste:
+
+```scss
+[data-theme="dark"] {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4),
+               0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5),
+               0 2px 4px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6),
+               0 4px 6px -4px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7),
+               0 8px 10px -6px rgba(0, 0, 0, 0.7);
+}
+```
+
+---
+
+## ⚡ Animaciones de Sombra
+
+```scss
+.animated-shadow {
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal),
+              transform var(--transition-normal);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  &:active {
+    box-shadow: var(--shadow-xs);
+    transform: translateY(0);
+  }
+}
+```
+
+---
+
+## 🎯 Jerarquía de Elevación
+
+### Z-Index + Shadows
+
+```scss
+// Nivel 0: Fondo
+.background {
+  z-index: var(--z-index-base);
+  box-shadow: none;
+}
+
+// Nivel 1: Contenido estándar
+.content {
+  z-index: var(--z-index-base);
+  box-shadow: var(--shadow-sm);
+}
+
+// Nivel 2: Elementos elevados
+.elevated {
+  z-index: var(--z-index-dropdown);
+  box-shadow: var(--shadow-md);
+}
+
+// Nivel 3: Dropdowns, Popovers
+.dropdown {
+  z-index: var(--z-index-dropdown);
+  box-shadow: var(--shadow-lg);
+}
+
+// Nivel 4: Modales
+.modal {
+  z-index: var(--z-index-modal);
+  box-shadow: var(--shadow-xl);
+}
+```
+
+---
+
+## ♿ Accesibilidad
+
+### No Dependas Solo de Sombras
+
+```html
+<!-- ✅ Bien: Sombra + Borde -->
+<div class="card" style="box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle);">
+  Card Content
+</div>
+
+<!-- ⚠️ Revisar: Solo sombra puede no ser suficiente en algunos contextos -->
+<div class="card" style="box-shadow: var(--shadow-sm);">
+  Card Content
+</div>
+```
+
+### Alto Contraste
+
+En modo de alto contraste, las sombras pueden no ser visibles. Usa bordes como respaldo:
+
+```scss
+.card {
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
+
+  @media (prefers-contrast: high) {
+    border-color: var(--border-default);
+  }
+}
+```
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```scss
+// Usa tokens
+.card {
+  box-shadow: var(--shadow-md);
+}
+
+// Transiciones suaves
+.interactive {
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Jerarquía clara
+.dropdown { box-shadow: var(--shadow-lg); }
+.modal { box-shadow: var(--shadow-xl); }
+```
+
+### ❌ Evita esto:
+
+```scss
+// Valores hardcoded
+.card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+// Sombras inconsistentes
+.card-1 { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.card-2 { box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
+
+// Sin transición
+.button {
+  box-shadow: var(--shadow-sm);
+  /* Cambio abrupto en hover */
+}
+.button:hover {
+  box-shadow: var(--shadow-lg);
+}
+```
+
+---
+
+## 📊 Resumen
+
+| Token | Altura Aproximada | Uso Principal |
+|-------|-------------------|---------------|
+| `shadow-xs` | ~1px | Dividers, bordes sutiles |
+| `shadow-sm` | ~2-4px | Cards, botones |
+| `shadow-md` | ~4-8px | **Dropdowns, cards hover** |
+| `shadow-lg` | ~10-15px | Modales, drawers |
+| `shadow-xl` | ~20-25px | Modales críticos, overlays |
+
+---
+
+## 📚 Recursos
+
+- **Archivo**: `src/styles/tokens.scss`
+- **Total de tokens**: 5 niveles
+- **Material Design Elevation**: [Guía de referencia](https://material.io/design/environment/elevation.html)

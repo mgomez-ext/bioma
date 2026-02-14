@@ -1,45 +1,37 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Componentes/Resumen" />
+<Meta title="Bioma 2.1/Components/Overview" />
 
 # Componentes
 
-Componentes de UI reutilizables construidos con Angular y design tokens de Bioma.
-
-## Componentes Disponibles
-
-### Controles de Formulario
-- [Button](#) - Botones de acción primaria, secundaria y terciaria
-- Input - Inputs de texto con validación *(Próximamente)*
-- Checkbox - Controles de selección *(Próximamente)*
-- Radio - Controles de selección única *(Próximamente)*
-- Toggle - Controles de switch *(Próximamente)*
-
-### Navegación
-- Menu *(Próximamente)*
-- Tabs *(Próximamente)*
-- Breadcrumb *(Próximamente)*
-
-### Feedback
-- Alert *(Próximamente)*
-- Toast *(Próximamente)*
-- Modal *(Próximamente)*
-
-### Visualización de Datos
-- Table *(Próximamente)*
-- Card *(Próximamente)*
-- Badge *(Próximamente)*
-
-## Principios de Componentes
-
-Todos los componentes de Bioma siguen estos principios:
-
-- **Accesibles**: Cumplen con WCAG AA con etiquetas ARIA apropiadas
-- **Basados en Tokens**: Usan design tokens exclusivamente (sin valores hardcodeados)
-- **Standalone**: Componentes standalone de Angular para mejor tree-shaking
-- **Tipados**: Soporte completo de TypeScript con tipos estrictos
-- **Documentados**: Documentación completa en Storybook
+Los componentes de Bioma 2.1 son bloques de interfaz reutilizables construidos sobre los fundamentos del sistema de diseño.
 
 ---
 
-Navegá por los componentes individuales en la barra lateral o empezá con [Button](#).
+## 🧩 Componentes disponibles
+
+| Componente | Descripción |
+|-----------|-------------|
+| **Button** | Botón con variantes (filled, outlined, flat, link), tamaños y soporte para íconos |
+| **Icons** | Sistema de íconos Material Symbols con tamaños y estilos configurables |
+
+---
+
+## 📦 Uso
+
+Todos los componentes son standalone y pueden importarse individualmente:
+
+```typescript
+import { ButtonComponent } from '@mgomezw/bioma';
+
+@Component({
+  imports: [ButtonComponent],
+  // ...
+})
+```
+
+---
+
+## ➡️ Próximos componentes
+
+Más componentes se agregarán en futuras versiones siguiendo el plan de implementación del design system.

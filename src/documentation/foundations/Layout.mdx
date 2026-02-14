@@ -1,52 +1,380 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Layout" />
+<Meta title="Bioma 2.1/Foundations/Layout" />
 
-# Layout
+# Sistema de Layout
 
-Layout foundations define how content is structured and organized in Bioma interfaces.
+El sistema de layout de Bioma 2.0 proporciona estructura y organización consistente para páginas y componentes.
 
-## Grid System
+---
 
-Bioma uses a **12-column responsive grid** based on Bootstrap:
+## 📐 Grid System
+
+Bioma utiliza un grid de **12 columnas** basado en Bootstrap 5.3.3:
 
 ### Breakpoints
 
-| Name | Width | Container Max Width |
-|------|-------|---------------------|
-| xs | menos de 576px | 100% |
-| sm | ≥576px | 540px |
-| md | ≥768px | 720px |
-| lg | ≥992px | 960px |
-| xl | ≥1200px | 1140px |
-| xxl | ≥1400px | 1320px |
+```scss
+// Extra Small (móvil)
+// < 576px (sin media query)
 
-## Container
+// Small (móvil horizontal)
+@media (min-width: 576px) { }
+
+// Medium (tablet)
+@media (min-width: 768px) { }
+
+// Large (desktop)
+@media (min-width: 992px) { }
+
+// Extra Large (desktop grande)
+@media (min-width: 1200px) { }
+
+// XXL (pantallas muy grandes)
+@media (min-width: 1400px) { }
+```
+
+### Container Widths
+
+```scss
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+
+  // sm: 540px
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  // md: 720px
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  // lg: 960px
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  // xl: 1140px
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  // xxl: 1320px
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+}
+
+// Container fluido (ancho completo)
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--spacing-4);
+}
+```
+
+---
+
+## 🎯 Columnas
+
+### Sistema de 12 Columnas
 
 ```html
 <div class="container">
-  <!-- Max-width container with responsive padding -->
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <!-- Móvil: 100%, Tablet: 50%, Desktop: 33.33% -->
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <!-- Segunda columna -->
+    </div>
+    <div class="col-12 col-md-12 col-lg-4">
+      <!-- Tercera columna -->
+    </div>
+  </div>
 </div>
 ```
 
-## Responsive Utilities
+### Columnas Automáticas
 
-Use spacing tokens with media queries:
+```html
+<div class="row">
+  <div class="col">
+    <!-- Ancho automático -->
+  </div>
+  <div class="col">
+    <!-- Ancho automático -->
+  </div>
+</div>
+```
+
+---
+
+## 📏 Spacing Utilities
+
+### Margin
+
+```html
+<div class="m-4">Margin en todos los lados</div>
+<div class="mt-4">Margin top</div>
+<div class="mb-4">Margin bottom</div>
+<div class="mx-auto">Centrado horizontal</div>
+```
+
+### Padding
+
+```html
+<div class="p-4">Padding en todos los lados</div>
+<div class="py-4">Padding vertical</div>
+<div class="px-4">Padding horizontal</div>
+```
+
+---
+
+## 🎨 Patrones de Layout
+
+### Página Simple
+
+```html
+<div class="container">
+  <header class="py-6">
+    <!-- Header content -->
+  </header>
+
+  <main class="py-8">
+    <!-- Main content -->
+  </main>
+
+  <footer class="py-6">
+    <!-- Footer content -->
+  </footer>
+</div>
+```
+
+### Página con Sidebar
+
+```html
+<div class="container-fluid">
+  <div class="row">
+    <aside class="col-12 col-lg-3">
+      <!-- Sidebar -->
+    </aside>
+    <main class="col-12 col-lg-9">
+      <!-- Main content -->
+    </main>
+  </div>
+</div>
+```
+
+### Grid de Cards
+
+```html
+<div class="container">
+  <div class="row g-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <!-- Card 1 -->
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <!-- Card 2 -->
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <!-- Card 3 -->
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <!-- Card 4 -->
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## 🔧 Flexbox Utilities
+
+### Dirección
+
+```html
+<div class="d-flex flex-row">Horizontal</div>
+<div class="d-flex flex-column">Vertical</div>
+```
+
+### Alineación
+
+```html
+<div class="d-flex justify-content-start">Inicio</div>
+<div class="d-flex justify-content-center">Centro</div>
+<div class="d-flex justify-content-end">Fin</div>
+<div class="d-flex justify-content-between">Espaciado</div>
+
+<div class="d-flex align-items-start">Arriba</div>
+<div class="d-flex align-items-center">Centro</div>
+<div class="d-flex align-items-end">Abajo</div>
+```
+
+### Gap
+
+```html
+<div class="d-flex gap-2">Gap pequeño</div>
+<div class="d-flex gap-4">Gap medio</div>
+<div class="d-flex gap-6">Gap grande</div>
+```
+
+---
+
+## 📐 CSS Grid (Custom)
 
 ```scss
-.section {
-  padding: var(--spacing-4);
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+}
 
-  @media (min-width: 768px) {
-    padding: var(--spacing-6);
-  }
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--spacing-6);
 
-  @media (min-width: 1024px) {
-    padding: var(--spacing-8);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 }
 ```
 
 ---
 
-Learn more about [Spacing](#) tokens.
+## 🎯 Z-Index Scale
+
+Para capas y profundidad:
+
+```scss
+--z-index-base: 0;
+--z-index-dropdown: 1000;
+--z-index-sticky: 1020;
+--z-index-fixed: 1030;
+--z-index-modal-backdrop: 1040;
+--z-index-modal: 1050;
+--z-index-popover: 1060;
+--z-index-tooltip: 1070;
+```
+
+**Uso:**
+
+```scss
+.dropdown {
+  z-index: var(--z-index-dropdown);
+}
+
+.modal {
+  z-index: var(--z-index-modal);
+}
+```
+
+---
+
+## ♿ Accesibilidad
+
+### Orden Visual vs DOM
+
+```html
+<!-- ✅ Bien: Orden DOM lógico -->
+<div class="d-flex flex-column flex-md-row">
+  <nav>Navegación principal</nav>
+  <main>Contenido principal</main>
+  <aside>Sidebar</aside>
+</div>
+
+<!-- ❌ Evita: Cambiar orden con CSS -->
+<div style="order: 3">Esto está primero en el DOM pero último visualmente</div>
+```
+
+### Skip Links
+
+```html
+<a href="#main-content" class="skip-link">
+  Saltar al contenido principal
+</a>
+
+<main id="main-content">
+  <!-- Contenido -->
+</main>
+```
+
+---
+
+## 📱 Responsive Patterns
+
+### Mobile First
+
+```html
+<!-- Móvil: Stack vertical -->
+<!-- Tablet+: 2 columnas -->
+<!-- Desktop: 3 columnas -->
+<div class="row g-4">
+  <div class="col-12 col-md-6 col-lg-4">Col 1</div>
+  <div class="col-12 col-md-6 col-lg-4">Col 2</div>
+  <div class="col-12 col-md-12 col-lg-4">Col 3</div>
+</div>
+```
+
+### Display Utilities
+
+```html
+<div class="d-none d-md-block">
+  Visible solo en tablet+
+</div>
+
+<div class="d-block d-md-none">
+  Visible solo en móvil
+</div>
+```
+
+---
+
+## 🎨 Ejemplos Completos
+
+### Dashboard Layout
+
+```html
+<div class="container-fluid">
+  <!-- Header -->
+  <header class="row bg-white border-bottom">
+    <div class="col py-4">
+      <nav class="d-flex justify-content-between align-items-center">
+        <div class="logo">Bioma App</div>
+        <div class="nav-items d-flex gap-4">
+          <a href="#">Inicio</a>
+          <a href="#">Dashboard</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div class="row">
+    <!-- Sidebar -->
+    <aside class="col-12 col-md-3 col-lg-2 bg-subtle">
+      <nav class="py-4">
+        <!-- Sidebar nav -->
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="col-12 col-md-9 col-lg-10">
+      <div class="p-6">
+        <!-- Dashboard content -->
+      </div>
+    </main>
+  </div>
+</div>
+```
+
+---
+
+## 📚 Recursos
+
+- **Bootstrap Grid**: [getbootstrap.com/docs/5.3/layout/grid](https://getbootstrap.com/docs/5.3/layout/grid/)
+- **Flexbox Guide**: [css-tricks.com/snippets/css/a-guide-to-flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- **CSS Grid Guide**: [css-tricks.com/snippets/css/complete-guide-grid](https://css-tricks.com/snippets/css/complete-guide-grid/)

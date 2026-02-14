@@ -34,12 +34,12 @@
     color: var(--primary-strong);
     border: 1px solid var(--primary-default);
 
-    &:hover:not(:disabled):not(.bio-button--disabled) {
+    &:hover:not(:disabled, .bio-button--disabled) {
       background-color: var(--primary-hover);
       border-color: var(--primary-hover);
     }
 
-    &:active:not(:disabled):not(.bio-button--disabled) {
+    &:active:not(:disabled, .bio-button--disabled) {
       background-color: var(--primary-hover);
       border-color: var(--primary-hover);
     }
@@ -64,11 +64,11 @@
     color: var(--primary-default);
     border: 1px solid var(--border-default);
 
-    &:hover:not(:disabled):not(.bio-button--disabled) {
+    &:hover:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-hover);
     }
 
-    &:active:not(:disabled):not(.bio-button--disabled) {
+    &:active:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-hover);
       border-color: var(--border-strong);
     }
@@ -93,11 +93,11 @@
     color: var(--primary-default);
     border: 1px solid transparent;
 
-    &:hover:not(:disabled):not(.bio-button--disabled) {
+    &:hover:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-hover);
     }
 
-    &:active:not(:disabled):not(.bio-button--disabled) {
+    &:active:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-hover);
       border-color: var(--border-default);
     }
@@ -123,12 +123,12 @@
     border: 1px solid transparent;
     font-weight: var(--font-regular);
 
-    &:hover:not(:disabled):not(.bio-button--disabled) {
+    &:hover:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-hover);
       text-decoration: underline;
     }
 
-    &:active:not(:disabled):not(.bio-button--disabled) {
+    &:active:not(:disabled, .bio-button--disabled) {
       background-color: var(--interactive-active);
     }
 
@@ -234,12 +234,15 @@
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
   }
+
   &.bio-button--outlined {
     background-color: var(--interactive-hover);
   }
+
   &.bio-button--flat {
     background-color: var(--interactive-hover);
   }
+
   &.bio-button--link {
     background-color: var(--interactive-hover);
     text-decoration: underline;
@@ -251,14 +254,17 @@
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
   }
+
   &.bio-button--outlined {
     background-color: var(--interactive-hover);
     border-color: var(--border-strong);
   }
+
   &.bio-button--flat {
     background-color: var(--interactive-hover);
     border-color: var(--border-default);
   }
+
   &.bio-button--link {
     background-color: var(--interactive-active);
   }

@@ -1,50 +1,433 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Border" />
+<Meta title="Bioma 2.1/Foundations/Border" />
 
-# Border
+# Sistema de Bordes
 
-Borders define boundaries and create visual separation in Bioma interfaces.
+El sistema de bordes de Bioma 2.0 define radios de esquina, anchos de borde y estilos para crear interfaces consistentes.
 
-## Border Radius
+---
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| --radius-none | 0px | Square corners |
-| --radius-xs | 2px | Subtle rounding |
-| --radius-sm | 4px | Small components |
-| --radius-md | 8px | Default radius |
-| --radius-lg | 12px | Cards, panels |
-| --radius-xl | 16px | Large components |
-| --radius-2xl | 24px | Hero elements |
-| --radius-full | 9999px | Pills, circles |
+## 🔲 Border Radius
 
-## Border Colors
+### Tokens Disponibles (8 valores)
 
 ```scss
---border-subtle: var(--neutral-200);   // Light borders
---border-default: var(--neutral-300);  // Default borders
---border-strong: var(--neutral-400);   // Emphasized borders
---border-inverse: var(--neutral-white); // On dark backgrounds
+--radius-none: 0px;         // Sin redondeo
+--radius-xs: 2px;           // Muy sutil
+--radius-sm: 4px;           // Pequeño
+--radius-md: 8px;           // Medio (BASE)
+--radius-lg: 12px;          // Grande
+--radius-xl: 16px;          // Extra grande
+--radius-2xl: 24px;         // Doble XL
+--radius-full: 9999px;      // Completamente redondo
 ```
 
-## Usage
+---
+
+## 🎯 Guía de Uso
+
+### `radius-none` (0px)
+Sin redondeo, esquinas completamente rectas.
+
+```scss
+.no-radius {
+  border-radius: var(--radius-none);
+}
+```
+
+**Uso**: Elementos que requieren bordes rectos, diseños minimalistas.
+
+### `radius-xs` (2px)
+Redondeo muy sutil.
+
+```scss
+.subtle-radius {
+  border-radius: var(--radius-xs);
+}
+```
+
+**Uso**: Inputs, tags pequeños.
+
+### `radius-sm` (4px)
+Redondeo pequeño.
+
+```scss
+.small-radius {
+  border-radius: var(--radius-sm);
+}
+```
+
+**Uso**: Badges, chips, código inline.
+
+### `radius-md` (8px) - **BASE**
+Redondeo estándar, el más usado.
+
+```scss
+.medium-radius {
+  border-radius: var(--radius-md);
+}
+```
+
+**Uso**: Botones, inputs, cards, la mayoría de componentes.
+
+### `radius-lg` (12px)
+Redondeo grande.
+
+```scss
+.large-radius {
+  border-radius: var(--radius-lg);
+}
+```
+
+**Uso**: Cards grandes, modales, containers.
+
+### `radius-xl` (16px)
+Redondeo extra grande.
+
+```scss
+.xl-radius {
+  border-radius: var(--radius-xl);
+}
+```
+
+**Uso**: Secciones hero, cards destacados.
+
+### `radius-2xl` (24px)
+Redondeo muy grande.
+
+```scss
+.xxl-radius {
+  border-radius: var(--radius-2xl);
+}
+```
+
+**Uso**: Elementos decorativos, diseños modernos.
+
+### `radius-full` (9999px)
+Completamente redondo (círculo/píldora).
+
+```scss
+.full-radius {
+  border-radius: var(--radius-full);
+}
+```
+
+**Uso**: Avatares, badges circulares, botones pill.
+
+---
+
+## 📏 Border Width
+
+```scss
+// Anchos estándar
+border: 1px solid var(--border-default);   // Delgado (más común)
+border: 2px solid var(--border-strong);    // Medio
+border: 3px solid var(--border-default);   // Grueso
+border: 4px solid var(--primary-default);  // Extra grueso
+```
+
+**Recomendación**: Usar principalmente `1px` para consistencia.
+
+---
+
+## 🎨 Border Colors
+
+```scss
+--border-default: var(--neutral-300);      // Borde estándar
+--border-subtle: var(--neutral-200);       // Borde sutil
+--border-strong: var(--neutral-400);       // Borde fuerte
+--border-inverse: rgba(255,255,255,0.2);   // Sobre fondos oscuros
+```
+
+**Uso:**
 
 ```scss
 .card {
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
 }
 
-.button {
-  border-radius: var(--radius-md);
+.card--subtle {
+  border: 1px solid var(--border-subtle);
 }
 
-.avatar {
-  border-radius: var(--radius-full);
+.card--emphasized {
+  border: 2px solid var(--border-strong);
 }
 ```
 
 ---
 
-See [All Design Tokens](#) for complete border reference.
+## 📝 Ejemplos de Componentes
+
+### Botones
+
+```scss
+.bio-button {
+  // Small
+  &--small {
+    border-radius: var(--radius-sm);
+  }
+
+  // Medium
+  &--medium {
+    border-radius: var(--radius-md);
+  }
+
+  // Large
+  &--large {
+    border-radius: var(--radius-md);
+  }
+
+  // Pill (completamente redondo)
+  &--pill {
+    border-radius: var(--radius-full);
+  }
+}
+```
+
+### Cards
+
+```scss
+.bio-card {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+
+  &:hover {
+    border-color: var(--border-strong);
+  }
+}
+
+.bio-card--compact {
+  border-radius: var(--radius-md);
+}
+```
+
+### Inputs
+
+```scss
+.bio-input {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+
+  &:focus {
+    border-color: var(--primary-default);
+    border-width: 2px;
+  }
+
+  &.error {
+    border-color: var(--error-default);
+  }
+}
+```
+
+### Badges
+
+```scss
+.bio-badge {
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+
+.bio-badge--square {
+  border-radius: var(--radius-sm);
+}
+```
+
+### Modal
+
+```scss
+.bio-modal {
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-xl);
+}
+```
+
+---
+
+## 🎯 Patrones Comunes
+
+### Esquinas Específicas
+
+```scss
+// Solo esquinas superiores
+.top-rounded {
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+// Solo esquinas inferiores
+.bottom-rounded {
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+// Solo una esquina
+.corner-rounded {
+  border-top-left-radius: var(--radius-lg);
+}
+```
+
+### Bordes Condicionales
+
+```scss
+// Solo borde inferior
+.border-bottom {
+  border-bottom: 1px solid var(--border-default);
+}
+
+// Solo bordes horizontales
+.border-horizontal {
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+```
+
+### Dividers
+
+```scss
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--spacing-4) 0;
+}
+
+.divider--strong {
+  border-top: 2px solid var(--border-default);
+}
+
+.divider--vertical {
+  border: none;
+  border-left: 1px solid var(--border-subtle);
+  height: 100%;
+}
+```
+
+---
+
+## 🌗 Modo Oscuro
+
+```scss
+[data-theme="dark"] {
+  --border-default: var(--neutral-700);
+  --border-subtle: var(--neutral-800);
+  --border-strong: var(--neutral-600);
+}
+```
+
+---
+
+## 🎨 Estilos de Borde
+
+### Solid (Más común)
+
+```scss
+border: 1px solid var(--border-default);
+```
+
+### Dashed
+
+```scss
+border: 1px dashed var(--border-default);
+```
+
+**Uso**: Placeholders, áreas de drag & drop.
+
+### Dotted
+
+```scss
+border: 1px dotted var(--border-subtle);
+```
+
+**Uso**: Secciones opcionales, elementos auxiliares.
+
+---
+
+## ♿ Accesibilidad
+
+### Contraste de Bordes
+
+Asegura que los bordes tengan suficiente contraste:
+
+```scss
+// ✅ Bien: Contraste suficiente
+.card {
+  background: var(--bg-default);
+  border: 1px solid var(--border-default);
+}
+
+// ⚠️ Revisar: Puede necesitar más contraste
+.subtle-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+```
+
+### Focus States
+
+```scss
+.interactive:focus {
+  outline: 2px solid var(--primary-default);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+```
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```scss
+// Usa tokens
+.component {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+}
+
+// Consistencia en componentes similares
+.card,
+.modal,
+.dialog {
+  border-radius: var(--radius-lg);
+}
+```
+
+### ❌ Evita esto:
+
+```scss
+// Valores hardcoded
+.component {
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+}
+
+// Radios inconsistentes
+.card-1 { border-radius: 10px; }
+.card-2 { border-radius: 12px; }
+.card-3 { border-radius: 15px; }
+```
+
+---
+
+## 📊 Resumen de Uso
+
+| Token | Valor | Uso Común |
+|-------|-------|-----------|
+| `radius-none` | 0px | Elementos rectos |
+| `radius-xs` | 2px | Inputs pequeños |
+| `radius-sm` | 4px | Badges, tags |
+| `radius-md` | 8px | **Botones, cards** |
+| `radius-lg` | 12px | Cards grandes |
+| `radius-xl` | 16px | Modales |
+| `radius-2xl` | 24px | Elementos hero |
+| `radius-full` | 9999px | Avatares, pills |
+
+---
+
+## 📚 Recursos
+
+- **Archivo**: `src/styles/tokens.scss`
+- **Total de tokens**: 8 radius + 4 border colors

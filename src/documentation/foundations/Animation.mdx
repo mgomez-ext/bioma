@@ -1,50 +1,551 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Animation" />
+<Meta title="Bioma 2.1/Foundations/Animation" />
 
-# Animation
+# Sistema de Animación
 
-Motion principles and timing functions for creating smooth, purposeful animations in Bioma.
-
-## Transition Speeds
-
-| Token | Duration | Usage |
-|-------|----------|-------|
-| --transition-fast | 150ms | Quick feedback (hover, focus) |
-| --transition-base | 250ms | Default transitions |
-| --transition-slow | 350ms | Complex animations |
-
-## Easing Functions
-
-```scss
---ease-in: cubic-bezier(0.4, 0, 1, 1);
---ease-out: cubic-bezier(0, 0, 0.2, 1);
---ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);  // Default
-```
-
-## Usage
-
-```scss
-.button {
-  transition: background-color var(--transition-fast);
-
-  &:hover {
-    background-color: var(--primary-hover);
-  }
-}
-
-.modal {
-  transition: opacity var(--transition-base) var(--ease-in-out);
-}
-```
-
-## Best Practices
-
-- Use fast transitions for immediate feedback
-- Use slow transitions for complex state changes
-- Be consistent with easing functions
-- Avoid animating expensive properties (use transform/opacity)
+El sistema de animación de Bioma 2.0 proporciona transiciones y timing consistentes para crear experiencias fluidas y pulidas.
 
 ---
 
-See [All Design Tokens](#) for complete animation reference.
+## ⚡ Transition Tokens
+
+### Timing (Duración)
+
+```scss
+--transition-fast: 150ms;       // Rápido
+--transition-normal: 250ms;     // Normal (BASE)
+--transition-slow: 350ms;       // Lento
+```
+
+### Easing Functions (Curvas)
+
+```scss
+--ease-in: cubic-bezier(0.4, 0, 1, 1);           // Acelera al final
+--ease-out: cubic-bezier(0, 0, 0.2, 1);          // Desacelera al final (BASE)
+--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);     // Suave en ambos extremos
+```
+
+---
+
+## 🎯 Guía de Uso
+
+### Transition Fast (150ms)
+
+```scss
+.quick-transition {
+  transition: all var(--transition-fast) var(--ease-out);
+}
+```
+
+**Uso**: Interacciones inmediatas, cambios sutiles.
+
+**Ejemplos**:
+- Hover en botones
+- Cambio de color en links
+- Tooltips apareciendo
+
+---
+
+### Transition Normal (250ms) - **BASE**
+
+```scss
+.normal-transition {
+  transition: all var(--transition-normal) var(--ease-out);
+}
+```
+
+**Uso**: La mayoría de transiciones estándar.
+
+**Ejemplos**:
+- Hover en cards
+- Cambios de estado
+- Expand/collapse sutil
+
+---
+
+### Transition Slow (350ms)
+
+```scss
+.slow-transition {
+  transition: all var(--transition-slow) var(--ease-in-out);
+}
+```
+
+**Uso**: Transiciones complejas, animaciones de entrada/salida.
+
+**Ejemplos**:
+- Modales abriendo/cerrando
+- Sidebars deslizándose
+- Animaciones de página
+
+---
+
+## 🎨 Easing Functions
+
+### Ease-Out (Más común)
+
+```scss
+.ease-out-transition {
+  transition: transform var(--transition-normal) var(--ease-out);
+}
+```
+
+**Efecto**: Comienza rápido, termina suave.
+
+**Uso**: La mayoría de interacciones (hover, focus, cambios de estado).
+
+---
+
+### Ease-In
+
+```scss
+.ease-in-transition {
+  transition: opacity var(--transition-normal) var(--ease-in);
+}
+```
+
+**Efecto**: Comienza suave, termina rápido.
+
+**Uso**: Elementos saliendo de la vista.
+
+---
+
+### Ease-In-Out
+
+```scss
+.ease-in-out-transition {
+  transition: all var(--transition-slow) var(--ease-in-out);
+}
+```
+
+**Efecto**: Suave en ambos extremos.
+
+**Uso**: Transiciones complejas, cambios de layout.
+
+---
+
+## 📝 Ejemplos de Componentes
+
+### Buttons
+
+```scss
+.bio-button {
+  transition: background-color var(--transition-fast) var(--ease-out),
+              box-shadow var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out);
+
+  &:hover {
+    background-color: var(--primary-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    transition-duration: 100ms; // Más rápido en active
+  }
+}
+```
+
+### Cards
+
+```scss
+.bio-card {
+  transition: box-shadow var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out),
+              border-color var(--transition-fast) var(--ease-out);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+  }
+}
+```
+
+### Inputs
+
+```scss
+.bio-input {
+  transition: border-color var(--transition-fast) var(--ease-out),
+              box-shadow var(--transition-fast) var(--ease-out);
+
+  &:focus {
+    border-color: var(--primary-default);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+  }
+}
+```
+
+### Modales
+
+```scss
+.bio-modal {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out);
+
+  &.is-open {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bio-modal__backdrop {
+  opacity: 0;
+  transition: opacity var(--transition-normal) var(--ease-out);
+
+  &.is-open {
+    opacity: 1;
+  }
+}
+```
+
+### Dropdowns
+
+```scss
+.bio-dropdown {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--transition-fast) var(--ease-out),
+              transform var(--transition-fast) var(--ease-out);
+
+  &.is-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+---
+
+## 🎬 Keyframe Animations
+
+### Fade In
+
+```scss
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-normal) var(--ease-out);
+}
+```
+
+### Slide In
+
+```scss
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp var(--transition-normal) var(--ease-out);
+}
+```
+
+### Scale In
+
+```scss
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-in {
+  animation: scaleIn var(--transition-normal) var(--ease-out);
+}
+```
+
+### Pulse (Loading)
+
+```scss
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s var(--ease-in-out) infinite;
+}
+```
+
+### Spin (Loading)
+
+```scss
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+```
+
+---
+
+## 🎯 Patrones de Animación
+
+### Page Transitions
+
+```scss
+.page-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity var(--transition-normal) var(--ease-in),
+              transform var(--transition-normal) var(--ease-in);
+}
+```
+
+### Skeleton Loading
+
+```scss
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-subtle) 0%,
+    var(--bg-muted) 50%,
+    var(--bg-subtle) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+```
+
+### Accordion Expand/Collapse
+
+```scss
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow) var(--ease-in-out);
+
+  &.is-open {
+    max-height: 1000px; // Ajustar según contenido
+  }
+}
+```
+
+---
+
+## 🎨 Animaciones de Entrada
+
+### Stagger (Elementos Múltiples)
+
+```scss
+.list-item {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp var(--transition-normal) var(--ease-out) forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 50ms};
+    }
+  }
+}
+```
+
+---
+
+## ♿ Accesibilidad
+
+### Respetar Preferencias de Reducción de Movimiento
+
+```scss
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+### Aplicación en Componentes
+
+```scss
+.animated-card {
+  transition: transform var(--transition-normal) var(--ease-out);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+```
+
+---
+
+## ⚡ Performance
+
+### Use `transform` y `opacity`
+
+```scss
+/* ✅ Performante - GPU accelerated */
+.good-animation {
+  transition: transform var(--transition-normal),
+              opacity var(--transition-normal);
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* ❌ Menos performante - causa reflow */
+.bad-animation {
+  transition: width var(--transition-normal),
+              height var(--transition-normal),
+              top var(--transition-normal);
+}
+```
+
+### will-change (Usar con cuidado)
+
+```scss
+.heavy-animation {
+  will-change: transform;
+  transition: transform var(--transition-slow);
+
+  &:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+}
+```
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```scss
+// Usa tokens
+.button {
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+// Especifica propiedades
+.card {
+  transition: box-shadow var(--transition-normal) var(--ease-out),
+              transform var(--transition-normal) var(--ease-out);
+}
+
+// Respeta preferencias de usuario
+@media (prefers-reduced-motion: reduce) {
+  .animated {
+    animation: none;
+    transition: none;
+  }
+}
+```
+
+### ❌ Evita esto:
+
+```scss
+// Valores hardcoded
+.button {
+  transition: all 200ms ease;
+}
+
+// Transiciones muy largas
+.slow {
+  transition: all 2s;  // Demasiado lento para UI
+}
+
+// Animar propiedades costosas
+.expensive {
+  transition: width 300ms, height 300ms;  // Causa reflows
+}
+```
+
+---
+
+## 📊 Resumen
+
+| Token | Duración | Uso Principal |
+|-------|----------|---------------|
+| `transition-fast` | 150ms | Hover, links, cambios sutiles |
+| `transition-normal` | 250ms | **Estándar para la mayoría** |
+| `transition-slow` | 350ms | Modales, sidebars, layouts |
+
+| Easing | Curva | Uso |
+|--------|-------|-----|
+| `ease-out` | Rápido → Lento | **Más común (hover, focus)** |
+| `ease-in` | Lento → Rápido | Elementos saliendo |
+| `ease-in-out` | Suave en ambos | Transiciones complejas |
+
+---
+
+## 📚 Recursos
+
+- **Archivo**: `src/styles/tokens.scss`
+- **Easing Functions**: [cubic-bezier.com](https://cubic-bezier.com/)
+- **Animation Guide**: [web.dev/animations](https://web.dev/animations/)

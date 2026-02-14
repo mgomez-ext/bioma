@@ -1,60 +1,141 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Comenzar/Instalación" />
+<Meta title="Bioma 2.1/Getting Started/Installation" />
 
 # Instalación
 
-Comienza a usar Bioma 2.0 en tu proyecto de Angular.
+Guía paso a paso para instalar y configurar Bioma 2.0 Design System en tu proyecto Angular.
 
-## Requisitos Previos
+---
 
-- Node.js 18+
-- Angular 21+
-- npm o yarn
+## 📋 Requisitos Previos
 
-## Instalar vía npm
+Antes de instalar Bioma, asegúrate de tener:
+
+- **Node.js**: v18 o superior
+- **npm**: v9 o superior
+- **Angular**: v21.0 o superior
+- **TypeScript**: v5.9 o superior
+
+Verifica tus versiones:
+```bash
+node --version
+npm --version
+ng version
+```
+
+---
+
+## 📦 Instalación vía NPM
+
+### Opción 1: Desde NPM Registry (Próximamente)
 
 ```bash
 npm install @mgomezw/bioma
 ```
 
-O con yarn:
+### Opción 2: Instalación Local (Desarrollo)
+
+Si estás trabajando en el repositorio local:
 
 ```bash
-yarn add @mgomezw/bioma
+# Clona el repositorio
+git clone https://github.com/mgomez-ext/bioma.git
+cd bioma
+
+# Instala dependencias
+npm install
+
+# Compila la librería
+npm run build:lib
+
+# Empaqueta
+npm run pack:lib
+
+# Instala en tu proyecto
+cd /ruta/a/tu/proyecto
+npm install /ruta/a/bioma/dist/bioma-design-system/bioma-design-system-0.1.0.tgz
 ```
 
-## Configuración
+---
 
-### 1. Importar Estilos
+## ⚙️ Configuración
 
-Agrega los estilos de Bioma a tu `angular.json`:
+### 1. Importar Estilos Globales
+
+Agrega los estilos de Bioma en tu `angular.json`:
 
 ```json
 {
+  "projects": {
+    "tu-proyecto": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "node_modules/@mgomezw/bioma/src/styles/tokens.scss",
+              "src/styles.scss"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+O importa en tu `styles.scss` principal:
+
+```scss
+// src/styles.scss
+@import '@mgomezw/bioma/src/styles/tokens.scss';
+```
+
+### 2. Configurar Tipografía (Opcional)
+
+Si quieres usar las fuentes de Bioma, agrega en tu `index.html`:
+
+```html
+<!-- src/index.html -->
+<head>
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Material Symbols Rounded -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+</head>
+```
+
+### 3. Configurar Bootstrap (Opcional)
+
+Si tu proyecto no usa Bootstrap pero quieres las utilidades de grid:
+
+```bash
+npm install bootstrap@5.3.3
+```
+
+```json
+// angular.json
+{
   "styles": [
-    "node_modules/@mgomezw/bioma/styles/tokens.css",
-    "src/styles.scss"
+    "node_modules/bootstrap/scss/bootstrap-grid.scss",
+    // ... otros estilos
   ]
 }
 ```
 
-### 2. Importar Fuentes
+---
 
-Agrega a tu `index.html`:
+## 🧩 Uso Básico
 
-```html
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
-</head>
-```
+### Importar Componentes
 
-### 3. Importar Componentes
-
-Los componentes son standalone y pueden importarse individualmente:
+Como todos los componentes son standalone, la importación es simple:
 
 ```typescript
+// app.component.ts
 import { Component } from '@angular/core';
 import { ButtonComponent } from '@mgomezw/bioma';
 
@@ -63,71 +144,242 @@ import { ButtonComponent } from '@mgomezw/bioma';
   standalone: true,
   imports: [ButtonComponent],
   template: `
-    <bio-button label="Hacé clic" variant="filled"></bio-button>
+    <bio-button
+      label="Click Me"
+      variant="filled"
+      size="large">
+    </bio-button>
   `
 })
 export class AppComponent {}
 ```
 
-## Usando Design Tokens
-
-Los tokens están disponibles como propiedades CSS personalizadas:
-
-```scss
-.mi-componente {
-  background-color: var(--primary-default);
-  color: var(--text-primary);
-  padding: var(--spacing-4);
-  border-radius: var(--radius-md);
-}
-```
-
-## Modo Oscuro
-
-Habilitá el modo oscuro agregando el atributo `data-theme`:
-
-```html
-<body data-theme="dark">
-  <!-- Tu aplicación -->
-</body>
-```
-
-Alternar programáticamente:
+### Usar Múltiples Componentes
 
 ```typescript
-document.body.setAttribute('data-theme', 'dark');
-// o
-document.body.setAttribute('data-theme', 'light');
+import { Component } from '@angular/core';
+import {
+  ButtonComponent,
+  // InputComponent,    // Próximamente
+  // CheckboxComponent  // Próximamente
+} from '@mgomezw/bioma';
+
+@Component({
+  selector: 'app-form',
+  standalone: true,
+  imports: [
+    ButtonComponent,
+    // InputComponent,
+    // CheckboxComponent
+  ],
+  template: `
+    <form>
+      <!-- Componentes aquí -->
+      <bio-button label="Submit" variant="filled"></bio-button>
+    </form>
+  `
+})
+export class FormComponent {}
 ```
-
-## Soporte para TypeScript
-
-Bioma incluye definiciones completas de TypeScript:
-
-```typescript
-import { ButtonSize, ButtonVariant } from '@mgomezw/bioma';
-
-const tamaño: ButtonSize = 'large';
-const variante: ButtonVariant = 'filled';
-```
-
-## Solución de Problemas
-
-### Los estilos no se cargan
-Verificá que el archivo tokens.css esté importado en angular.json y que la ruta sea correcta.
-
-### Las fuentes no se muestran
-Asegurate de que los links de Google Fonts estén en tu index.html y que la solicitud de red sea exitosa.
-
-### No se encuentran los componentes
-Asegurate de que @mgomezw/bioma esté instalado e importado correctamente en tu componente.
-
-## Próximos Pasos
-
-- Explorá [Design Tokens](#) para entender el sistema de tokens
-- Navegá por [Componentes](#) para ver qué está disponible
-- Consultá [Inicio Rápido](#) para un ejemplo completo
 
 ---
 
-¿Necesitás ayuda? Contactá a design-system@bioma.com
+## 🎨 Usar Tokens de Diseño
+
+Los tokens están disponibles como CSS custom properties:
+
+```scss
+// tu-componente.component.scss
+.mi-componente {
+  // Colores
+  color: var(--text-primary);
+  background: var(--bg-default);
+
+  // Espaciado
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+
+  // Bordes
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+
+  // Sombras
+  box-shadow: var(--shadow-sm);
+
+  // Transiciones
+  transition: all var(--transition-normal);
+
+  &:hover {
+    background: var(--bg-subtle);
+  }
+}
+```
+
+---
+
+## 🌗 Soporte para Modo Oscuro
+
+### Opción 1: Nivel de Aplicación
+
+```typescript
+// app.component.ts
+@Component({
+  selector: 'app-root',
+  template: `
+    <div [attr.data-theme]="theme">
+      <!-- Tu app aquí -->
+    </div>
+  `
+})
+export class AppComponent {
+  theme: 'light' | 'dark' = 'light';
+
+  toggleTheme() {
+    this.theme = this.theme === 'light' ? 'dark' : 'light';
+  }
+}
+```
+
+### Opción 2: Nivel de Sistema
+
+```typescript
+// theme.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ThemeService {
+  private theme: 'light' | 'dark' = 'light';
+
+  constructor() {
+    // Detectar preferencia del sistema
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.theme = prefersDark ? 'dark' : 'light';
+    this.applyTheme();
+  }
+
+  toggleTheme() {
+    this.theme = this.theme === 'light' ? 'dark' : 'light';
+    this.applyTheme();
+  }
+
+  private applyTheme() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+  }
+}
+```
+
+---
+
+## 🔧 Configuración Avanzada
+
+### TypeScript Path Mapping
+
+Para imports más limpios, configura path mapping en `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@bioma/*": ["node_modules/@mgomezw/bioma/src/*"]
+    }
+  }
+}
+```
+
+Luego puedes importar así:
+
+```typescript
+import { ButtonComponent } from '@bioma/app/components/button/button.component';
+```
+
+### Tree-Shaking Optimization
+
+Los componentes standalone ya están optimizados, pero puedes mejorar aún más:
+
+```json
+// angular.json
+{
+  "configurations": {
+    "production": {
+      "optimization": true,
+      "buildOptimizer": true,
+      "namedChunks": false
+    }
+  }
+}
+```
+
+---
+
+## ✅ Verificar Instalación
+
+Ejecuta Storybook para ver todos los componentes disponibles:
+
+```bash
+cd node_modules/@mgomezw/bioma
+npm run storybook
+```
+
+O crea un componente de prueba:
+
+```typescript
+// test.component.ts
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@mgomezw/bioma';
+
+@Component({
+  selector: 'app-test',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <div style="padding: 2rem;">
+      <h1>Bioma Installation Test</h1>
+      <bio-button label="Test Button" variant="filled"></bio-button>
+    </div>
+  `
+})
+export class TestComponent {}
+```
+
+Si ves el botón con los estilos correctos, ¡la instalación fue exitosa! ✅
+
+---
+
+## 🐛 Solución de Problemas
+
+### Error: Cannot find module '@mgomezw/bioma'
+
+**Solución**: Verifica que el paquete esté instalado:
+```bash
+npm list @mgomezw/bioma
+```
+
+Si no aparece, reinstala:
+```bash
+npm install @mgomezw/bioma
+```
+
+### Los estilos no se aplican
+
+**Solución**: Verifica que los estilos estén importados en `angular.json` o `styles.scss`.
+
+### Los tokens CSS no funcionan
+
+**Solución**: Asegúrate de que `tokens.scss` esté importado ANTES de tus estilos personalizados.
+
+### Errores de TypeScript
+
+**Solución**: Verifica tu versión de TypeScript:
+```bash
+npm list typescript
+```
+
+Bioma requiere TypeScript 5.9 o superior.
+
+---
+
+## 🎯 Siguiente Paso
+
+👉 [Quick Start - Crea tu primer componente](/docs/getting-started-quickstart--docs)

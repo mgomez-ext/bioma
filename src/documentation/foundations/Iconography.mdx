@@ -1,69 +1,487 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Foundations/Iconography" />
+<Meta title="Bioma 2.1/Components/Icons/Iconography" />
 
-# Iconography
+# Sistema de Iconografía
 
-Bioma uses Material Symbols Rounded for a consistent, comprehensive icon system.
-
-## Icon System
-
-**Library**: Material Symbols Rounded  
-**Style**: Rounded (outlined) and Filled (solid)  
-**Sizes**: 16px, 20px, 24px, 32px, 40px, 48px
-
-## Using Icons
-
-### IconFont Component
-
-```html
-<bio-icon-font
-  iconName="home"
-  size="24"
-  type="rounded">
-</bio-icon-font>
-```
-
-### Icon Sizes
-
-| Size | Usage |
-|------|-------|
-| 16px | Inline with small text |
-| 20px | Buttons, inputs |
-| 24px | Default size |
-| 32px | Large buttons, cards |
-| 40px | Hero sections |
-| 48px | Large displays |
-
-## Icon Colors
-
-```scss
---icon-default: var(--neutral-700);  // Default icons
---icon-subtle: var(--neutral-500);   // Muted icons
---icon-inverse: var(--neutral-white); // On dark backgrounds
---icon-primary: var(--brand-500);    // Brand icons
-```
-
-## Common Icons
-
-- `home` - Home/Dashboard
-- `search` - Search functionality
-- `settings` - Settings/Preferences
-- `add` - Add/Create actions
-- `close` - Close/Cancel
-- `check` - Confirm/Success
-- `arrow_forward` - Next/Forward
-- `arrow_back` - Back/Previous
-- `more_vert` - More options menu
-
-## Best Practices
-
-- Use 24px as default size
-- Match icon size to adjacent text
-- Use consistent icon style (rounded or filled)
-- Provide text labels for accessibility
-- Use primary color for brand actions
+Bioma 2.0 utiliza **Material Symbols Rounded** como sistema de iconos para una experiencia visual consistente y moderna.
 
 ---
 
-Explore the [IconFont component](/docs/bioma-2-0-components-iconfont) or see [all Material Symbols](https://fonts.google.com/icons).
+## 🎭 Material Symbols Rounded
+
+### Instalación
+
+```html
+<!-- En index.html -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+```
+
+### Uso Básico
+
+```html
+<span class="material-symbols-rounded">
+  home
+</span>
+```
+
+---
+
+## 🎯 Icon Tokens
+
+### Tamaños
+
+```scss
+--icon-size-xs: 16px;
+--icon-size-sm: 20px;
+--icon-size-md: 24px;    // BASE
+--icon-size-lg: 32px;
+--icon-size-xl: 48px;
+```
+
+### Colores
+
+```scss
+--icon-primary: var(--text-primary);
+--icon-secondary: var(--text-secondary);
+--icon-tertiary: var(--text-tertiary);
+--icon-inverse: #FFFFFF;
+```
+
+---
+
+## 📏 Uso en Componentes
+
+### Icon Component (Wrapper)
+
+```scss
+.bio-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Tamaños
+  &--xs {
+    font-size: var(--icon-size-xs);
+  }
+
+  &--sm {
+    font-size: var(--icon-size-sm);
+  }
+
+  &--md {
+    font-size: var(--icon-size-md);
+  }
+
+  &--lg {
+    font-size: var(--icon-size-lg);
+  }
+
+  &--xl {
+    font-size: var(--icon-size-xl);
+  }
+
+  // Colores
+  &--primary {
+    color: var(--icon-primary);
+  }
+
+  &--secondary {
+    color: var(--icon-secondary);
+  }
+
+  &--brand {
+    color: var(--primary-default);
+  }
+
+  &--success {
+    color: var(--success-default);
+  }
+
+  &--error {
+    color: var(--error-default);
+  }
+}
+```
+
+---
+
+## 🎨 Estilos de Íconos
+
+### Filled
+
+```html
+<span class="material-symbols-rounded" style="font-variation-settings: 'FILL' 1">
+  favorite
+</span>
+```
+
+### Outlined (default)
+
+```html
+<span class="material-symbols-rounded">
+  favorite
+</span>
+```
+
+### Ajustes de Variación
+
+```scss
+.icon-custom {
+  font-variation-settings:
+    'FILL' 0,        // 0 = outlined, 1 = filled
+    'wght' 400,      // Weight: 100-700
+    'GRAD' 0,        // Grade: -50 to 200
+    'opsz' 24;       // Optical size: 20-48
+}
+```
+
+---
+
+## 📝 Íconos Comunes
+
+### Navegación
+
+```
+home
+menu
+arrow_back
+arrow_forward
+close
+expand_more
+expand_less
+chevron_right
+chevron_left
+```
+
+### Acciones
+
+```
+add
+remove
+edit
+delete
+save
+search
+filter_list
+refresh
+download
+upload
+share
+```
+
+### UI
+
+```
+settings
+notifications
+person
+mail
+phone
+location_on
+calendar_today
+schedule
+visibility
+visibility_off
+```
+
+### Estados
+
+```
+check
+close
+warning
+error
+info
+help
+star
+favorite
+bookmark
+```
+
+### Archivos
+
+```
+folder
+insert_drive_file
+image
+video_file
+audio_file
+picture_as_pdf
+description
+```
+
+---
+
+## 🎯 Patrones de Uso
+
+### Íconos en Botones
+
+```html
+<!-- Ícono al inicio -->
+<bio-button [iconStart]="true" iconStartName="add" label="Agregar">
+</bio-button>
+
+<!-- Ícono al final -->
+<bio-button [iconEnd]="true" iconEndName="arrow_forward" label="Continuar">
+</bio-button>
+
+<!-- Ambos íconos -->
+<bio-button
+  [iconStart]="true"
+  iconStartName="download"
+  [iconEnd]="true"
+  iconEndName="arrow_drop_down"
+  label="Descargar">
+</bio-button>
+
+<!-- Solo ícono -->
+<bio-button [iconStart]="true" iconStartName="menu" label="">
+</bio-button>
+```
+
+### Íconos en Inputs
+
+```html
+<div class="input-group">
+  <span class="material-symbols-rounded input-icon">
+    search
+  </span>
+  <input type="text" placeholder="Buscar...">
+</div>
+```
+
+### Íconos en Lista
+
+```html
+<ul class="list">
+  <li>
+    <span class="material-symbols-rounded">check</span>
+    <span>Tarea completada</span>
+  </li>
+  <li>
+    <span class="material-symbols-rounded">schedule</span>
+    <span>Tarea pendiente</span>
+  </li>
+</ul>
+```
+
+### Íconos en Cards
+
+```html
+<div class="card">
+  <div class="card-header">
+    <span class="material-symbols-rounded">folder</span>
+    <h3>Documentos</h3>
+  </div>
+  <div class="card-body">
+    <!-- Content -->
+  </div>
+</div>
+```
+
+---
+
+## 🎨 Ejemplos de Estilo
+
+### Ícono con Fondo
+
+```scss
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--primary-subtle);
+  color: var(--primary-default);
+
+  .material-symbols-rounded {
+    font-size: var(--icon-size-md);
+  }
+}
+```
+
+### Ícono Circular
+
+```scss
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-default);
+  color: #FFFFFF;
+}
+```
+
+### Ícono Animado
+
+```scss
+.icon-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+```
+
+---
+
+## ♿ Accesibilidad
+
+### ARIA Labels
+
+```html
+<!-- Ícono decorativo -->
+<span class="material-symbols-rounded" aria-hidden="true">
+  home
+</span>
+
+<!-- Ícono con significado -->
+<button aria-label="Cerrar">
+  <span class="material-symbols-rounded" aria-hidden="true">
+    close
+  </span>
+</button>
+
+<!-- Ícono con texto visible -->
+<button>
+  <span class="material-symbols-rounded" aria-hidden="true">
+    add
+  </span>
+  <span>Agregar</span>
+</button>
+```
+
+### Íconos de Estado
+
+```html
+<!-- Estado de éxito -->
+<div role="status" aria-live="polite">
+  <span class="material-symbols-rounded" aria-hidden="true">
+    check_circle
+  </span>
+  <span>Guardado exitosamente</span>
+</div>
+
+<!-- Estado de error -->
+<div role="alert">
+  <span class="material-symbols-rounded" aria-hidden="true">
+    error
+  </span>
+  <span>Error al guardar</span>
+</div>
+```
+
+---
+
+## 🎨 Estados Interactivos
+
+### Hover
+
+```scss
+.icon-button {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--primary-default);
+  }
+}
+```
+
+### Active
+
+```scss
+.icon-toggle {
+  color: var(--text-tertiary);
+
+  &.is-active {
+    color: var(--primary-default);
+    font-variation-settings: 'FILL' 1; // Filled cuando activo
+  }
+}
+```
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```html
+<!-- Usa Material Symbols -->
+<span class="material-symbols-rounded">check</span>
+
+<!-- Usa tokens para tamaño -->
+<span class="material-symbols-rounded" style="font-size: var(--icon-size-md)">
+  home
+</span>
+
+<!-- Usa ARIA para accesibilidad -->
+<button aria-label="Cerrar ventana">
+  <span class="material-symbols-rounded" aria-hidden="true">close</span>
+</button>
+
+<!-- Ícono + Texto para claridad -->
+<button>
+  <span class="material-symbols-rounded">save</span>
+  <span>Guardar</span>
+</button>
+```
+
+### ❌ Evita esto:
+
+```html
+<!-- No mezcles sistemas de íconos -->
+<i class="fa fa-home"></i>
+<span class="material-symbols-rounded">home</span>
+
+<!-- No uses íconos sin contexto -->
+<button>
+  <span class="material-symbols-rounded">delete</span>
+  <!-- Falta texto o aria-label -->
+</button>
+
+<!-- No uses tamaños inconsistentes -->
+<span class="material-symbols-rounded" style="font-size: 27px">home</span>
+```
+
+---
+
+## 📚 Biblioteca de Íconos
+
+Explora todos los íconos disponibles:
+
+👉 [Google Fonts - Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols&icon.style=Rounded)
+
+---
+
+## 📊 Resumen
+
+| Tamaño | Token | Uso |
+|--------|-------|-----|
+| 16px | `--icon-size-xs` | Íconos inline, badges |
+| 20px | `--icon-size-sm` | Botones pequeños, lista |
+| 24px | `--icon-size-md` | **Estándar (botones, UI)** |
+| 32px | `--icon-size-lg` | Headers, destacados |
+| 48px | `--icon-size-xl` | Hero sections, vacío states |
+
+---
+
+## 📚 Recursos
+
+- **Librería**: [Material Symbols](https://fonts.google.com/icons)
+- **Archivo de tokens**: `src/styles/tokens.scss`
+- **Total de íconos**: 2,500+
+- **Estilos**: Rounded (usado), Outlined, Sharp

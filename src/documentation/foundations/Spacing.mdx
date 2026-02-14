@@ -1,64 +1,535 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Fundamentos/Espaciado" />
+<Meta title="Bioma 2.1/Foundations/Spacing" />
 
-# Espaciado
+# Sistema de Espaciado
 
-El espaciado consistente crea ritmo visual y jerarquía en las interfaces de Bioma.
-
-## Escala de Espaciado
-
-Basada en un **sistema de grilla de 4px**:
-
-| Token | Valor | Uso |
-|-------|-------|-------|
-| --spacing-0 | 0px | Sin espacio |
-| --spacing-1 | 4px | Espacios mínimos |
-| --spacing-2 | 8px | Espacios pequeños |
-| --spacing-3 | 12px | Espacios por defecto |
-| --spacing-4 | 16px | Espacios medianos |
-| --spacing-5 | 20px | Espacios grandes |
-| --spacing-6 | 24px | Espacios entre secciones |
-| --spacing-8 | 32px | Secciones grandes |
-| --spacing-10 | 40px | Secciones XL |
-| --spacing-12 | 48px | Secciones XXL |
-| --spacing-16 | 64px | Secciones de página |
-
-## Uso
-
-### Espaciado de Componentes
-
-```scss
-.card {
-  padding: var(--spacing-6);    // Espaciado interno
-  margin-bottom: var(--spacing-8);  // Espaciado externo
-  gap: var(--spacing-4);         // Entre elementos
-}
-```
-
-### Espaciado de Layout
-
-```scss
-.container {
-  padding: var(--spacing-4);
-
-  @media (min-width: 768px) {
-    padding: var(--spacing-6);
-  }
-
-  @media (min-width: 1024px) {
-    padding: var(--spacing-8);
-  }
-}
-```
-
-## Mejores Prácticas
-
-- Usá tokens de espaciado de forma consistente
-- Preferí espacios más grandes entre secciones
-- Usá espacios más pequeños dentro de componentes
-- Mantené el ritmo vertical
+El sistema de espaciado de Bioma 2.0 proporciona consistencia en márgenes, padding y gaps a lo largo de toda la aplicación.
 
 ---
 
-Mirá [Todos los Design Tokens](#) para la referencia completa de espaciado.
+## 📏 Escala de Espaciado
+
+Bioma utiliza una escala de espaciado basada en **múltiplos de 4px**:
+
+```scss
+--spacing-0: 0px;      // 0
+--spacing-1: 4px;      // 4
+--spacing-2: 8px;      // 8
+--spacing-3: 12px;     // 12
+--spacing-4: 16px;     // 16 (base)
+--spacing-5: 20px;     // 20
+--spacing-6: 24px;     // 24
+--spacing-8: 32px;     // 32
+--spacing-10: 40px;    // 40
+--spacing-12: 48px;    // 48
+--spacing-16: 64px;    // 64
+```
+
+**Total**: 11 valores
+
+---
+
+## 🎯 Filosofía del Sistema
+
+### Múltiplos de 4
+El uso de múltiplos de 4px proporciona:
+- ✅ Alineación perfecta en grids
+- ✅ Escalado consistente
+- ✅ Compatibilidad con diversos tamaños de pantalla
+- ✅ Mejor experiencia visual
+
+### Nomenclatura Numérica
+Los números representan el factor multiplicador:
+- `spacing-2` = 2 × 4px = 8px
+- `spacing-4` = 4 × 4px = 16px
+- `spacing-8` = 8 × 4px = 32px
+
+---
+
+## 📐 Guía de Uso
+
+### Espaciado Pequeño (0-3)
+
+**`spacing-0` (0px)**
+```scss
+// Sin espaciado
+margin: var(--spacing-0);
+```
+
+**`spacing-1` (4px)**
+```scss
+// Espaciado mínimo
+gap: var(--spacing-1);
+padding: var(--spacing-1);
+```
+**Uso**: Espaciado muy compacto, elementos muy cercanos
+
+**`spacing-2` (8px)**
+```scss
+gap: var(--spacing-2);
+margin-bottom: var(--spacing-2);
+```
+**Uso**: Elementos relacionados, íconos + texto
+
+**`spacing-3` (12px)**
+```scss
+padding: var(--spacing-3);
+gap: var(--spacing-3);
+```
+**Uso**: Padding interno de botones pequeños
+
+---
+
+### Espaciado Medio (4-6)
+
+**`spacing-4` (16px)** - **BASE**
+```scss
+padding: var(--spacing-4);
+margin-bottom: var(--spacing-4);
+```
+**Uso**: Padding estándar, separación de elementos comunes
+
+**`spacing-5` (20px)**
+```scss
+padding: var(--spacing-5);
+gap: var(--spacing-5);
+```
+**Uso**: Padding de cards, separación moderada
+
+**`spacing-6` (24px)**
+```scss
+padding: var(--spacing-6);
+margin-bottom: var(--spacing-6);
+```
+**Uso**: Padding de secciones, separación entre grupos
+
+---
+
+### Espaciado Grande (8-16)
+
+**`spacing-8` (32px)**
+```scss
+padding: var(--spacing-8);
+margin-top: var(--spacing-8);
+```
+**Uso**: Padding de containers, secciones principales
+
+**`spacing-10` (40px)**
+```scss
+padding: var(--spacing-10);
+gap: var(--spacing-10);
+```
+**Uso**: Separación entre secciones grandes
+
+**`spacing-12` (48px)**
+```scss
+padding: var(--spacing-12);
+margin-bottom: var(--spacing-12);
+```
+**Uso**: Padding de páginas, secciones hero
+
+**`spacing-16` (64px)**
+```scss
+padding-top: var(--spacing-16);
+padding-bottom: var(--spacing-16);
+```
+**Uso**: Separación máxima, secciones hero, landing pages
+
+---
+
+## 🎨 Aplicaciones Comunes
+
+### Padding
+
+```scss
+// Padding simétrico
+.card {
+  padding: var(--spacing-4);
+}
+
+// Padding horizontal/vertical
+.section {
+  padding: var(--spacing-8) var(--spacing-4);
+}
+
+// Padding individual
+.header {
+  padding-top: var(--spacing-6);
+  padding-bottom: var(--spacing-6);
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+```
+
+### Margin
+
+```scss
+// Margin bottom para separación
+.title {
+  margin-bottom: var(--spacing-6);
+}
+
+// Margin auto para centrar
+.container {
+  margin: 0 auto;
+}
+
+// Margin negativo para offset
+.overlap {
+  margin-top: calc(var(--spacing-8) * -1);
+}
+```
+
+### Gap (Flexbox/Grid)
+
+```scss
+// Gap en flexbox
+.flex-container {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+// Gap en grid
+.grid-container {
+  display: grid;
+  gap: var(--spacing-6);
+  column-gap: var(--spacing-4);
+  row-gap: var(--spacing-8);
+}
+```
+
+---
+
+## 📝 Ejemplos Prácticos
+
+### Card Component
+
+```scss
+.bio-card {
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-4);
+
+  .bio-card__header {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .bio-card__title {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .bio-card__description {
+    margin-bottom: var(--spacing-3);
+  }
+
+  .bio-card__actions {
+    margin-top: var(--spacing-6);
+    display: flex;
+    gap: var(--spacing-2);
+  }
+}
+```
+
+### Form
+
+```scss
+.bio-form {
+  .bio-form-group {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .bio-label {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .bio-input {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .bio-helper-text {
+    margin-top: var(--spacing-1);
+  }
+
+  .bio-form-actions {
+    margin-top: var(--spacing-8);
+    display: flex;
+    gap: var(--spacing-3);
+  }
+}
+```
+
+### Page Layout
+
+```scss
+.page {
+  padding: var(--spacing-8) var(--spacing-4);
+
+  @media (min-width: 768px) {
+    padding: var(--spacing-12) var(--spacing-8);
+  }
+
+  @media (min-width: 1024px) {
+    padding: var(--spacing-16) var(--spacing-12);
+  }
+}
+
+.section {
+  margin-bottom: var(--spacing-12);
+
+  .section__title {
+    margin-bottom: var(--spacing-6);
+  }
+
+  .section__content {
+    display: grid;
+    gap: var(--spacing-6);
+  }
+}
+```
+
+### Button Component
+
+```scss
+.bio-button {
+  // Small
+  &--small {
+    padding: var(--spacing-2) var(--spacing-4);
+    gap: var(--spacing-1);
+  }
+
+  // Medium
+  &--medium {
+    padding: var(--spacing-2.5) var(--spacing-5);
+    gap: var(--spacing-2);
+  }
+
+  // Large
+  &--large {
+    padding: var(--spacing-3) var(--spacing-6);
+    gap: var(--spacing-2);
+  }
+}
+```
+
+---
+
+## 📱 Responsive Spacing
+
+### Mobile First
+
+```scss
+.container {
+  // Mobile
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+
+  // Tablet
+  @media (min-width: 768px) {
+    padding: var(--spacing-6);
+    gap: var(--spacing-6);
+  }
+
+  // Desktop
+  @media (min-width: 1024px) {
+    padding: var(--spacing-8);
+    gap: var(--spacing-8);
+  }
+}
+```
+
+### Espaciado Adaptativo
+
+```scss
+.section {
+  // Usa CSS clamp para espaciado fluido
+  padding: clamp(
+    var(--spacing-4),   // Mínimo (mobile)
+    5vw,                // Preferido (escala)
+    var(--spacing-12)   // Máximo (desktop)
+  );
+}
+```
+
+---
+
+## 🎯 Patrones Comunes
+
+### Stack (Vertical Spacing)
+
+```scss
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+
+  // Stack compacto
+  &--compact {
+    gap: var(--spacing-2);
+  }
+
+  // Stack espacioso
+  &--spacious {
+    gap: var(--spacing-8);
+  }
+}
+```
+
+### Inline (Horizontal Spacing)
+
+```scss
+.inline {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+
+  // Inline con más espacio
+  &--relaxed {
+    gap: var(--spacing-4);
+  }
+}
+```
+
+### Grid Spacing
+
+```scss
+.grid {
+  display: grid;
+  gap: var(--spacing-6);
+
+  // Grid de 2 columnas
+  &--2-col {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--spacing-4);
+    row-gap: var(--spacing-6);
+  }
+
+  // Grid de 3 columnas
+  &--3-col {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-6);
+  }
+}
+```
+
+---
+
+## ⚙️ Utilidades
+
+### Margin Utilities (Opcional)
+
+```scss
+.m-0 { margin: var(--spacing-0); }
+.m-1 { margin: var(--spacing-1); }
+.m-2 { margin: var(--spacing-2); }
+// ...
+
+.mt-4 { margin-top: var(--spacing-4); }
+.mb-4 { margin-bottom: var(--spacing-4); }
+.ml-4 { margin-left: var(--spacing-4); }
+.mr-4 { margin-right: var(--spacing-4); }
+```
+
+### Padding Utilities (Opcional)
+
+```scss
+.p-0 { padding: var(--spacing-0); }
+.p-4 { padding: var(--spacing-4); }
+// ...
+
+.px-4 { padding-left: var(--spacing-4); padding-right: var(--spacing-4); }
+.py-4 { padding-top: var(--spacing-4); padding-bottom: var(--spacing-4); }
+```
+
+---
+
+## ♿ Accesibilidad
+
+### Tap Targets (Móvil)
+
+Los elementos táctiles deben tener **mínimo 44×44px** según WCAG:
+
+```scss
+.button {
+  // Mínimo 44px de altura
+  padding: var(--spacing-3) var(--spacing-6); // 12px × 2 + contenido = 44px+
+  min-height: 44px;
+}
+```
+
+### Espaciado de Enfoque
+
+Asegura espaciado suficiente para indicadores de enfoque:
+
+```scss
+.interactive {
+  padding: var(--spacing-3);
+
+  &:focus {
+    outline: 2px solid var(--primary-default);
+    outline-offset: 2px; // Espacio entre elemento y outline
+  }
+}
+```
+
+---
+
+## 🎨 Mejores Prácticas
+
+### ✅ Haz esto:
+
+```scss
+// Usa tokens de espaciado
+.card {
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-4);
+  gap: var(--spacing-2);
+}
+
+// Usa la escala consistentemente
+.section {
+  padding: var(--spacing-8);  // No usar valores custom
+}
+```
+
+### ❌ Evita esto:
+
+```scss
+// Valores hardcoded
+.card {
+  padding: 24px;
+  margin-bottom: 18px;  // No está en la escala
+  gap: 7px;             // No es múltiplo de 4
+}
+
+// Espaciado inconsistente
+.section {
+  padding: 35px;  // No usa tokens
+}
+```
+
+---
+
+## 📊 Resumen
+
+| Token | Valor | Uso Principal |
+|-------|-------|---------------|
+| `spacing-0` | 0px | Sin espaciado |
+| `spacing-1` | 4px | Compacto |
+| `spacing-2` | 8px | Elementos cercanos |
+| `spacing-3` | 12px | Botones pequeños |
+| `spacing-4` | 16px | **Base estándar** |
+| `spacing-5` | 20px | Cards |
+| `spacing-6` | 24px | Secciones |
+| `spacing-8` | 32px | Containers |
+| `spacing-10` | 40px | Separación grande |
+| `spacing-12` | 48px | Páginas |
+| `spacing-16` | 64px | Secciones hero |
+
+---
+
+## 📚 Recursos
+
+- **Archivo**: `src/styles/tokens.scss`
+- **Total de tokens**: 11
+- **Base**: 4px
+- **Rango**: 0px - 64px

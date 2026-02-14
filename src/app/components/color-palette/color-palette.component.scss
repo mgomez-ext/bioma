@@ -129,12 +129,12 @@
   // Text Contrast Classes
   &.text-light {
     color: var(--neutral-white);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgb(0, 0, 0, 0.2);
   }
 
   &.text-dark {
     color: var(--neutral-950);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgb(255, 255, 255, 0.2);
   }
 }
 
@@ -259,6 +259,7 @@
     opacity: 0;
     transform: translateX(-50%) translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -269,6 +270,7 @@
   0%, 100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.03);
   }
@@ -279,14 +281,17 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
   }
+
   20% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
+
   80% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
+
   100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
@@ -294,7 +299,7 @@
 }
 
 // Responsive Adjustments
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .color-swatches {
     &.layout-horizontal {
       flex-direction: column;

@@ -1,207 +1,468 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Bioma 2.0/Comenzar/Inicio Rápido" />
+<Meta title="Bioma 2.1/Getting Started/Quick Start" />
 
-# Inicio Rápido
+# Quick Start
 
-Creá tu primer componente con Bioma en 5 minutos.
+Crea tu primera aplicación con Bioma en 5 minutos.
 
-## Paso 1: Creá un Nuevo Componente
+---
+
+## 🚀 Inicio Rápido
+
+### Paso 1: Crea un Componente Simple
 
 ```typescript
-// app/my-card.component.ts
+// hello-bioma.component.ts
 import { Component } from '@angular/core';
-import { ButtonComponent, IconFontComponent } from '@mgomezw/bioma';
+import { ButtonComponent } from '@mgomezw/bioma';
 
 @Component({
-  selector: 'app-my-card',
+  selector: 'app-hello-bioma',
   standalone: true,
-  imports: [ButtonComponent, IconFontComponent],
-  templateUrl: './my-card.component.html',
-  styleUrls: ['./my-card.component.scss']
-})
-export class MyCardComponent {
-  handleClick() {
-    console.log('Button clicked!');
-  }
-}
-```
+  imports: [ButtonComponent],
+  template: `
+    <div class="container">
+      <h1>¡Hola Bioma!</h1>
+      <p>Mi primera aplicación con Bioma Design System</p>
 
-## Paso 2: Agregá el Template
-
-```html
-<!-- my-card.component.html -->
-<div class="card">
-  <div class="card__header">
-    <bio-icon-font iconName="notifications" size="24" type="rounded"></bio-icon-font>
-    <h2 class="card__title">Welcome to Bioma</h2>
-  </div>
-
-  <p class="card__content">
-    Empezá a construir experiencias hermosas con el design system de Bioma.
-  </p>
-
-  <div class="card__actions">
-    <bio-button
-      label="Comenzar"
-      variant="filled"
-      size="large"
-      [iconEnd]="true"
-      iconEndName="arrow_forward"
-      (clicked)="handleClick()">
-    </bio-button>
-    <bio-button
-      label="Saber Más"
-      variant="outlined"
-      size="large">
-    </bio-button>
-  </div>
-</div>
-```
-
-## Paso 3: Estilizá con Tokens
-
-```scss
-// my-card.component.scss
-.card {
-  background-color: var(--bg-default);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-6);
-  box-shadow: var(--shadow-md);
-  max-width: 400px;
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-4);
-
-    bio-icon-font {
-      color: var(--icon-primary);
+      <bio-button
+        label="Click Me"
+        variant="filled"
+        size="large"
+        (clicked)="handleClick()">
+      </bio-button>
+    </div>
+  `,
+  styles: [`
+    .container {
+      padding: var(--spacing-8);
+      max-width: 600px;
+      margin: 0 auto;
     }
-  }
 
-  &__title {
-    font-family: var(--font-primary);
-    font-size: var(--font-2xl);
-    font-weight: var(--font-semibold);
-    color: var(--text-strong);
-    margin: 0;
-  }
+    h1 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-2);
+    }
 
-  &__content {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--spacing-6);
-  }
-
-  &__actions {
-    display: flex;
-    gap: var(--spacing-3);
+    p {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-6);
+    }
+  `]
+})
+export class HelloBiomaComponent {
+  handleClick() {
+    console.log('¡Botón clickeado!');
   }
 }
 ```
 
-## Paso 4: Usá tu Componente
+### Paso 2: Úsalo en tu App
 
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
-import { MyCardComponent } from './my-card.component';
+import { HelloBiomaComponent } from './hello-bioma.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MyCardComponent],
-  template: `<app-my-card></app-my-card>`
+  imports: [HelloBiomaComponent],
+  template: '<app-hello-bioma></app-hello-bioma>'
 })
 export class AppComponent {}
 ```
 
-## Resultado
+### Paso 3: ¡Ejecuta!
 
-¡Ahora tenés una card completamente estilizada usando componentes y tokens de Bioma! La card incluye:
-- ✅ Componentes Button de Bioma
-- ✅ Ícono del sistema IconFont
-- ✅ Design tokens para estilos consistentes
-- ✅ Soporte automático de dark mode
-- ✅ Marcado accesible
-- ✅ Diseño responsive
-
-## Qué Aprendiste
-
-### Componentes
-- Cómo importar y usar componentes de Bioma
-- Pasar props a componentes
-- Manejar eventos
-
-### Design Tokens
-- Usar propiedades personalizadas de CSS
-- Tokens semánticos vs foundation tokens
-- Tokens de color, espaciado y tipografía
-
-### Mejores Prácticas
-- Componentes standalone
-- Estilos basados en tokens (sin valores hardcodeados)
-- Espaciado y sizing consistentes
-
-## Próximos Pasos
-
-### Explorá Más Componentes
-- [Button](#) - Todas las variantes y tamaños de botones
-- [Input](#) - Inputs de formulario y validación
-- [IconFont](#) - Sistema completo de íconos
-
-### Aprendé sobre Design Tokens
-- [Overview](#) - Arquitectura de tokens explicada
-- [All Tokens](#) - Referencia completa de tokens
-- [Usage Guide](#) - Cómo usar tokens efectivamente
-
-### Construí Patrones
-- [Forms](#) - Patrones de layout de formularios
-- [Cards](#) - Variaciones de cards
-- [Navigation](#) - Patrones de navegación
-
-## Patrones Comunes
-
-### Formulario con Componentes de Bioma
-
-```typescript
-<form class="form">
-  <bio-input
-    label="Email"
-    type="email"
-    placeholder="vos@ejemplo.com"
-    [required]="true">
-  </bio-input>
-
-  <bio-input
-    label="Contraseña"
-    type="password"
-    [required]="true">
-  </bio-input>
-
-  <bio-button
-    label="Iniciar Sesión"
-    variant="filled"
-    type="submit"
-    fullWidth>
-  </bio-button>
-</form>
+```bash
+ng serve
 ```
 
-### Layout Responsive con Tokens
+Abre `http://localhost:4200` y verás tu primer componente con Bioma. 🎉
+
+---
+
+## 📝 Ejemplos Comunes
+
+### Ejemplo 1: Formulario de Login
+
+```typescript
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@mgomezw/bioma';
+// import { InputComponent } from '@mgomezw/bioma';  // Próximamente
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <form class="login-form">
+      <h2>Iniciar Sesión</h2>
+
+      <!-- Inputs próximamente -->
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+
+      <bio-button
+        label="Iniciar Sesión"
+        variant="filled"
+        size="large"
+        [fullWidth]="true"
+        (clicked)="onSubmit()">
+      </bio-button>
+    </form>
+  `,
+  styles: [`
+    .login-form {
+      background: var(--bg-default);
+      padding: var(--spacing-8);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      max-width: 400px;
+      margin: var(--spacing-10) auto;
+    }
+
+    h2 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-6);
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-4);
+    }
+
+    label {
+      display: block;
+      color: var(--text-primary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--spacing-2);
+    }
+
+    input {
+      width: 100%;
+      padding: var(--spacing-3);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-base);
+      color: var(--text-primary);
+      background: var(--bg-default);
+      transition: all var(--transition-fast);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-default);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+  `]
+})
+export class LoginComponent {
+  onSubmit() {
+    console.log('Form submitted');
+  }
+}
+```
+
+### Ejemplo 2: Tarjeta de Producto
+
+```typescript
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@mgomezw/bioma';
+
+@Component({
+  selector: 'app-product-card',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x200" alt="Producto">
+      </div>
+
+      <div class="product-content">
+        <h3 class="product-title">Nombre del Producto</h3>
+        <p class="product-description">
+          Descripción breve del producto con sus características principales.
+        </p>
+        <div class="product-price">$99.99</div>
+      </div>
+
+      <div class="product-actions">
+        <bio-button
+          label="Agregar al Carrito"
+          variant="filled"
+          [fullWidth]="true"
+          [iconStart]="true"
+          iconStartName="shopping_cart">
+        </bio-button>
+
+        <bio-button
+          label="Ver Detalles"
+          variant="outlined"
+          [fullWidth]="true"
+          [iconEnd]="true"
+          iconEndName="arrow_forward">
+        </bio-button>
+      </div>
+    </article>
+  `,
+  styles: [`
+    .product-card {
+      background: var(--bg-default);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+      max-width: 300px;
+    }
+
+    .product-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: var(--spacing-4);
+    }
+
+    .product-title {
+      color: var(--text-primary);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-2);
+    }
+
+    .product-description {
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--spacing-3);
+    }
+
+    .product-price {
+      color: var(--primary-default);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .product-actions {
+      padding: var(--spacing-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2);
+    }
+  `]
+})
+export class ProductCardComponent {}
+```
+
+### Ejemplo 3: Header con Modo Oscuro
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { ButtonComponent } from '@mgomezw/bioma';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo">Bioma App</div>
+
+        <nav class="nav">
+          <a href="#" class="nav-link">Inicio</a>
+          <a href="#" class="nav-link">Productos</a>
+          <a href="#" class="nav-link">Contacto</a>
+        </nav>
+
+        <bio-button
+          [label]="isDark() ? 'Modo Claro' : 'Modo Oscuro'"
+          variant="outlined"
+          size="medium"
+          [iconStart]="true"
+          [iconStartName]="isDark() ? 'light_mode' : 'dark_mode'"
+          (clicked)="toggleTheme()">
+        </bio-button>
+      </div>
+    </header>
+  `,
+  styles: [`
+    .app-header {
+      background: var(--bg-default);
+      border-bottom: 1px solid var(--border-default);
+      padding: var(--spacing-4) 0;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--primary-default);
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--spacing-6);
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--primary-default);
+    }
+  `]
+})
+export class HeaderComponent {
+  isDark = signal(false);
+
+  toggleTheme() {
+    this.isDark.update(v => !v);
+    const theme = this.isDark() ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+}
+```
+
+---
+
+## 🎨 Usando Tokens de Diseño
+
+### Colores
 
 ```scss
-.layout {
+// Textos
+color: var(--text-primary);     // Texto principal
+color: var(--text-secondary);   // Texto secundario
+color: var(--text-tertiary);    // Texto terciario
+color: var(--text-disabled);    // Texto deshabilitado
+
+// Backgrounds
+background: var(--bg-default);  // Fondo principal
+background: var(--bg-subtle);   // Fondo sutil
+background: var(--bg-muted);    // Fondo atenuado
+
+// Acciones
+color: var(--primary-default);  // Acción primaria
+color: var(--secondary-default);// Acción secundaria
+
+// Estados
+color: var(--success-default);  // Éxito
+color: var(--warning-default);  // Advertencia
+color: var(--error-default);    // Error
+```
+
+### Espaciado
+
+```scss
+// Padding / Margin
+padding: var(--spacing-2);    // 8px
+padding: var(--spacing-4);    // 16px
+padding: var(--spacing-6);    // 24px
+padding: var(--spacing-8);    // 32px
+
+// Gaps
+gap: var(--spacing-3);        // 12px
+```
+
+### Bordes
+
+```scss
+// Border Radius
+border-radius: var(--radius-sm);    // 4px
+border-radius: var(--radius-md);    // 8px
+border-radius: var(--radius-lg);    // 12px
+border-radius: var(--radius-xl);    // 16px
+
+// Borders
+border: 1px solid var(--border-default);
+```
+
+### Sombras
+
+```scss
+box-shadow: var(--shadow-xs);   // Muy sutil
+box-shadow: var(--shadow-sm);   // Pequeña
+box-shadow: var(--shadow-md);   // Media
+box-shadow: var(--shadow-lg);   // Grande
+box-shadow: var(--shadow-xl);   // Extra grande
+```
+
+---
+
+## ⚡ Tips y Mejores Prácticas
+
+### 1. Siempre Usa Tokens
+
+❌ **Evita:**
+```scss
+color: #333;
+padding: 16px;
+border-radius: 8px;
+```
+
+✅ **Prefiere:**
+```scss
+color: var(--text-primary);
+padding: var(--spacing-4);
+border-radius: var(--radius-md);
+```
+
+### 2. Standalone Components
+
+✅ Siempre importa componentes directamente:
+```typescript
+imports: [ButtonComponent]
+```
+
+### 3. Type Safety
+
+✅ Usa los tipos de TypeScript:
+```typescript
+import { ButtonSize, ButtonVariant } from '@mgomezw/bioma';
+
+size: ButtonSize = 'large';
+variant: ButtonVariant = 'filled';
+```
+
+### 4. Responsive Design
+
+```scss
+.container {
   padding: var(--spacing-4);
 
   @media (min-width: 768px) {
-    padding: var(--spacing-6);
-  }
-
-  @media (min-width: 1024px) {
     padding: var(--spacing-8);
   }
 }
@@ -209,4 +470,10 @@ export class AppComponent {}
 
 ---
 
-¿Listo para construir más? ¡Explorá nuestros [Componentes](#) o sumergite en [Fundamentos](#)!
+## 🎯 Siguiente Paso
+
+Ahora que tienes lo básico, explora:
+
+👉 [Foundations - Aprende sobre Design Tokens](/docs/foundations-overview--docs)
+👉 [Components - Explora todos los componentes](/docs/components-overview--docs)
+👉 [Button - Componente de ejemplo completo](/docs/components-button--docs)
