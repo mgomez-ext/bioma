@@ -1,45 +1,39 @@
-[22:45:36.073] [INFO] Initializing Storybook
-[22:45:36.170] [DEBUG] Getting package.json info for /sessions/gallant-wizardly-ride/mnt/mader/BIO/bioma-design-system/package.json...
-[22:45:36.171] [DEBUG] Getting CLI versions from NPM for storybook...
-[22:45:36.171] [DEBUG] Executing command: npm info storybook version
-[22:45:37.179] [INFO] Adding Storybook version 10.2.8 to your project
-[22:45:37.180] [INFO] Installing Storybook for user specified project type: angular
-[22:45:37.186] [INFO] Framework detected: angular
-[22:45:37.189] [DEBUG] Getting installed version for vitest...
-[22:45:37.189] [DEBUG] Executing command: npm ls --json --depth=99 2>/dev/null
-[22:45:38.562] [DEBUG] Executing command: npm ls --json --depth=0 2>/dev/null
-[22:45:39.292] [DEBUG] Error finding installations for vitest: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0' '2>/dev/null'
+[02:03:37.785] [INFO] [36mInitializing Storybook[39m
+[02:03:38.177] [DEBUG] Getting package.json info for /Users/mader/BIO/bioma-design-system/package.json...
+[02:03:38.177] [DEBUG] Getting CLI versions from NPM for storybook...
+[02:03:38.177] [DEBUG] Executing command: npm info storybook version
+[02:03:39.086] [INFO] Adding Storybook version 10.2.8 to your project
+[02:03:39.088] [DEBUG] Project type detected: angular
+[02:03:39.088] [DEBUG] Using cached package.json for /Users/mader/BIO/bioma-design-system/package.json...
+[02:03:39.089] [INFO] Framework detected: angular
+[02:03:39.089] [DEBUG] Getting installed version for vitest...
+[02:03:39.089] [DEBUG] Executing command: npm ls --json --depth=99 2>/dev/null
+[02:03:40.271] [DEBUG] Executing command: npm ls --json --depth=0 2>/dev/null
+[02:03:41.128] [DEBUG] Error finding installations for vitest: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0' '2>/dev/null'
 
 {
-  "version": "0.0.0",
-  "name": "bioma-design-system"
+  "version": "0.1.0",
+  "name": "@mgomezw/bioma"
 }
-[22:45:39.292] [DEBUG] No installations found for vitest
-[22:45:39.292] [DEBUG] Getting installed version for msw...
-[22:45:39.292] [DEBUG] Executing command: npm ls --json --depth=99 2>/dev/null
-[22:45:40.332] [DEBUG] Executing command: npm ls --json --depth=0 2>/dev/null
-[22:45:41.048] [DEBUG] Error finding installations for msw: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0' '2>/dev/null'
+[02:03:41.128] [DEBUG] No installations found for vitest
+[02:03:41.128] [DEBUG] Getting installed version for msw...
+[02:03:41.128] [DEBUG] Executing command: npm ls --json --depth=99 2>/dev/null
+[02:03:42.141] [DEBUG] Executing command: npm ls --json --depth=0 2>/dev/null
+[02:03:42.916] [DEBUG] Error finding installations for msw: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0' '2>/dev/null'
 
 {
-  "version": "0.0.0",
-  "name": "bioma-design-system"
+  "version": "0.1.0",
+  "name": "@mgomezw/bioma"
 }
-[22:45:41.048] [DEBUG] No installations found for msw
-[22:45:41.054] [INFO] Adding Storybook support to your "bioma-design-system" project
-[22:45:41.057] [DEBUG] Getting dependency version for @angular/core...
-[22:45:41.057] [DEBUG] Using cached package.json for /sessions/gallant-wizardly-ride/mnt/mader/BIO/bioma-design-system/package.json...
-[22:45:41.057] [DEBUG] Getting package.json info for /sessions/gallant-wizardly-ride/mnt/mader/BIO/bioma-design-system/package.json...
-[22:45:41.057] [DEBUG] Using cached package.json for /sessions/gallant-wizardly-ride/mnt/mader/BIO/bioma-design-system/package.json...
-[22:45:41.057] [DEBUG] Using cached package.json for /sessions/gallant-wizardly-ride/mnt/mader/BIO/bioma-design-system/package.json...
-[22:45:41.068] [ERROR] [38;2;241;97;97mError: EACCES, Permission denied './.storybook'[39m
-    at copyDir (node:internal/fs/cp/cp-sync:145:22)
-    at onDir (node:internal/fs/cp/cp-sync:137:10)
-    at getStats (node:internal/fs/cp/cp-sync:68:12)
-    at cpSyncFn (node:internal/fs/cp/cp-sync:58:10)
-    at cpSync (node:fs:3139:3)
-    at copyTemplate (file:///sessions/gallant-wizardly-ride/.npm/_npx/c98dac484ac87b2f/node_modules/storybook/dist/_node-chunks/chunk-SD77JQJM.js:5462:3)
-    at Object.configure (file:///sessions/gallant-wizardly-ride/.npm/_npx/c98dac484ac87b2f/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2317:20)
-    at async GeneratorExecutionCommand.executeProjectGenerator (file:///sessions/gallant-wizardly-ride/.npm/_npx/c98dac484ac87b2f/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:1337:58)
-    at async GeneratorExecutionCommand.execute (file:///sessions/gallant-wizardly-ride/.npm/_npx/c98dac484ac87b2f/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:1386:27)
-    at async doInitiate (file:///sessions/gallant-wizardly-ride/.npm/_npx/c98dac484ac87b2f/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2840:68)
-[22:45:41.080] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
+[02:03:42.916] [DEBUG] No installations found for msw
+[02:03:50.323] [PROMPT] New to Storybook? {"choice":true}
+[02:03:51.091] [ERROR] [38;2;241;97;97mError: Every project in your workspace is already set up with Storybook. There is nothing to do![39m
+    at Object.configure (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2287:13)
+    at GeneratorExecutionCommand.executeProjectGenerator (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:1337:80)
+    at GeneratorExecutionCommand.execute (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:1386:38)
+    at executeGeneratorExecution (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:1403:74)
+    at doInitiate (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2840:74)
+    at async file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2882:20
+    at async withTelemetry (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/storybook/dist/_node-chunks/chunk-KIOKJLL5.js:218:12)
+    at async initiate (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/chunk-M7TYML2Y.js:2875:24)
+    at async _Command.<anonymous> (file:///Users/mader/.npm/_npx/05823ecb1a3a987d/node_modules/create-storybook/dist/_node-chunks/run-6WTLCWSW.js:2684:144)

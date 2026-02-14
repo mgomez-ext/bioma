@@ -1,0 +1,328 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import { ColorPaletteComponent } from '../../../app/components/color-palette/color-palette.component';
+
+<Meta title="Bioma 2.0/Foundations/Design Tokens/Color Palettes" />
+
+# Color Palettes
+
+Paletas de colores visuales e interactivas del sistema de diseño de Bioma.
+
+---
+
+## Paletas Foundation
+
+Las paletas foundation son escalas de color secuenciales que van de claro a oscuro (50-950). Estas paletas sirven como bloques de construcción para los tokens semánticos.
+
+### Brand Palette - Bioma Red
+
+La paleta principal de marca, basada en el característico rojo de Bioma (#E30038).
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--brand-horizontal" />
+</Canvas>
+
+**Características**:
+- 11 shades del 50 (más claro) al 950 (más oscuro)
+- El valor 500 (#E30038) es el color principal de marca
+- Optimizada para estados interactivos y variaciones de tema
+
+**Uso recomendado**:
+```scss
+// ❌ No usar directamente en componentes
+.button {
+  background: var(--brand-500);
+}
+
+// ✅ Usar tokens semánticos
+.button {
+  background: var(--primary-default);
+}
+```
+
+---
+
+### Neutral Palette - Grays
+
+Escala de grises para texto, fondos y bordes.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--neutral-horizontal" />
+</Canvas>
+
+**Características**:
+- 13 valores incluyendo blanco y negro puros
+- Diseñada para alta legibilidad
+- Adaptable a modo claro y oscuro
+
+**Uso recomendado**:
+```scss
+// ❌ No usar valores foundation directamente
+.text {
+  color: var(--neutral-800);
+}
+
+// ✅ Usar tokens semánticos
+.text {
+  color: var(--text-primary);
+}
+```
+
+---
+
+## Paletas Semánticas
+
+Las paletas semánticas agrupan colores por propósito. Son tokens de nivel superior que referencian las paletas foundation.
+
+### Success Colors
+
+Estados de éxito, confirmación y completado.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--success-grid" />
+</Canvas>
+
+**Cuándo usar**:
+- Mensajes de éxito
+- Confirmaciones de acción
+- Estados completados
+- Indicadores positivos
+
+**Ejemplo**:
+```scss
+.alert-success {
+  background: var(--success-subtle);
+  color: var(--success-strong);
+  border-left: 4px solid var(--success-default);
+}
+```
+
+---
+
+### Warning Colors
+
+Advertencias, precauciones y estados que requieren atención.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--warning-grid" />
+</Canvas>
+
+**Cuándo usar**:
+- Advertencias
+- Precauciones
+- Estados que requieren atención
+- Notificaciones importantes
+
+**Ejemplo**:
+```scss
+.alert-warning {
+  background: var(--warning-subtle);
+  color: var(--warning-strong);
+  border-left: 4px solid var(--warning-default);
+}
+```
+
+---
+
+### Error Colors
+
+Errores, estados destructivos y fallos de validación.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--error-grid" />
+</Canvas>
+
+**Cuándo usar**:
+- Mensajes de error
+- Validación fallida
+- Acciones destructivas
+- Estados de fallo
+
+**Ejemplo**:
+```scss
+.alert-error {
+  background: var(--error-subtle);
+  color: var(--error-strong);
+  border-left: 4px solid var(--error-default);
+}
+
+.input-error {
+  border-color: var(--error-default);
+
+  &:focus {
+    box-shadow: 0 0 0 3px var(--error-subtle);
+  }
+}
+```
+
+---
+
+### Info Colors
+
+Información, estados neutrales y mensajes informativos.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--info-grid" />
+</Canvas>
+
+**Cuándo usar**:
+- Mensajes informativos
+- Tooltips
+- Guías y ayuda
+- Estados neutrales
+
+**Ejemplo**:
+```scss
+.alert-info {
+  background: var(--info-subtle);
+  color: var(--info-strong);
+  border-left: 4px solid var(--info-default);
+}
+```
+
+---
+
+## Características del Componente
+
+### 🎯 Interactivo
+
+- **Click** en cualquier color para ver detalles completos
+- **Hover** para previsualizar
+- **Copy** valores con un click
+
+### 📋 Valores Múltiples
+
+Cada color muestra:
+- Nombre del token CSS
+- Valor hexadecimal
+- Valor RGB
+- Valor HSL (cuando aplica)
+- Descripción de uso
+
+### 📱 Responsive
+
+El componente se adapta automáticamente a diferentes tamaños de pantalla:
+- **Desktop**: Layout horizontal expandible
+- **Tablet**: Compacto con detalles
+- **Mobile**: Layout vertical con modal
+
+---
+
+## Layouts Disponibles
+
+### Horizontal (Secuencial)
+
+Ideal para paletas con gradientes naturales (50-950).
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--brand-horizontal" />
+</Canvas>
+
+### Grid (Semántico)
+
+Perfecto para paletas con propósitos específicos.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--success-grid" />
+</Canvas>
+
+### Vertical (Estados)
+
+Útil para mostrar progresión de estados.
+
+<Canvas>
+  <Story id="bioma-2-0-foundations-color-color-palettes--vertical-layout" />
+</Canvas>
+
+---
+
+## Guía de Uso
+
+### ✅ Mejores Prácticas
+
+**Usar tokens semánticos en componentes**:
+```scss
+.button-primary {
+  background: var(--primary-default);
+  color: var(--primary-strong);
+
+  &:hover {
+    background: var(--primary-hover);
+  }
+}
+```
+
+**Agrupar colores relacionados**:
+```scss
+.status-badge {
+  &.success {
+    background: var(--success-subtle);
+    color: var(--success-strong);
+  }
+
+  &.error {
+    background: var(--error-subtle);
+    color: var(--error-strong);
+  }
+}
+```
+
+---
+
+### ❌ Anti-patrones
+
+**No usar valores foundation directamente**:
+```scss
+// ❌ Incorrecto
+.card {
+  background: var(--neutral-white);
+  color: var(--neutral-950);
+}
+
+// ✅ Correcto
+.card {
+  background: var(--bg-default);
+  color: var(--text-primary);
+}
+```
+
+**No hardcodear colores**:
+```scss
+// ❌ Incorrecto
+.button {
+  background: #E30038;
+}
+
+// ✅ Correcto
+.button {
+  background: var(--primary-default);
+}
+```
+
+---
+
+## Accesibilidad
+
+### Contraste
+
+Todos los colores incluyen información de contraste:
+- **light**: Usar texto blanco sobre este color
+- **dark**: Usar texto oscuro sobre este color
+
+### Ratios WCAG
+
+- **Texto normal**: Mínimo 4.5:1
+- **Texto grande**: Mínimo 3:1
+- **UI components**: Mínimo 3:1
+
+### Pruebas
+
+Usa las herramientas de contraste en las paletas para verificar que tu combinación cumple con WCAG AA o AAA.
+
+---
+
+## Referencias
+
+- [Overview de Design Tokens](/?path=/docs/bioma-2-0-foundations-design-tokens-overview)
+- [Reading Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-reading-guide)
+- [Usage Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-usage-guide)
+- [All Tokens](/?path=/docs/bioma-2-0-foundations-design-tokens-all-tokens)

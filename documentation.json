@@ -2,6 +2,146 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "ColorPalette",
+            "id": "interface-ColorPalette-7be6475c018124608802d11a13cd8721146c5d02407bcdeff3faffdbda52f042c91648f086e32863efc31b6286af7097495401363da5ba34bfb7543c18bcc3ac",
+            "file": "src/app/components/color-palette/color-palette.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface ColorToken {\n  name: string;\n  value: string;\n  hex: string;\n  rgb?: string;\n  hsl?: string;\n  usage?: string;\n  contrast?: 'light' | 'dark';\n}\n\nexport interface ColorPalette {\n  name: string;\n  description?: string;\n  tokens: ColorToken[];\n  type?: 'sequential' | 'semantic';\n}\n\n@Component({\n  selector: 'app-color-palette',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './color-palette.component.html',\n  styleUrls: ['./color-palette.component.scss']\n})\nexport class ColorPaletteComponent {\n  @Input() palette!: ColorPalette;\n  @Input() prefix: string = '';\n  @Input() layout: 'grid' | 'horizontal' | 'vertical' = 'horizontal';\n  @Input() showDetails: boolean = true;\n  @Input() copyable: boolean = true;\n\n  selectedToken: ColorToken | null = null;\n  copiedToken: string | null = null;\n\n  selectToken(token: ColorToken): void {\n    this.selectedToken = this.selectedToken === token ? null : token;\n  }\n\n  async copyToClipboard(value: string, token: ColorToken): Promise<void> {\n    if (!this.copyable) return;\n\n    try {\n      await navigator.clipboard.writeText(value);\n      this.copiedToken = token.name;\n      setTimeout(() => {\n        this.copiedToken = null;\n      }, 2000);\n    } catch (err) {\n      console.error('Failed to copy:', err);\n    }\n  }\n\n  isCopied(token: ColorToken): boolean {\n    return this.copiedToken === token.name;\n  }\n\n  getContrastClass(token: ColorToken): string {\n    return token.contrast === 'light' ? 'text-light' : 'text-dark';\n  }\n\n  getTokenName(token: ColorToken): string {\n    return this.prefix ? `${this.prefix}${token.name}` : token.name;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "tokens",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorToken[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"sequential\" | \"semantic\"",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "ColorToken",
+            "id": "interface-ColorToken-7be6475c018124608802d11a13cd8721146c5d02407bcdeff3faffdbda52f042c91648f086e32863efc31b6286af7097495401363da5ba34bfb7543c18bcc3ac",
+            "file": "src/app/components/color-palette/color-palette.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface ColorToken {\n  name: string;\n  value: string;\n  hex: string;\n  rgb?: string;\n  hsl?: string;\n  usage?: string;\n  contrast?: 'light' | 'dark';\n}\n\nexport interface ColorPalette {\n  name: string;\n  description?: string;\n  tokens: ColorToken[];\n  type?: 'sequential' | 'semantic';\n}\n\n@Component({\n  selector: 'app-color-palette',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './color-palette.component.html',\n  styleUrls: ['./color-palette.component.scss']\n})\nexport class ColorPaletteComponent {\n  @Input() palette!: ColorPalette;\n  @Input() prefix: string = '';\n  @Input() layout: 'grid' | 'horizontal' | 'vertical' = 'horizontal';\n  @Input() showDetails: boolean = true;\n  @Input() copyable: boolean = true;\n\n  selectedToken: ColorToken | null = null;\n  copiedToken: string | null = null;\n\n  selectToken(token: ColorToken): void {\n    this.selectedToken = this.selectedToken === token ? null : token;\n  }\n\n  async copyToClipboard(value: string, token: ColorToken): Promise<void> {\n    if (!this.copyable) return;\n\n    try {\n      await navigator.clipboard.writeText(value);\n      this.copiedToken = token.name;\n      setTimeout(() => {\n        this.copiedToken = null;\n      }, 2000);\n    } catch (err) {\n      console.error('Failed to copy:', err);\n    }\n  }\n\n  isCopied(token: ColorToken): boolean {\n    return this.copiedToken === token.name;\n  }\n\n  getContrastClass(token: ColorToken): string {\n    return token.contrast === 'light' ? 'text-light' : 'text-dark';\n  }\n\n  getTokenName(token: ColorToken): string {\n    return this.prefix ? `${this.prefix}${token.name}` : token.name;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "contrast",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"light\" | \"dark\"",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "hex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "hsl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "rgb",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "usage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "Token",
             "id": "interface-Token-0903b7a91f27cab584cef37be50ab4cb84f1d29a9013b8f385da7363fdb1f1cbd152c8be8fc059c298c0a603a6e069305daceef88e1d3d81f27df60df1fc3797",
             "file": "src/app/components/token-doc/token-doc.component.ts",
@@ -390,6 +530,306 @@
                 }
             },
             "templateData": "<button\n  [type]=\"type\"\n  [disabled]=\"disabled\"\n  [class]=\"buttonClasses.join(' ')\"\n  (click)=\"handleClick($event)\">\n\n  <!-- Left Icon Container (Figma: left-icon) -->\n  <span *ngIf=\"iconStart\" class=\"bio-button__icon-container bio-button__icon-container--start\">\n    <bio-icon-font\n      [iconName]=\"iconStartName\"\n      size=\"16\"\n      type=\"rounded\"\n      color=\"inherit\"\n      class=\"bio-button__icon\"\n      aria-hidden=\"true\">\n    </bio-icon-font>\n  </span>\n\n  <!-- Button Label (Figma: button-label) -->\n  <span class=\"bio-button__label\">\n    {{ label }}\n  </span>\n\n  <!-- Right Icon Container (Figma: right-icon) -->\n  <span *ngIf=\"iconEnd\" class=\"bio-button__icon-container bio-button__icon-container--end\">\n    <bio-icon-font\n      [iconName]=\"iconEndName\"\n      size=\"16\"\n      type=\"rounded\"\n      color=\"inherit\"\n      class=\"bio-button__icon\"\n      aria-hidden=\"true\">\n    </bio-icon-font>\n  </span>\n</button>\n"
+        },
+        {
+            "name": "ColorPaletteComponent",
+            "id": "component-ColorPaletteComponent-7be6475c018124608802d11a13cd8721146c5d02407bcdeff3faffdbda52f042c91648f086e32863efc31b6286af7097495401363da5ba34bfb7543c18bcc3ac",
+            "file": "src/app/components/color-palette/color-palette.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-color-palette",
+            "styleUrls": [
+                "./color-palette.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./color-palette.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "copyable",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "layout",
+                    "defaultValue": "'horizontal'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "\"grid\" | \"horizontal\" | \"vertical\"",
+                    "decorators": []
+                },
+                {
+                    "name": "palette",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "ColorPalette",
+                    "decorators": []
+                },
+                {
+                    "name": "prefix",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "showDetails",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "copiedToken",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "selectedToken",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorToken | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 35
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "copyToClipboard",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getContrastClass",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 60,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getTokenName",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isCopied",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 56,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selectToken",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "ColorToken",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface ColorToken {\n  name: string;\n  value: string;\n  hex: string;\n  rgb?: string;\n  hsl?: string;\n  usage?: string;\n  contrast?: 'light' | 'dark';\n}\n\nexport interface ColorPalette {\n  name: string;\n  description?: string;\n  tokens: ColorToken[];\n  type?: 'sequential' | 'semantic';\n}\n\n@Component({\n  selector: 'app-color-palette',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './color-palette.component.html',\n  styleUrls: ['./color-palette.component.scss']\n})\nexport class ColorPaletteComponent {\n  @Input() palette!: ColorPalette;\n  @Input() prefix: string = '';\n  @Input() layout: 'grid' | 'horizontal' | 'vertical' = 'horizontal';\n  @Input() showDetails: boolean = true;\n  @Input() copyable: boolean = true;\n\n  selectedToken: ColorToken | null = null;\n  copiedToken: string | null = null;\n\n  selectToken(token: ColorToken): void {\n    this.selectedToken = this.selectedToken === token ? null : token;\n  }\n\n  async copyToClipboard(value: string, token: ColorToken): Promise<void> {\n    if (!this.copyable) return;\n\n    try {\n      await navigator.clipboard.writeText(value);\n      this.copiedToken = token.name;\n      setTimeout(() => {\n        this.copiedToken = null;\n      }, 2000);\n    } catch (err) {\n      console.error('Failed to copy:', err);\n    }\n  }\n\n  isCopied(token: ColorToken): boolean {\n    return this.copiedToken === token.name;\n  }\n\n  getContrastClass(token: ColorToken): string {\n    return token.contrast === 'light' ? 'text-light' : 'text-dark';\n  }\n\n  getTokenName(token: ColorToken): string {\n    return this.prefix ? `${this.prefix}${token.name}` : token.name;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".color-palette {\n  margin: var(--spacing-6) 0;\n  font-family: var(--font-primary);\n}\n\n// Palette Header\n.palette-header {\n  margin-bottom: var(--spacing-4);\n\n  .palette-name {\n    font-size: var(--font-2xl);\n    font-weight: var(--font-semibold);\n    color: var(--text-strong);\n    margin: 0 0 var(--spacing-2) 0;\n  }\n\n  .palette-description {\n    font-size: var(--font-sm);\n    color: var(--text-secondary);\n    margin: 0;\n    line-height: var(--leading-relaxed);\n  }\n}\n\n// Color Swatches Container\n.color-swatches {\n  display: flex;\n  gap: 0;\n  border-radius: var(--radius-lg);\n  overflow: hidden;\n  box-shadow: var(--shadow-md);\n  border: 1px solid var(--border-subtle);\n\n  // Horizontal Layout (Default)\n  &.layout-horizontal {\n    flex-direction: row;\n\n    .color-swatch {\n      flex: 1;\n      min-height: 120px;\n      position: relative;\n\n      &:hover {\n        flex: 1.2;\n      }\n    }\n  }\n\n  // Vertical Layout\n  &.layout-vertical {\n    flex-direction: column;\n\n    .color-swatch {\n      min-height: 80px;\n    }\n  }\n\n  // Grid Layout\n  &.layout-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));\n    gap: var(--spacing-3);\n    border: none;\n    box-shadow: none;\n\n    .color-swatch {\n      border-radius: var(--radius-md);\n      border: 1px solid var(--border-subtle);\n      min-height: 140px;\n    }\n  }\n}\n\n// Individual Color Swatch\n.color-swatch {\n  position: relative;\n  cursor: pointer;\n  transition: all var(--transition-base);\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: var(--spacing-3);\n\n  // Hover Effect\n  &:hover {\n    transform: translateY(-2px);\n    box-shadow: var(--shadow-lg);\n    z-index: 2;\n\n    .swatch-label {\n      opacity: 1;\n    }\n  }\n\n  // Selected State\n  &.selected {\n    z-index: 10;\n    box-shadow: 0 0 0 3px var(--primary-default), var(--shadow-xl);\n    transform: scale(1.05);\n  }\n\n  // Copied State\n  &.copied {\n    animation: pulse 0.4s ease;\n  }\n}\n\n// Swatch Label (Token Name & Value)\n.swatch-label {\n  display: flex;\n  flex-direction: column;\n  gap: var(--spacing-1);\n  opacity: 0.9;\n  transition: opacity var(--transition-fast);\n\n  .token-name {\n    font-size: var(--font-xs);\n    font-weight: var(--font-semibold);\n    text-transform: uppercase;\n    letter-spacing: var(--tracking-wide);\n  }\n\n  .token-value {\n    font-size: var(--font-sm);\n    font-family: var(--font-mono);\n    font-weight: var(--font-medium);\n  }\n\n  // Text Contrast Classes\n  &.text-light {\n    color: var(--neutral-white);\n    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);\n  }\n\n  &.text-dark {\n    color: var(--neutral-950);\n    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);\n  }\n}\n\n// Swatch Details (Expanded Info)\n.swatch-details {\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  transform: translateX(-50%);\n  margin-top: var(--spacing-2);\n  background: var(--bg-default);\n  border: 1px solid var(--border-default);\n  border-radius: var(--radius-md);\n  padding: var(--spacing-4);\n  box-shadow: var(--shadow-xl);\n  min-width: 280px;\n  z-index: 100;\n  animation: slideDown 0.2s ease;\n\n  .detail-section {\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-2);\n  }\n\n  .detail-row {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: var(--spacing-3);\n\n    &.usage-row {\n      flex-direction: column;\n      align-items: flex-start;\n      padding-top: var(--spacing-2);\n      border-top: 1px solid var(--border-subtle);\n      margin-top: var(--spacing-1);\n    }\n  }\n\n  .detail-label {\n    font-size: var(--font-xs);\n    font-weight: var(--font-semibold);\n    color: var(--text-tertiary);\n    text-transform: uppercase;\n    letter-spacing: var(--tracking-wide);\n    min-width: 50px;\n  }\n\n  .detail-value {\n    font-family: var(--font-mono);\n    font-size: var(--font-sm);\n    color: var(--text-primary);\n    background: var(--bg-muted);\n    padding: var(--spacing-1) var(--spacing-2);\n    border-radius: var(--radius-sm);\n    user-select: all;\n\n    &.copyable {\n      cursor: pointer;\n      transition: background var(--transition-fast);\n\n      &:hover {\n        background: var(--interactive-hover);\n      }\n\n      &:active {\n        background: var(--interactive-active);\n      }\n    }\n  }\n\n  .usage-text {\n    font-size: var(--font-sm);\n    color: var(--text-secondary);\n    line-height: var(--leading-relaxed);\n  }\n}\n\n// Copy Confirmation\n.copy-confirmation {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  background: var(--success-default);\n  color: var(--neutral-white);\n  padding: var(--spacing-2) var(--spacing-4);\n  border-radius: var(--radius-md);\n  font-size: var(--font-sm);\n  font-weight: var(--font-semibold);\n  box-shadow: var(--shadow-lg);\n  animation: fadeInOut 2s ease;\n  z-index: 1000;\n}\n\n// Palette Guide\n.palette-guide {\n  margin-top: var(--spacing-4);\n  padding: var(--spacing-3) var(--spacing-4);\n  background: var(--bg-subtle);\n  border-radius: var(--radius-md);\n  border-left: 4px solid var(--primary-default);\n\n  .guide-text {\n    margin: 0;\n    font-size: var(--font-sm);\n    color: var(--text-secondary);\n    display: flex;\n    align-items: center;\n    gap: var(--spacing-2);\n  }\n\n  .guide-icon {\n    font-size: var(--font-lg);\n  }\n}\n\n// Animations\n@keyframes slideDown {\n  from {\n    opacity: 0;\n    transform: translateX(-50%) translateY(-8px);\n  }\n  to {\n    opacity: 1;\n    transform: translateX(-50%) translateY(0);\n  }\n}\n\n@keyframes pulse {\n  0%, 100% {\n    transform: scale(1);\n  }\n  50% {\n    transform: scale(1.03);\n  }\n}\n\n@keyframes fadeInOut {\n  0% {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.9);\n  }\n  20% {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  80% {\n    opacity: 1;\n    transform: translate(-50%, -50%) scale(1);\n  }\n  100% {\n    opacity: 0;\n    transform: translate(-50%, -50%) scale(0.9);\n  }\n}\n\n// Responsive Adjustments\n@media (max-width: 768px) {\n  .color-swatches {\n    &.layout-horizontal {\n      flex-direction: column;\n\n      .color-swatch {\n        min-height: 80px;\n\n        &:hover {\n          flex: 1;\n        }\n      }\n    }\n\n    &.layout-grid {\n      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n    }\n  }\n\n  .swatch-details {\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    margin-top: 0;\n    max-width: 90vw;\n  }\n}\n",
+                    "styleUrl": "./color-palette.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"color-palette\" [attr.data-layout]=\"layout\">\n  <!-- Palette Header -->\n  <div class=\"palette-header\">\n    <h3 class=\"palette-name\">{{ palette.name }}</h3>\n    <p *ngIf=\"palette.description\" class=\"palette-description\">\n      {{ palette.description }}\n    </p>\n  </div>\n\n  <!-- Color Swatches -->\n  <div class=\"color-swatches\" [ngClass]=\"'layout-' + layout\">\n    <div\n      *ngFor=\"let token of palette.tokens\"\n      class=\"color-swatch\"\n      [class.selected]=\"selectedToken === token\"\n      [class.copied]=\"isCopied(token)\"\n      [style.background-color]=\"token.hex\"\n      (click)=\"selectToken(token)\">\n\n      <!-- Token Label (always visible) -->\n      <div class=\"swatch-label\" [ngClass]=\"getContrastClass(token)\">\n        <span class=\"token-name\">{{ token.name }}</span>\n        <span class=\"token-value\">{{ token.hex }}</span>\n      </div>\n\n      <!-- Expanded Details (on selection) -->\n      <div *ngIf=\"selectedToken === token && showDetails\" class=\"swatch-details\">\n        <div class=\"detail-section\">\n          <div class=\"detail-row\">\n            <span class=\"detail-label\">Token</span>\n            <code class=\"detail-value copyable\" (click)=\"copyToClipboard(getTokenName(token), token); $event.stopPropagation()\">\n              {{ getTokenName(token) }}\n            </code>\n          </div>\n\n          <div class=\"detail-row\">\n            <span class=\"detail-label\">HEX</span>\n            <code class=\"detail-value copyable\" (click)=\"copyToClipboard(token.hex, token); $event.stopPropagation()\">\n              {{ token.hex }}\n            </code>\n          </div>\n\n          <div *ngIf=\"token.rgb\" class=\"detail-row\">\n            <span class=\"detail-label\">RGB</span>\n            <code class=\"detail-value copyable\" (click)=\"copyToClipboard(token.rgb, token); $event.stopPropagation()\">\n              {{ token.rgb }}\n            </code>\n          </div>\n\n          <div *ngIf=\"token.hsl\" class=\"detail-row\">\n            <span class=\"detail-label\">HSL</span>\n            <code class=\"detail-value copyable\" (click)=\"copyToClipboard(token.hsl, token); $event.stopPropagation()\">\n              {{ token.hsl }}\n            </code>\n          </div>\n\n          <div *ngIf=\"token.usage\" class=\"detail-row usage-row\">\n            <span class=\"detail-label\">Usage</span>\n            <span class=\"usage-text\">{{ token.usage }}</span>\n          </div>\n        </div>\n\n        <!-- Copy Confirmation -->\n        <div *ngIf=\"isCopied(token)\" class=\"copy-confirmation\">\n          ✓ Copied!\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- Quick Reference Guide -->\n  <div *ngIf=\"layout === 'horizontal'\" class=\"palette-guide\">\n    <p class=\"guide-text\">\n      <span class=\"guide-icon\">💡</span>\n      Click any color to view details and copy values\n    </p>\n  </div>\n</div>\n"
         },
         {
             "name": "IconFontComponent",
@@ -851,6 +1291,26 @@
                 "defaultValue": "{\n  args: {\n    tokens: radiusTokens,\n    title: '🔘 Border Radius',\n    prefix: 'radius-',\n    showSampleColumn: false,\n  },\n}"
             },
             {
+                "name": "BrandHorizontal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: brandPalette,\n    prefix: 'brand-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "brandPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Brand Palette',\n  description: 'Paleta de color primaria de Bioma - Rojo característico de la marca',\n  type: 'sequential',\n  tokens: [\n    {\n      name: '50',\n      value: '--brand-50',\n      hex: '#FFEDED',\n      rgb: 'rgb(255, 237, 237)',\n      hsl: 'hsl(0, 100%, 97%)',\n      usage: 'Fondos muy sutiles, backgrounds de alertas',\n      contrast: 'dark',\n    },\n    {\n      name: '100',\n      value: '--brand-100',\n      hex: '#FFD1D4',\n      rgb: 'rgb(255, 209, 212)',\n      hsl: 'hsl(356, 100%, 91%)',\n      usage: 'Fondos sutiles, estados hover ligeros',\n      contrast: 'dark',\n    },\n    {\n      name: '200',\n      value: '--brand-200',\n      hex: '#FFA3AB',\n      rgb: 'rgb(255, 163, 171)',\n      hsl: 'hsl(355, 100%, 82%)',\n      usage: 'Backgrounds medios, badges',\n      contrast: 'dark',\n    },\n    {\n      name: '300',\n      value: '--brand-300',\n      hex: '#FF4D61',\n      rgb: 'rgb(255, 77, 97)',\n      hsl: 'hsl(353, 100%, 65%)',\n      usage: 'Texto sobre fondos claros',\n      contrast: 'dark',\n    },\n    {\n      name: '400',\n      value: '--brand-400',\n      hex: '#F52B4A',\n      rgb: 'rgb(245, 43, 74)',\n      hsl: 'hsl(351, 91%, 56%)',\n      usage: 'Estados hover en modo light',\n      contrast: 'light',\n    },\n    {\n      name: '500',\n      value: '--brand-500',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      hsl: 'hsl(345, 100%, 45%)',\n      usage: '⭐ Color principal de marca - Bioma Red',\n      contrast: 'light',\n    },\n    {\n      name: '600',\n      value: '--brand-600',\n      hex: '#C40030',\n      rgb: 'rgb(196, 0, 48)',\n      hsl: 'hsl(345, 100%, 38%)',\n      usage: 'Estados pressed en modo light',\n      contrast: 'light',\n    },\n    {\n      name: '700',\n      value: '--brand-700',\n      hex: '#BA1F38',\n      rgb: 'rgb(186, 31, 56)',\n      hsl: 'hsl(350, 71%, 43%)',\n      usage: 'Versión oscura, contraste fuerte',\n      contrast: 'light',\n    },\n    {\n      name: '800',\n      value: '--brand-800',\n      hex: '#9C0024',\n      rgb: 'rgb(156, 0, 36)',\n      hsl: 'hsl(346, 100%, 31%)',\n      usage: 'Versión muy oscura',\n      contrast: 'light',\n    },\n    {\n      name: '900',\n      value: '--brand-900',\n      hex: '#700017',\n      rgb: 'rgb(112, 0, 23)',\n      hsl: 'hsl(348, 100%, 22%)',\n      usage: 'Backgrounds en dark mode',\n      contrast: 'light',\n    },\n    {\n      name: '950',\n      value: '--brand-950',\n      hex: '#45000A',\n      rgb: 'rgb(69, 0, 10)',\n      hsl: 'hsl(351, 100%, 14%)',\n      usage: 'Contraste máximo en dark mode',\n      contrast: 'light',\n    },\n  ],\n}"
+            },
+            {
                 "name": "BrandPalette",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -951,6 +1411,16 @@
                 "defaultValue": "{\n  args: {\n    token: {\n      name: 'brand/500',\n      value: '#E30038',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      usage: 'Primary brand color - Bioma red',\n      type: 'color',\n    },\n    rowIndex: 0,\n    prefix: '',\n  },\n}"
             },
             {
+                "name": "commonIcons",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  // Navegación\n  'home', 'menu', 'arrow_back', 'arrow_forward', 'arrow_upward', 'arrow_downward',\n  'chevron_left', 'chevron_right', 'expand_more', 'expand_less', 'close', 'navigate_next',\n  'navigate_before', 'first_page', 'last_page', 'unfold_more', 'keyboard_arrow_down',\n  'keyboard_arrow_up', 'keyboard_arrow_left', 'keyboard_arrow_right',\n\n  // Acciones\n  'add', 'remove', 'edit', 'delete', 'save', 'search', 'filter_list', 'sort',\n  'refresh', 'sync', 'undo', 'redo', 'content_copy', 'content_paste', 'download',\n  'upload', 'share', 'print', 'open_in_new', 'launch', 'drag_indicator',\n\n  // Archivos y Carpetas\n  'folder', 'folder_open', 'insert_drive_file', 'description', 'article',\n  'attach_file', 'cloud_upload', 'cloud_download', 'cloud_done', 'file_upload',\n  'file_download',\n\n  // Comunicación\n  'mail', 'inbox', 'send', 'drafts', 'mark_email_read', 'mark_email_unread',\n  'chat', 'comment', 'forum', 'feedback', 'message', 'notifications',\n  'notifications_active', 'notifications_off', 'phone', 'call', 'videocam',\n\n  // Usuario y Cuenta\n  'person', 'account_circle', 'person_add', 'person_remove', 'group', 'badge',\n  'supervisor_account', 'admin_panel_settings', 'manage_accounts', 'logout',\n  'login', 'lock', 'lock_open', 'vpn_key', 'security',\n\n  // Estado y Feedback\n  'check', 'check_circle', 'cancel', 'error', 'warning', 'info', 'help',\n  'done', 'done_all', 'thumb_up', 'thumb_down', 'star', 'star_border',\n  'favorite', 'favorite_border', 'bookmark', 'bookmark_border',\n\n  // Configuración y Control\n  'settings', 'tune', 'build', 'dashboard', 'widgets', 'view_list', 'view_module',\n  'view_column', 'view_quilt', 'grid_view', 'list', 'table_view',\n\n  // Medios\n  'play_arrow', 'pause', 'stop', 'skip_next', 'skip_previous', 'replay',\n  'volume_up', 'volume_down', 'volume_off', 'mic', 'mic_off', 'image',\n  'photo', 'photo_camera', 'video_library', 'movie',\n\n  // E-commerce\n  'shopping_cart', 'shopping_bag', 'add_shopping_cart', 'remove_shopping_cart',\n  'storefront', 'store', 'local_shipping', 'payment', 'credit_card',\n  'attach_money', 'monetization_on',\n\n  // Fecha y Tiempo\n  'event', 'calendar_today', 'schedule', 'access_time', 'timer', 'alarm',\n  'watch_later', 'history', 'update', 'today',\n\n  // Ubicación\n  'location_on', 'place', 'map', 'my_location', 'navigation', 'near_me',\n  'explore', 'directions', 'local_cafe', 'restaurant',\n\n  // Más Usados\n  'more_vert', 'more_horiz', 'apps', 'drag_handle', 'fullscreen', 'fullscreen_exit',\n  'zoom_in', 'zoom_out', 'aspect_ratio', 'fit_screen', 'crop', 'rotate_right',\n  'rotate_left', 'flip', 'straighten', 'palette', 'color_lens', 'invert_colors',\n\n  // Visibilidad\n  'visibility', 'visibility_off', 'remove_red_eye', 'preview',\n\n  // Toggle\n  'toggle_on', 'toggle_off', 'radio_button_checked', 'radio_button_unchecked',\n  'check_box', 'check_box_outline_blank', 'indeterminate_check_box',\n]"
+            },
+            {
                 "name": "CommonIcons",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1009,6 +1479,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: 'Disabled Button',\n    disabled: true,\n    size: 'large',\n    variant: 'filled',\n  },\n}"
+            },
+            {
+                "name": "ErrorGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: errorPalette,\n    prefix: 'error-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "errorPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Error Colors',\n  description: 'Paleta para errores y estados destructivos',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--error-subtle',\n      hex: '#FEE2E2',\n      rgb: 'rgb(254, 226, 226)',\n      hsl: 'hsl(0, 93%, 94%)',\n      usage: 'Fondos de alertas de error',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--error-default',\n      hex: '#EF4444',\n      rgb: 'rgb(239, 68, 68)',\n      hsl: 'hsl(0, 84%, 60%)',\n      usage: 'Color principal de error',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--error-hover',\n      hex: '#DC2626',\n      rgb: 'rgb(220, 38, 38)',\n      hsl: 'hsl(0, 73%, 51%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--error-strong',\n      hex: '#991B1B',\n      rgb: 'rgb(153, 27, 27)',\n      hsl: 'hsl(0, 70%, 35%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
             },
             {
                 "name": "EvenRow",
@@ -1131,6 +1621,56 @@
                 "defaultValue": "{\n  args: {\n    label: 'Full Width Button',\n    fullWidth: true,\n    size: 'large',\n    variant: 'filled',\n  },\n}"
             },
             {
+                "name": "IconBrowser",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px; max-width: 1400px; margin: 0 auto;\">\n        <!-- Header -->\n        <div style=\"margin-bottom: 32px;\">\n          <h2 style=\"margin: 0 0 8px 0; font-size: 32px; font-weight: 700; color: var(--text-strong);\">\n            Material Symbols\n          </h2>\n          <p style=\"margin: 0 0 16px 0; font-size: 16px; color: var(--text-secondary);\">\n            Busca y explora más de 2,500 iconos. Haz clic en cualquier icono para copiar su nombre.\n          </p>\n          <a\n            href=\"https://fonts.google.com/icons\"\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            style=\"\n              display: inline-flex;\n              align-items: center;\n              gap: 8px;\n              color: var(--brand-500);\n              text-decoration: none;\n              font-weight: 500;\n              font-size: 14px;\n            \">\n            Ver colección completa en Google Fonts\n            <span class=\"material-symbols-rounded\" style=\"font-size: 18px;\">open_in_new</span>\n          </a>\n        </div>\n\n        <!-- Search Bar -->\n        <div style=\"margin-bottom: 32px;\">\n          <div style=\"position: relative; max-width: 600px;\">\n            <input\n              id=\"iconSearch\"\n              type=\"text\"\n              placeholder=\"Buscar iconos... (ej: home, search, user)\"\n              style=\"\n                width: 100%;\n                padding: 12px 16px 12px 48px;\n                font-size: 16px;\n                font-family: Sora, sans-serif;\n                border: 2px solid var(--border-default);\n                border-radius: 8px;\n                outline: none;\n                transition: border-color 0.2s;\n                box-sizing: border-box;\n              \"\n              onkeyup=\"filterIcons(this.value)\"\n              onfocus=\"this.style.borderColor='var(--brand-500)'\"\n              onblur=\"this.style.borderColor='var(--border-default)'\"\n            />\n            <span\n              class=\"material-symbols-rounded\"\n              style=\"\n                position: absolute;\n                left: 16px;\n                top: 50%;\n                transform: translateY(-50%);\n                color: var(--text-muted);\n                font-size: 20px;\n                pointer-events: none;\n              \">\n              search\n            </span>\n          </div>\n          <div\n            id=\"searchResults\"\n            style=\"\n              margin-top: 12px;\n              font-size: 14px;\n              color: var(--text-secondary);\n            \">\n            Mostrando ${commonIcons.length} iconos comunes\n          </div>\n        </div>\n\n        <!-- Toast Notification -->\n        <div\n          id=\"copyToast\"\n          style=\"\n            position: fixed;\n            bottom: 32px;\n            right: 32px;\n            background: var(--neutral-950);\n            color: var(--neutral-white);\n            padding: 12px 20px;\n            border-radius: 8px;\n            font-size: 14px;\n            font-weight: 500;\n            box-shadow: var(--shadow-lg);\n            opacity: 0;\n            transform: translateY(20px);\n            transition: all 0.3s ease;\n            pointer-events: none;\n            z-index: 9999;\n            display: flex;\n            align-items: center;\n            gap: 8px;\n          \">\n          <span class=\"material-symbols-rounded\" style=\"font-size: 18px;\">check_circle</span>\n          <span id=\"toastMessage\">Nombre copiado al portapapeles</span>\n        </div>\n\n        <!-- Usage Instructions -->\n        <div style=\"\n          background: var(--bg-subtle);\n          border: 1px solid var(--border-subtle);\n          border-radius: 8px;\n          padding: 20px;\n          margin-bottom: 32px;\n        \">\n          <h3 style=\"margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: var(--text-primary);\">\n            💡 Cómo usar los iconos\n          </h3>\n          <ol style=\"margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 1.6;\">\n            <li style=\"margin-bottom: 8px;\">\n              Haz clic en cualquier icono para copiar su nombre\n            </li>\n            <li style=\"margin-bottom: 8px;\">\n              Usa el componente <code style=\"\n                background: var(--bg-muted);\n                padding: 2px 6px;\n                border-radius: 4px;\n                font-family: monospace;\n                font-size: 13px;\n              \">bio-icon-font</code> con el nombre del icono:\n            </li>\n          </ol>\n          <pre style=\"\n            background: var(--neutral-950);\n            color: var(--neutral-white);\n            padding: 16px;\n            border-radius: 6px;\n            overflow-x: auto;\n            margin: 12px 0 0 0;\n            font-size: 13px;\n            line-height: 1.5;\n          \"><code>&lt;bio-icon-font\n  iconName=\"home\"\n  size=\"24\"\n  type=\"rounded\"\n  color=\"default\"\n&gt;&lt;/bio-icon-font&gt;</code></pre>\n        </div>\n\n        <!-- Icons Grid -->\n        <div\n          id=\"iconsGrid\"\n          style=\"\n            display: grid;\n            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));\n            gap: 8px;\n          \">\n          ${commonIcons.map(icon => `\n            <button\n              class=\"icon-card\"\n              data-icon-name=\"${icon}\"\n              onclick=\"copyIconName('${icon}')\"\n              style=\"\n                display: flex;\n                flex-direction: column;\n                align-items: center;\n                justify-content: center;\n                padding: 20px 12px;\n                background: var(--bg-default);\n                border: 1px solid var(--border-subtle);\n                border-radius: 8px;\n                cursor: pointer;\n                transition: all 0.2s ease;\n                min-height: 100px;\n              \"\n              onmouseover=\"\n                this.style.background='var(--bg-subtle)';\n                this.style.borderColor='var(--brand-500)';\n                this.style.transform='translateY(-2px)';\n                this.style.boxShadow='var(--shadow-md)';\n              \"\n              onmouseout=\"\n                this.style.background='var(--bg-default)';\n                this.style.borderColor='var(--border-subtle)';\n                this.style.transform='translateY(0)';\n                this.style.boxShadow='none';\n              \"\n            >\n              <span\n                class=\"material-symbols-rounded\"\n                style=\"\n                  font-size: 32px;\n                  color: var(--text-primary);\n                  margin-bottom: 8px;\n                \">\n                ${icon}\n              </span>\n              <span style=\"\n                font-size: 12px;\n                color: var(--text-secondary);\n                text-align: center;\n                word-break: break-word;\n                line-height: 1.3;\n              \">\n                ${icon}\n              </span>\n            </button>\n          `).join('')}\n        </div>\n\n        <!-- No Results Message -->\n        <div\n          id=\"noResults\"\n          style=\"\n            display: none;\n            text-align: center;\n            padding: 48px 24px;\n            color: var(--text-secondary);\n          \">\n          <span class=\"material-symbols-rounded\" style=\"font-size: 48px; opacity: 0.3; display: block; margin-bottom: 16px;\">\n            search_off\n          </span>\n          <p style=\"margin: 0; font-size: 16px;\">\n            No se encontraron iconos\n          </p>\n          <p style=\"margin: 8px 0 0 0; font-size: 14px;\">\n            Intenta con otro término de búsqueda\n          </p>\n        </div>\n\n        <script>\n          // Filter icons based on search\n          function filterIcons(searchTerm) {\n            const term = searchTerm.toLowerCase().trim();\n            const cards = document.querySelectorAll('.icon-card');\n            const noResults = document.getElementById('noResults');\n            const searchResults = document.getElementById('searchResults');\n            let visibleCount = 0;\n\n            cards.forEach(card => {\n              const iconName = card.getAttribute('data-icon-name');\n              const matches = iconName.includes(term);\n              card.style.display = matches ? 'flex' : 'none';\n              if (matches) visibleCount++;\n            });\n\n            // Show/hide no results message\n            if (visibleCount === 0 && term !== '') {\n              noResults.style.display = 'block';\n              searchResults.textContent = 'No se encontraron resultados';\n            } else {\n              noResults.style.display = 'none';\n              if (term === '') {\n                searchResults.textContent = 'Mostrando ${commonIcons.length} iconos comunes';\n              } else {\n                searchResults.textContent = \\`Se encontraron \\${visibleCount} iconos\\`;\n              }\n            }\n          }\n\n          // Copy icon name to clipboard\n          function copyIconName(iconName) {\n            // Create temporary input\n            const tempInput = document.createElement('input');\n            tempInput.value = iconName;\n            document.body.appendChild(tempInput);\n            tempInput.select();\n\n            try {\n              document.execCommand('copy');\n              showToast(iconName);\n            } catch (err) {\n              console.error('Error al copiar:', err);\n            }\n\n            document.body.removeChild(tempInput);\n          }\n\n          // Show toast notification\n          function showToast(iconName) {\n            const toast = document.getElementById('copyToast');\n            const message = document.getElementById('toastMessage');\n\n            message.textContent = \\`\"\\${iconName}\" copiado al portapapeles\\`;\n\n            // Show toast\n            toast.style.opacity = '1';\n            toast.style.transform = 'translateY(0)';\n\n            // Hide after 2 seconds\n            setTimeout(() => {\n              toast.style.opacity = '0';\n              toast.style.transform = 'translateY(20px)';\n            }, 2000);\n          }\n\n          // Focus search on key press\n          document.addEventListener('keydown', (e) => {\n            const searchInput = document.getElementById('iconSearch');\n            const isTyping = document.activeElement.tagName === 'INPUT';\n\n            // Focus search on any letter/number key (except if already typing)\n            if (!isTyping && e.key.length === 1 && /[a-zA-Z0-9]/.test(e.key)) {\n              searchInput.focus();\n            }\n\n            // Clear search on Escape\n            if (e.key === 'Escape' && isTyping) {\n              searchInput.value = '';\n              filterIcons('');\n              searchInput.blur();\n            }\n          });\n        </script>\n      </div>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "IconSizes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px;\">\n        <h3 style=\"margin-bottom: 24px; font-size: 24px; font-weight: 600;\">Tamaños Disponibles</h3>\n        <div style=\"display: flex; flex-direction: column; gap: 24px;\">\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">16px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 16px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"16\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">20px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 20px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"20\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">24px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 24px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"24\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">32px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"32\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">40px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 40px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"40\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">48px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 48px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"48\"</code>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "IconStyles",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px;\">\n        <h3 style=\"margin-bottom: 24px; font-size: 24px; font-weight: 600;\">Estilos: Rounded vs Filled</h3>\n        <div style=\"display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; max-width: 800px;\">\n          <!-- Rounded -->\n          <div>\n            <h4 style=\"margin-bottom: 16px; font-size: 18px; font-weight: 600; color: var(--text-primary);\">\n              Rounded (Outline)\n            </h4>\n            <p style=\"margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;\">\n              Estilo por defecto. Líneas suaves y redondeadas.\n            </p>\n            <code style=\"\n              display: block;\n              background: var(--bg-subtle);\n              padding: 8px 12px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n              margin-bottom: 16px;\n            \">type=\"rounded\"</code>\n            <div style=\"display: flex; flex-wrap: wrap; gap: 16px;\">\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">home</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">favorite</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">star</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">settings</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">notifications</span>\n            </div>\n          </div>\n\n          <!-- Filled -->\n          <div>\n            <h4 style=\"margin-bottom: 16px; font-size: 18px; font-weight: 600; color: var(--text-primary);\">\n              Filled (Solid)\n            </h4>\n            <p style=\"margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;\">\n              Estilo sólido. Mayor énfasis visual.\n            </p>\n            <code style=\"\n              display: block;\n              background: var(--bg-subtle);\n              padding: 8px 12px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n              margin-bottom: 16px;\n            \">type=\"filled\"</code>\n            <div style=\"display: flex; flex-wrap: wrap; gap: 16px;\">\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">home</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">favorite</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">star</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">settings</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">notifications</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "InfoGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: infoPalette,\n    prefix: 'info-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "infoPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Info Colors',\n  description: 'Paleta para información y estados neutrales',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--info-subtle',\n      hex: '#DBEAFE',\n      rgb: 'rgb(219, 234, 254)',\n      hsl: 'hsl(214, 95%, 93%)',\n      usage: 'Fondos de alertas informativas',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--info-default',\n      hex: '#3B82F6',\n      rgb: 'rgb(59, 130, 246)',\n      hsl: 'hsl(221, 91%, 60%)',\n      usage: 'Color principal de información',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--info-hover',\n      hex: '#2563EB',\n      rgb: 'rgb(37, 99, 235)',\n      hsl: 'hsl(225, 83%, 53%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--info-strong',\n      hex: '#1E40AF',\n      rgb: 'rgb(30, 64, 175)',\n      hsl: 'hsl(226, 71%, 40%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+            },
+            {
                 "name": "Large",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1214,11 +1754,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ColorPaletteComponent>",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Color/Color Palettes',\n  component: ColorPaletteComponent,\n  tags: ['autodocs'],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nEl componente **Color Palette** muestra paletas de colores de forma visual e interactiva.\n\n### Características\n- **Interactivo**: Click en cualquier color para ver detalles completos\n- **Copiable**: Copia valores HEX, RGB, HSL con un click\n- **Responsive**: Se adapta a diferentes tamaños de pantalla\n- **3 Layouts**: Horizontal, vertical y grid\n- **Accesible**: Contraste automático para texto sobre colores\n\n### Uso\n\\`\\`\\`typescript\n<app-color-palette\n  [palette]=\"brandPalette\"\n  prefix=\"brand-\"\n  layout=\"horizontal\"\n  [showDetails]=\"true\"\n  [copyable]=\"true\">\n</app-color-palette>\n\\`\\`\\`\n        `,\n      },\n    },\n    layout: 'padded',\n  },\n  argTypes: {\n    layout: {\n      control: 'select',\n      options: ['horizontal', 'vertical', 'grid'],\n      description: 'Layout de la paleta',\n    },\n    showDetails: {\n      control: 'boolean',\n      description: 'Mostrar detalles al hacer click',\n    },\n    copyable: {\n      control: 'boolean',\n      description: 'Permitir copiar valores',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefijo para nombres de tokens',\n    },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/icon-font/icon-font.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<IconFontComponent>",
-                "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Iconography',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
+                "defaultValue": "{\n  title: 'Bioma 2.0/Components/IconFont',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
             },
             {
                 "name": "meta",
@@ -1274,6 +1824,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta",
+                "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Iconography',\n  parameters: {\n    docs: {\n      description: {\n        component: 'Biblioteca de iconos Material Symbols. Busca, explora y copia nombres de iconos para usar en tus componentes.',\n      },\n    },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/documentation/foundations/spacing/spacing-tokens.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1299,6 +1859,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    token: {\n      name: 'neutral/700',\n      value: '#404040',\n      hex: '#404040',\n      rgb: 'rgb(64, 64, 64)',\n      usage: 'Primary text color',\n      type: 'color',\n    },\n    rowIndex: 1,\n    prefix: '',\n  },\n}"
+            },
+            {
+                "name": "NeutralHorizontal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: neutralPalette,\n    prefix: 'neutral-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "neutralPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Neutral Palette',\n  description: 'Paleta de grises para texto, fondos y bordes',\n  type: 'sequential',\n  tokens: [\n    {\n      name: 'white',\n      value: '--neutral-white',\n      hex: '#FFFFFF',\n      rgb: 'rgb(255, 255, 255)',\n      hsl: 'hsl(0, 0%, 100%)',\n      usage: 'Blanco puro - fondos principales',\n      contrast: 'dark',\n    },\n    {\n      name: '50',\n      value: '--neutral-50',\n      hex: '#FAFAFA',\n      rgb: 'rgb(250, 250, 250)',\n      hsl: 'hsl(0, 0%, 98%)',\n      usage: 'Fondos muy claros, surfaces secundarias',\n      contrast: 'dark',\n    },\n    {\n      name: '100',\n      value: '--neutral-100',\n      hex: '#F5F5F2',\n      rgb: 'rgb(245, 245, 242)',\n      hsl: 'hsl(60, 14%, 95%)',\n      usage: 'Fondos claros, hover states',\n      contrast: 'dark',\n    },\n    {\n      name: '200',\n      value: '--neutral-200',\n      hex: '#E3E3E3',\n      rgb: 'rgb(227, 227, 227)',\n      hsl: 'hsl(0, 0%, 89%)',\n      usage: 'Bordes sutiles, dividers',\n      contrast: 'dark',\n    },\n    {\n      name: '300',\n      value: '--neutral-300',\n      hex: '#C2C2BF',\n      rgb: 'rgb(194, 194, 191)',\n      hsl: 'hsl(60, 3%, 75%)',\n      usage: 'Bordes por defecto',\n      contrast: 'dark',\n    },\n    {\n      name: '400',\n      value: '--neutral-400',\n      hex: '#969696',\n      rgb: 'rgb(150, 150, 150)',\n      hsl: 'hsl(0, 0%, 59%)',\n      usage: 'Bordes fuertes, texto deshabilitado',\n      contrast: 'dark',\n    },\n    {\n      name: '500',\n      value: '--neutral-500',\n      hex: '#737373',\n      rgb: 'rgb(115, 115, 115)',\n      hsl: 'hsl(0, 0%, 45%)',\n      usage: 'Texto atenuado, placeholders',\n      contrast: 'light',\n    },\n    {\n      name: '600',\n      value: '--neutral-600',\n      hex: '#575454',\n      rgb: 'rgb(87, 84, 84)',\n      hsl: 'hsl(0, 2%, 34%)',\n      usage: 'Texto terciario',\n      contrast: 'light',\n    },\n    {\n      name: '700',\n      value: '--neutral-700',\n      hex: '#404040',\n      rgb: 'rgb(64, 64, 64)',\n      hsl: 'hsl(0, 0%, 25%)',\n      usage: 'Texto secundario',\n      contrast: 'light',\n    },\n    {\n      name: '800',\n      value: '--neutral-800',\n      hex: '#30302E',\n      rgb: 'rgb(48, 48, 46)',\n      hsl: 'hsl(60, 2%, 18%)',\n      usage: 'Texto primario (cuerpo)',\n      contrast: 'light',\n    },\n    {\n      name: '900',\n      value: '--neutral-900',\n      hex: '#262626',\n      rgb: 'rgb(38, 38, 38)',\n      hsl: 'hsl(0, 0%, 15%)',\n      usage: 'Texto muy oscuro',\n      contrast: 'light',\n    },\n    {\n      name: '950',\n      value: '--neutral-950',\n      hex: '#121212',\n      rgb: 'rgb(18, 18, 18)',\n      hsl: 'hsl(0, 0%, 7%)',\n      usage: 'Texto más oscuro, fondos dark mode',\n      contrast: 'light',\n    },\n    {\n      name: 'black',\n      value: '--neutral-black',\n      hex: '#000000',\n      rgb: 'rgb(0, 0, 0)',\n      hsl: 'hsl(0, 0%, 0%)',\n      usage: 'Negro puro - uso excepcional',\n      contrast: 'light',\n    },\n  ],\n}"
             },
             {
                 "name": "NeutralPalette",
@@ -1361,6 +1941,16 @@
                 "defaultValue": "{\n  args: {\n    label: 'Secondary Action',\n    variant: 'outlined',\n    size: 'large',\n  },\n}"
             },
             {
+                "name": "parameters",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  actions: { argTypesRegex: '^on[A-Z].*' },\n  controls: {\n    expanded: true,\n    hideNoControlsWarning: true,\n    matchers: {\n      color: /(background|color)$/i,\n      date: /Date$/,\n    },\n  },\n}"
+            },
+            {
                 "name": "Playground",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1369,6 +1959,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: 'Customize Me',\n    size: 'large',\n    variant: 'filled',\n    iconStart: false,\n    iconEnd: false,\n    iconStartName: 'star',\n    iconEndName: 'arrow_forward',\n    disabled: false,\n    fullWidth: false,\n  },\n}"
+            },
+            {
+                "name": "Playground",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: brandPalette,\n    prefix: 'brand-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
             },
             {
                 "name": "Playground",
@@ -1773,6 +2373,26 @@
                 "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"padding: 24px; font-family: Sora, sans-serif;\">\n        <h3 style=\"margin-bottom: 24px;\">Escala de Espaciado (Visual)</h3>\n        <div style=\"display: flex; flex-direction: column; gap: 16px;\">\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">0px</div>\n            <div style=\"width: 0px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">4px (spacing-1)</div>\n            <div style=\"width: 4px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">8px (spacing-2)</div>\n            <div style=\"width: 8px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">12px (spacing-3)</div>\n            <div style=\"width: 12px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">16px (spacing-4)</div>\n            <div style=\"width: 16px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">20px (spacing-5)</div>\n            <div style=\"width: 20px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">24px (spacing-6)</div>\n            <div style=\"width: 24px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">32px (spacing-8)</div>\n            <div style=\"width: 32px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">40px (spacing-10)</div>\n            <div style=\"width: 40px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">48px (spacing-12)</div>\n            <div style=\"width: 48px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 120px; color: var(--text-secondary); font-size: 14px;\">64px (spacing-16)</div>\n            <div style=\"width: 64px; height: 24px; background: var(--brand-500);\"></div>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
             },
             {
+                "name": "SuccessGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: successPalette,\n    prefix: 'success-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "successPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Success Colors',\n  description: 'Paleta para estados de éxito y confirmación',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--success-subtle',\n      hex: '#D1FAE5',\n      rgb: 'rgb(209, 250, 229)',\n      hsl: 'hsl(149, 80%, 90%)',\n      usage: 'Fondos de alertas de éxito',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--success-default',\n      hex: '#10B981',\n      rgb: 'rgb(16, 185, 129)',\n      hsl: 'hsl(160, 84%, 39%)',\n      usage: 'Color principal de éxito',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--success-hover',\n      hex: '#059669',\n      rgb: 'rgb(5, 150, 105)',\n      hsl: 'hsl(160, 93%, 30%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--success-strong',\n      hex: '#065F46',\n      rgb: 'rgb(6, 95, 70)',\n      hsl: 'hsl(163, 88%, 20%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+            },
+            {
                 "name": "typographyToken",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1791,6 +2411,36 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    token: typographyToken,\n    rowIndex: 1,\n    prefix: 'typography/',\n  },\n}"
+            },
+            {
+                "name": "VerticalLayout",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: {\n      name: 'Primary Actions',\n      description: 'Estados de botones primarios',\n      type: 'semantic',\n      tokens: [\n        {\n          name: 'default',\n          value: '--primary-default',\n          hex: '#E30038',\n          rgb: 'rgb(227, 0, 56)',\n          usage: 'Estado normal',\n          contrast: 'light',\n        },\n        {\n          name: 'hover',\n          value: '--primary-hover',\n          hex: '#C40030',\n          rgb: 'rgb(196, 0, 48)',\n          usage: 'Estado hover',\n          contrast: 'light',\n        },\n        {\n          name: 'active',\n          value: '--primary-active',\n          hex: '#BA1F38',\n          rgb: 'rgb(186, 31, 56)',\n          usage: 'Estado pressed',\n          contrast: 'light',\n        },\n        {\n          name: 'disabled',\n          value: '--primary-disabled',\n          hex: '#C2C2BF',\n          rgb: 'rgb(194, 194, 191)',\n          usage: 'Estado deshabilitado',\n          contrast: 'dark',\n        },\n      ],\n    },\n    prefix: 'primary-',\n    layout: 'vertical',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "WarningGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    palette: warningPalette,\n    prefix: 'warning-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+            },
+            {
+                "name": "warningPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ColorPalette",
+                "defaultValue": "{\n  name: 'Warning Colors',\n  description: 'Paleta para advertencias y precauciones',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--warning-subtle',\n      hex: '#FEF3C7',\n      rgb: 'rgb(254, 243, 199)',\n      hsl: 'hsl(48, 96%, 89%)',\n      usage: 'Fondos de alertas de advertencia',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--warning-default',\n      hex: '#F59E0B',\n      rgb: 'rgb(245, 158, 11)',\n      hsl: 'hsl(38, 92%, 50%)',\n      usage: 'Color principal de advertencia',\n      contrast: 'dark',\n    },\n    {\n      name: 'hover',\n      value: '--warning-hover',\n      hex: '#D97706',\n      rgb: 'rgb(217, 119, 6)',\n      hsl: 'hsl(32, 95%, 44%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--warning-strong',\n      hex: '#92400E',\n      rgb: 'rgb(146, 64, 14)',\n      hsl: 'hsl(23, 83%, 31%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
             },
             {
                 "name": "WithBothIcons",
@@ -1905,6 +2555,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<ColorPaletteComponent>",
+                "file": "src/app/components/color-palette/color-palette.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<IconFontComponent>",
                 "file": "src/app/components/icon-font/icon-font.stories.ts",
                 "deprecated": false,
@@ -1962,6 +2623,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<TokenTableComponent>",
                 "file": "src/documentation/foundations/elevation/shadow-tokens.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj",
+                "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2081,7 +2753,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<IconFontComponent>",
-                    "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Iconography',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
+                    "defaultValue": "{\n  title: 'Bioma 2.0/Components/IconFont',\n  component: IconFontComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [CommonModule, IconFontComponent],\n    }),\n  ],\n  tags: ['autodocs'],\n  argTypes: {\n    iconName: {\n      control: 'text',\n      description: 'Nombre del icono de Material Symbols (ej: home, add, search)',\n    },\n    size: {\n      control: 'select',\n      options: ['16', '20', '24', '32', '40', '48'],\n      description: 'Tamaño del icono en pixels',\n    },\n    type: {\n      control: 'select',\n      options: ['rounded', 'filled'],\n      description: 'Estilo del icono: rounded (outline) o filled (solid)',\n    },\n    color: {\n      control: 'select',\n      options: ['default', 'primary', 'inverse', 'subtle'],\n      description: 'Color del icono usando tokens semánticos',\n    },\n  },\n}"
                 },
                 {
                     "name": "Playground",
@@ -2602,6 +3274,158 @@
                     "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"padding: 48px; font-family: Sora, sans-serif;\">\n        <h3 style=\"margin-bottom: 32px;\">Escala de Border Radius (Visual)</h3>\n        <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;\">\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-none);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">NONE</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-none</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">0px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-xs);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">XS</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-xs</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">2px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-sm);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">SM</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-sm</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">4px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-md);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">MD</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-md</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">8px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-lg);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">LG</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-lg</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">12px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-xl);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">XL</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-xl</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">16px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-2xl);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">2XL</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-2xl</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">24px</div>\n          </div>\n\n          <div style=\"text-align: center;\">\n            <div style=\"\n              width: 120px;\n              height: 120px;\n              background: var(--brand-500);\n              border-radius: var(--radius-full);\n              margin: 0 auto 16px;\n              display: flex;\n              align-items: center;\n              justify-content: center;\n              color: white;\n              font-size: 14px;\n              font-weight: 600;\n            \">FULL</div>\n            <div style=\"font-size: 14px; color: var(--text-primary); font-weight: 600;\">radius-full</div>\n            <div style=\"font-size: 12px; color: var(--text-secondary);\">9999px</div>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
                 }
             ],
+            "src/app/components/color-palette/color-palette.stories.ts": [
+                {
+                    "name": "BrandHorizontal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: brandPalette,\n    prefix: 'brand-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "brandPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Brand Palette',\n  description: 'Paleta de color primaria de Bioma - Rojo característico de la marca',\n  type: 'sequential',\n  tokens: [\n    {\n      name: '50',\n      value: '--brand-50',\n      hex: '#FFEDED',\n      rgb: 'rgb(255, 237, 237)',\n      hsl: 'hsl(0, 100%, 97%)',\n      usage: 'Fondos muy sutiles, backgrounds de alertas',\n      contrast: 'dark',\n    },\n    {\n      name: '100',\n      value: '--brand-100',\n      hex: '#FFD1D4',\n      rgb: 'rgb(255, 209, 212)',\n      hsl: 'hsl(356, 100%, 91%)',\n      usage: 'Fondos sutiles, estados hover ligeros',\n      contrast: 'dark',\n    },\n    {\n      name: '200',\n      value: '--brand-200',\n      hex: '#FFA3AB',\n      rgb: 'rgb(255, 163, 171)',\n      hsl: 'hsl(355, 100%, 82%)',\n      usage: 'Backgrounds medios, badges',\n      contrast: 'dark',\n    },\n    {\n      name: '300',\n      value: '--brand-300',\n      hex: '#FF4D61',\n      rgb: 'rgb(255, 77, 97)',\n      hsl: 'hsl(353, 100%, 65%)',\n      usage: 'Texto sobre fondos claros',\n      contrast: 'dark',\n    },\n    {\n      name: '400',\n      value: '--brand-400',\n      hex: '#F52B4A',\n      rgb: 'rgb(245, 43, 74)',\n      hsl: 'hsl(351, 91%, 56%)',\n      usage: 'Estados hover en modo light',\n      contrast: 'light',\n    },\n    {\n      name: '500',\n      value: '--brand-500',\n      hex: '#E30038',\n      rgb: 'rgb(227, 0, 56)',\n      hsl: 'hsl(345, 100%, 45%)',\n      usage: '⭐ Color principal de marca - Bioma Red',\n      contrast: 'light',\n    },\n    {\n      name: '600',\n      value: '--brand-600',\n      hex: '#C40030',\n      rgb: 'rgb(196, 0, 48)',\n      hsl: 'hsl(345, 100%, 38%)',\n      usage: 'Estados pressed en modo light',\n      contrast: 'light',\n    },\n    {\n      name: '700',\n      value: '--brand-700',\n      hex: '#BA1F38',\n      rgb: 'rgb(186, 31, 56)',\n      hsl: 'hsl(350, 71%, 43%)',\n      usage: 'Versión oscura, contraste fuerte',\n      contrast: 'light',\n    },\n    {\n      name: '800',\n      value: '--brand-800',\n      hex: '#9C0024',\n      rgb: 'rgb(156, 0, 36)',\n      hsl: 'hsl(346, 100%, 31%)',\n      usage: 'Versión muy oscura',\n      contrast: 'light',\n    },\n    {\n      name: '900',\n      value: '--brand-900',\n      hex: '#700017',\n      rgb: 'rgb(112, 0, 23)',\n      hsl: 'hsl(348, 100%, 22%)',\n      usage: 'Backgrounds en dark mode',\n      contrast: 'light',\n    },\n    {\n      name: '950',\n      value: '--brand-950',\n      hex: '#45000A',\n      rgb: 'rgb(69, 0, 10)',\n      hsl: 'hsl(351, 100%, 14%)',\n      usage: 'Contraste máximo en dark mode',\n      contrast: 'light',\n    },\n  ],\n}"
+                },
+                {
+                    "name": "ErrorGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: errorPalette,\n    prefix: 'error-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "errorPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Error Colors',\n  description: 'Paleta para errores y estados destructivos',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--error-subtle',\n      hex: '#FEE2E2',\n      rgb: 'rgb(254, 226, 226)',\n      hsl: 'hsl(0, 93%, 94%)',\n      usage: 'Fondos de alertas de error',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--error-default',\n      hex: '#EF4444',\n      rgb: 'rgb(239, 68, 68)',\n      hsl: 'hsl(0, 84%, 60%)',\n      usage: 'Color principal de error',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--error-hover',\n      hex: '#DC2626',\n      rgb: 'rgb(220, 38, 38)',\n      hsl: 'hsl(0, 73%, 51%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--error-strong',\n      hex: '#991B1B',\n      rgb: 'rgb(153, 27, 27)',\n      hsl: 'hsl(0, 70%, 35%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+                },
+                {
+                    "name": "InfoGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: infoPalette,\n    prefix: 'info-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "infoPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Info Colors',\n  description: 'Paleta para información y estados neutrales',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--info-subtle',\n      hex: '#DBEAFE',\n      rgb: 'rgb(219, 234, 254)',\n      hsl: 'hsl(214, 95%, 93%)',\n      usage: 'Fondos de alertas informativas',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--info-default',\n      hex: '#3B82F6',\n      rgb: 'rgb(59, 130, 246)',\n      hsl: 'hsl(221, 91%, 60%)',\n      usage: 'Color principal de información',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--info-hover',\n      hex: '#2563EB',\n      rgb: 'rgb(37, 99, 235)',\n      hsl: 'hsl(225, 83%, 53%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--info-strong',\n      hex: '#1E40AF',\n      rgb: 'rgb(30, 64, 175)',\n      hsl: 'hsl(226, 71%, 40%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ColorPaletteComponent>",
+                    "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Color/Color Palettes',\n  component: ColorPaletteComponent,\n  tags: ['autodocs'],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nEl componente **Color Palette** muestra paletas de colores de forma visual e interactiva.\n\n### Características\n- **Interactivo**: Click en cualquier color para ver detalles completos\n- **Copiable**: Copia valores HEX, RGB, HSL con un click\n- **Responsive**: Se adapta a diferentes tamaños de pantalla\n- **3 Layouts**: Horizontal, vertical y grid\n- **Accesible**: Contraste automático para texto sobre colores\n\n### Uso\n\\`\\`\\`typescript\n<app-color-palette\n  [palette]=\"brandPalette\"\n  prefix=\"brand-\"\n  layout=\"horizontal\"\n  [showDetails]=\"true\"\n  [copyable]=\"true\">\n</app-color-palette>\n\\`\\`\\`\n        `,\n      },\n    },\n    layout: 'padded',\n  },\n  argTypes: {\n    layout: {\n      control: 'select',\n      options: ['horizontal', 'vertical', 'grid'],\n      description: 'Layout de la paleta',\n    },\n    showDetails: {\n      control: 'boolean',\n      description: 'Mostrar detalles al hacer click',\n    },\n    copyable: {\n      control: 'boolean',\n      description: 'Permitir copiar valores',\n    },\n    prefix: {\n      control: 'text',\n      description: 'Prefijo para nombres de tokens',\n    },\n  },\n}"
+                },
+                {
+                    "name": "NeutralHorizontal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: neutralPalette,\n    prefix: 'neutral-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "neutralPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Neutral Palette',\n  description: 'Paleta de grises para texto, fondos y bordes',\n  type: 'sequential',\n  tokens: [\n    {\n      name: 'white',\n      value: '--neutral-white',\n      hex: '#FFFFFF',\n      rgb: 'rgb(255, 255, 255)',\n      hsl: 'hsl(0, 0%, 100%)',\n      usage: 'Blanco puro - fondos principales',\n      contrast: 'dark',\n    },\n    {\n      name: '50',\n      value: '--neutral-50',\n      hex: '#FAFAFA',\n      rgb: 'rgb(250, 250, 250)',\n      hsl: 'hsl(0, 0%, 98%)',\n      usage: 'Fondos muy claros, surfaces secundarias',\n      contrast: 'dark',\n    },\n    {\n      name: '100',\n      value: '--neutral-100',\n      hex: '#F5F5F2',\n      rgb: 'rgb(245, 245, 242)',\n      hsl: 'hsl(60, 14%, 95%)',\n      usage: 'Fondos claros, hover states',\n      contrast: 'dark',\n    },\n    {\n      name: '200',\n      value: '--neutral-200',\n      hex: '#E3E3E3',\n      rgb: 'rgb(227, 227, 227)',\n      hsl: 'hsl(0, 0%, 89%)',\n      usage: 'Bordes sutiles, dividers',\n      contrast: 'dark',\n    },\n    {\n      name: '300',\n      value: '--neutral-300',\n      hex: '#C2C2BF',\n      rgb: 'rgb(194, 194, 191)',\n      hsl: 'hsl(60, 3%, 75%)',\n      usage: 'Bordes por defecto',\n      contrast: 'dark',\n    },\n    {\n      name: '400',\n      value: '--neutral-400',\n      hex: '#969696',\n      rgb: 'rgb(150, 150, 150)',\n      hsl: 'hsl(0, 0%, 59%)',\n      usage: 'Bordes fuertes, texto deshabilitado',\n      contrast: 'dark',\n    },\n    {\n      name: '500',\n      value: '--neutral-500',\n      hex: '#737373',\n      rgb: 'rgb(115, 115, 115)',\n      hsl: 'hsl(0, 0%, 45%)',\n      usage: 'Texto atenuado, placeholders',\n      contrast: 'light',\n    },\n    {\n      name: '600',\n      value: '--neutral-600',\n      hex: '#575454',\n      rgb: 'rgb(87, 84, 84)',\n      hsl: 'hsl(0, 2%, 34%)',\n      usage: 'Texto terciario',\n      contrast: 'light',\n    },\n    {\n      name: '700',\n      value: '--neutral-700',\n      hex: '#404040',\n      rgb: 'rgb(64, 64, 64)',\n      hsl: 'hsl(0, 0%, 25%)',\n      usage: 'Texto secundario',\n      contrast: 'light',\n    },\n    {\n      name: '800',\n      value: '--neutral-800',\n      hex: '#30302E',\n      rgb: 'rgb(48, 48, 46)',\n      hsl: 'hsl(60, 2%, 18%)',\n      usage: 'Texto primario (cuerpo)',\n      contrast: 'light',\n    },\n    {\n      name: '900',\n      value: '--neutral-900',\n      hex: '#262626',\n      rgb: 'rgb(38, 38, 38)',\n      hsl: 'hsl(0, 0%, 15%)',\n      usage: 'Texto muy oscuro',\n      contrast: 'light',\n    },\n    {\n      name: '950',\n      value: '--neutral-950',\n      hex: '#121212',\n      rgb: 'rgb(18, 18, 18)',\n      hsl: 'hsl(0, 0%, 7%)',\n      usage: 'Texto más oscuro, fondos dark mode',\n      contrast: 'light',\n    },\n    {\n      name: 'black',\n      value: '--neutral-black',\n      hex: '#000000',\n      rgb: 'rgb(0, 0, 0)',\n      hsl: 'hsl(0, 0%, 0%)',\n      usage: 'Negro puro - uso excepcional',\n      contrast: 'light',\n    },\n  ],\n}"
+                },
+                {
+                    "name": "Playground",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: brandPalette,\n    prefix: 'brand-',\n    layout: 'horizontal',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "SuccessGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: successPalette,\n    prefix: 'success-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "successPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Success Colors',\n  description: 'Paleta para estados de éxito y confirmación',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--success-subtle',\n      hex: '#D1FAE5',\n      rgb: 'rgb(209, 250, 229)',\n      hsl: 'hsl(149, 80%, 90%)',\n      usage: 'Fondos de alertas de éxito',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--success-default',\n      hex: '#10B981',\n      rgb: 'rgb(16, 185, 129)',\n      hsl: 'hsl(160, 84%, 39%)',\n      usage: 'Color principal de éxito',\n      contrast: 'light',\n    },\n    {\n      name: 'hover',\n      value: '--success-hover',\n      hex: '#059669',\n      rgb: 'rgb(5, 150, 105)',\n      hsl: 'hsl(160, 93%, 30%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--success-strong',\n      hex: '#065F46',\n      rgb: 'rgb(6, 95, 70)',\n      hsl: 'hsl(163, 88%, 20%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+                },
+                {
+                    "name": "VerticalLayout",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: {\n      name: 'Primary Actions',\n      description: 'Estados de botones primarios',\n      type: 'semantic',\n      tokens: [\n        {\n          name: 'default',\n          value: '--primary-default',\n          hex: '#E30038',\n          rgb: 'rgb(227, 0, 56)',\n          usage: 'Estado normal',\n          contrast: 'light',\n        },\n        {\n          name: 'hover',\n          value: '--primary-hover',\n          hex: '#C40030',\n          rgb: 'rgb(196, 0, 48)',\n          usage: 'Estado hover',\n          contrast: 'light',\n        },\n        {\n          name: 'active',\n          value: '--primary-active',\n          hex: '#BA1F38',\n          rgb: 'rgb(186, 31, 56)',\n          usage: 'Estado pressed',\n          contrast: 'light',\n        },\n        {\n          name: 'disabled',\n          value: '--primary-disabled',\n          hex: '#C2C2BF',\n          rgb: 'rgb(194, 194, 191)',\n          usage: 'Estado deshabilitado',\n          contrast: 'dark',\n        },\n      ],\n    },\n    prefix: 'primary-',\n    layout: 'vertical',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "WarningGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    palette: warningPalette,\n    prefix: 'warning-',\n    layout: 'grid',\n    showDetails: true,\n    copyable: true,\n  },\n}"
+                },
+                {
+                    "name": "warningPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorPalette",
+                    "defaultValue": "{\n  name: 'Warning Colors',\n  description: 'Paleta para advertencias y precauciones',\n  type: 'semantic',\n  tokens: [\n    {\n      name: 'subtle',\n      value: '--warning-subtle',\n      hex: '#FEF3C7',\n      rgb: 'rgb(254, 243, 199)',\n      hsl: 'hsl(48, 96%, 89%)',\n      usage: 'Fondos de alertas de advertencia',\n      contrast: 'dark',\n    },\n    {\n      name: 'default',\n      value: '--warning-default',\n      hex: '#F59E0B',\n      rgb: 'rgb(245, 158, 11)',\n      hsl: 'hsl(38, 92%, 50%)',\n      usage: 'Color principal de advertencia',\n      contrast: 'dark',\n    },\n    {\n      name: 'hover',\n      value: '--warning-hover',\n      hex: '#D97706',\n      rgb: 'rgb(217, 119, 6)',\n      hsl: 'hsl(32, 95%, 44%)',\n      usage: 'Estado hover',\n      contrast: 'light',\n    },\n    {\n      name: 'strong',\n      value: '--warning-strong',\n      hex: '#92400E',\n      rgb: 'rgb(146, 64, 14)',\n      hsl: 'hsl(23, 83%, 31%)',\n      usage: 'Texto sobre fondos sutiles',\n      contrast: 'light',\n    },\n  ],\n}"
+                }
+            ],
             "src/app/components/token-table/token-table.stories.ts": [
                 {
                     "name": "BrandPalette",
@@ -2826,6 +3650,58 @@
                     "defaultValue": "[\n  { name: 'strong', value: 'var(--neutral-950)', lightMode: '{neutral/950}', darkMode: '{neutral/white}', usage: 'Títulos principales', type: 'semantic' },\n  { name: 'primary', value: 'var(--neutral-800)', lightMode: '{neutral/800}', darkMode: '{neutral/50}', usage: 'Texto de cuerpo', type: 'semantic' },\n  { name: 'secondary', value: 'var(--neutral-700)', lightMode: '{neutral/700}', darkMode: '{neutral/300}', usage: 'Texto secundario', type: 'semantic' },\n  { name: 'tertiary', value: 'var(--neutral-600)', lightMode: '{neutral/600}', darkMode: '{neutral/400}', usage: 'Texto terciario', type: 'semantic' },\n  { name: 'muted', value: 'var(--neutral-500)', lightMode: '{neutral/500}', darkMode: '{neutral/500}', usage: 'Texto atenuado', type: 'semantic' },\n  { name: 'disabled', value: 'var(--neutral-300)', lightMode: '{neutral/300}', darkMode: '{neutral/600}', usage: 'Texto deshabilitado', type: 'semantic' },\n  { name: 'inverse', value: 'var(--neutral-white)', lightMode: '{neutral/white}', darkMode: '{neutral/950}', usage: 'Sobre fondos oscuros', type: 'semantic' },\n  { name: 'link', value: '#0066CC', lightMode: '#0066CC', darkMode: '#60A5FA', usage: 'Enlaces', type: 'semantic' },\n]"
                 }
             ],
+            "src/documentation/foundations/iconography/icon-browser.stories.ts": [
+                {
+                    "name": "commonIcons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  // Navegación\n  'home', 'menu', 'arrow_back', 'arrow_forward', 'arrow_upward', 'arrow_downward',\n  'chevron_left', 'chevron_right', 'expand_more', 'expand_less', 'close', 'navigate_next',\n  'navigate_before', 'first_page', 'last_page', 'unfold_more', 'keyboard_arrow_down',\n  'keyboard_arrow_up', 'keyboard_arrow_left', 'keyboard_arrow_right',\n\n  // Acciones\n  'add', 'remove', 'edit', 'delete', 'save', 'search', 'filter_list', 'sort',\n  'refresh', 'sync', 'undo', 'redo', 'content_copy', 'content_paste', 'download',\n  'upload', 'share', 'print', 'open_in_new', 'launch', 'drag_indicator',\n\n  // Archivos y Carpetas\n  'folder', 'folder_open', 'insert_drive_file', 'description', 'article',\n  'attach_file', 'cloud_upload', 'cloud_download', 'cloud_done', 'file_upload',\n  'file_download',\n\n  // Comunicación\n  'mail', 'inbox', 'send', 'drafts', 'mark_email_read', 'mark_email_unread',\n  'chat', 'comment', 'forum', 'feedback', 'message', 'notifications',\n  'notifications_active', 'notifications_off', 'phone', 'call', 'videocam',\n\n  // Usuario y Cuenta\n  'person', 'account_circle', 'person_add', 'person_remove', 'group', 'badge',\n  'supervisor_account', 'admin_panel_settings', 'manage_accounts', 'logout',\n  'login', 'lock', 'lock_open', 'vpn_key', 'security',\n\n  // Estado y Feedback\n  'check', 'check_circle', 'cancel', 'error', 'warning', 'info', 'help',\n  'done', 'done_all', 'thumb_up', 'thumb_down', 'star', 'star_border',\n  'favorite', 'favorite_border', 'bookmark', 'bookmark_border',\n\n  // Configuración y Control\n  'settings', 'tune', 'build', 'dashboard', 'widgets', 'view_list', 'view_module',\n  'view_column', 'view_quilt', 'grid_view', 'list', 'table_view',\n\n  // Medios\n  'play_arrow', 'pause', 'stop', 'skip_next', 'skip_previous', 'replay',\n  'volume_up', 'volume_down', 'volume_off', 'mic', 'mic_off', 'image',\n  'photo', 'photo_camera', 'video_library', 'movie',\n\n  // E-commerce\n  'shopping_cart', 'shopping_bag', 'add_shopping_cart', 'remove_shopping_cart',\n  'storefront', 'store', 'local_shipping', 'payment', 'credit_card',\n  'attach_money', 'monetization_on',\n\n  // Fecha y Tiempo\n  'event', 'calendar_today', 'schedule', 'access_time', 'timer', 'alarm',\n  'watch_later', 'history', 'update', 'today',\n\n  // Ubicación\n  'location_on', 'place', 'map', 'my_location', 'navigation', 'near_me',\n  'explore', 'directions', 'local_cafe', 'restaurant',\n\n  // Más Usados\n  'more_vert', 'more_horiz', 'apps', 'drag_handle', 'fullscreen', 'fullscreen_exit',\n  'zoom_in', 'zoom_out', 'aspect_ratio', 'fit_screen', 'crop', 'rotate_right',\n  'rotate_left', 'flip', 'straighten', 'palette', 'color_lens', 'invert_colors',\n\n  // Visibilidad\n  'visibility', 'visibility_off', 'remove_red_eye', 'preview',\n\n  // Toggle\n  'toggle_on', 'toggle_off', 'radio_button_checked', 'radio_button_unchecked',\n  'check_box', 'check_box_outline_blank', 'indeterminate_check_box',\n]"
+                },
+                {
+                    "name": "IconBrowser",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px; max-width: 1400px; margin: 0 auto;\">\n        <!-- Header -->\n        <div style=\"margin-bottom: 32px;\">\n          <h2 style=\"margin: 0 0 8px 0; font-size: 32px; font-weight: 700; color: var(--text-strong);\">\n            Material Symbols\n          </h2>\n          <p style=\"margin: 0 0 16px 0; font-size: 16px; color: var(--text-secondary);\">\n            Busca y explora más de 2,500 iconos. Haz clic en cualquier icono para copiar su nombre.\n          </p>\n          <a\n            href=\"https://fonts.google.com/icons\"\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            style=\"\n              display: inline-flex;\n              align-items: center;\n              gap: 8px;\n              color: var(--brand-500);\n              text-decoration: none;\n              font-weight: 500;\n              font-size: 14px;\n            \">\n            Ver colección completa en Google Fonts\n            <span class=\"material-symbols-rounded\" style=\"font-size: 18px;\">open_in_new</span>\n          </a>\n        </div>\n\n        <!-- Search Bar -->\n        <div style=\"margin-bottom: 32px;\">\n          <div style=\"position: relative; max-width: 600px;\">\n            <input\n              id=\"iconSearch\"\n              type=\"text\"\n              placeholder=\"Buscar iconos... (ej: home, search, user)\"\n              style=\"\n                width: 100%;\n                padding: 12px 16px 12px 48px;\n                font-size: 16px;\n                font-family: Sora, sans-serif;\n                border: 2px solid var(--border-default);\n                border-radius: 8px;\n                outline: none;\n                transition: border-color 0.2s;\n                box-sizing: border-box;\n              \"\n              onkeyup=\"filterIcons(this.value)\"\n              onfocus=\"this.style.borderColor='var(--brand-500)'\"\n              onblur=\"this.style.borderColor='var(--border-default)'\"\n            />\n            <span\n              class=\"material-symbols-rounded\"\n              style=\"\n                position: absolute;\n                left: 16px;\n                top: 50%;\n                transform: translateY(-50%);\n                color: var(--text-muted);\n                font-size: 20px;\n                pointer-events: none;\n              \">\n              search\n            </span>\n          </div>\n          <div\n            id=\"searchResults\"\n            style=\"\n              margin-top: 12px;\n              font-size: 14px;\n              color: var(--text-secondary);\n            \">\n            Mostrando ${commonIcons.length} iconos comunes\n          </div>\n        </div>\n\n        <!-- Toast Notification -->\n        <div\n          id=\"copyToast\"\n          style=\"\n            position: fixed;\n            bottom: 32px;\n            right: 32px;\n            background: var(--neutral-950);\n            color: var(--neutral-white);\n            padding: 12px 20px;\n            border-radius: 8px;\n            font-size: 14px;\n            font-weight: 500;\n            box-shadow: var(--shadow-lg);\n            opacity: 0;\n            transform: translateY(20px);\n            transition: all 0.3s ease;\n            pointer-events: none;\n            z-index: 9999;\n            display: flex;\n            align-items: center;\n            gap: 8px;\n          \">\n          <span class=\"material-symbols-rounded\" style=\"font-size: 18px;\">check_circle</span>\n          <span id=\"toastMessage\">Nombre copiado al portapapeles</span>\n        </div>\n\n        <!-- Usage Instructions -->\n        <div style=\"\n          background: var(--bg-subtle);\n          border: 1px solid var(--border-subtle);\n          border-radius: 8px;\n          padding: 20px;\n          margin-bottom: 32px;\n        \">\n          <h3 style=\"margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: var(--text-primary);\">\n            💡 Cómo usar los iconos\n          </h3>\n          <ol style=\"margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 1.6;\">\n            <li style=\"margin-bottom: 8px;\">\n              Haz clic en cualquier icono para copiar su nombre\n            </li>\n            <li style=\"margin-bottom: 8px;\">\n              Usa el componente <code style=\"\n                background: var(--bg-muted);\n                padding: 2px 6px;\n                border-radius: 4px;\n                font-family: monospace;\n                font-size: 13px;\n              \">bio-icon-font</code> con el nombre del icono:\n            </li>\n          </ol>\n          <pre style=\"\n            background: var(--neutral-950);\n            color: var(--neutral-white);\n            padding: 16px;\n            border-radius: 6px;\n            overflow-x: auto;\n            margin: 12px 0 0 0;\n            font-size: 13px;\n            line-height: 1.5;\n          \"><code>&lt;bio-icon-font\n  iconName=\"home\"\n  size=\"24\"\n  type=\"rounded\"\n  color=\"default\"\n&gt;&lt;/bio-icon-font&gt;</code></pre>\n        </div>\n\n        <!-- Icons Grid -->\n        <div\n          id=\"iconsGrid\"\n          style=\"\n            display: grid;\n            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));\n            gap: 8px;\n          \">\n          ${commonIcons.map(icon => `\n            <button\n              class=\"icon-card\"\n              data-icon-name=\"${icon}\"\n              onclick=\"copyIconName('${icon}')\"\n              style=\"\n                display: flex;\n                flex-direction: column;\n                align-items: center;\n                justify-content: center;\n                padding: 20px 12px;\n                background: var(--bg-default);\n                border: 1px solid var(--border-subtle);\n                border-radius: 8px;\n                cursor: pointer;\n                transition: all 0.2s ease;\n                min-height: 100px;\n              \"\n              onmouseover=\"\n                this.style.background='var(--bg-subtle)';\n                this.style.borderColor='var(--brand-500)';\n                this.style.transform='translateY(-2px)';\n                this.style.boxShadow='var(--shadow-md)';\n              \"\n              onmouseout=\"\n                this.style.background='var(--bg-default)';\n                this.style.borderColor='var(--border-subtle)';\n                this.style.transform='translateY(0)';\n                this.style.boxShadow='none';\n              \"\n            >\n              <span\n                class=\"material-symbols-rounded\"\n                style=\"\n                  font-size: 32px;\n                  color: var(--text-primary);\n                  margin-bottom: 8px;\n                \">\n                ${icon}\n              </span>\n              <span style=\"\n                font-size: 12px;\n                color: var(--text-secondary);\n                text-align: center;\n                word-break: break-word;\n                line-height: 1.3;\n              \">\n                ${icon}\n              </span>\n            </button>\n          `).join('')}\n        </div>\n\n        <!-- No Results Message -->\n        <div\n          id=\"noResults\"\n          style=\"\n            display: none;\n            text-align: center;\n            padding: 48px 24px;\n            color: var(--text-secondary);\n          \">\n          <span class=\"material-symbols-rounded\" style=\"font-size: 48px; opacity: 0.3; display: block; margin-bottom: 16px;\">\n            search_off\n          </span>\n          <p style=\"margin: 0; font-size: 16px;\">\n            No se encontraron iconos\n          </p>\n          <p style=\"margin: 8px 0 0 0; font-size: 14px;\">\n            Intenta con otro término de búsqueda\n          </p>\n        </div>\n\n        <script>\n          // Filter icons based on search\n          function filterIcons(searchTerm) {\n            const term = searchTerm.toLowerCase().trim();\n            const cards = document.querySelectorAll('.icon-card');\n            const noResults = document.getElementById('noResults');\n            const searchResults = document.getElementById('searchResults');\n            let visibleCount = 0;\n\n            cards.forEach(card => {\n              const iconName = card.getAttribute('data-icon-name');\n              const matches = iconName.includes(term);\n              card.style.display = matches ? 'flex' : 'none';\n              if (matches) visibleCount++;\n            });\n\n            // Show/hide no results message\n            if (visibleCount === 0 && term !== '') {\n              noResults.style.display = 'block';\n              searchResults.textContent = 'No se encontraron resultados';\n            } else {\n              noResults.style.display = 'none';\n              if (term === '') {\n                searchResults.textContent = 'Mostrando ${commonIcons.length} iconos comunes';\n              } else {\n                searchResults.textContent = \\`Se encontraron \\${visibleCount} iconos\\`;\n              }\n            }\n          }\n\n          // Copy icon name to clipboard\n          function copyIconName(iconName) {\n            // Create temporary input\n            const tempInput = document.createElement('input');\n            tempInput.value = iconName;\n            document.body.appendChild(tempInput);\n            tempInput.select();\n\n            try {\n              document.execCommand('copy');\n              showToast(iconName);\n            } catch (err) {\n              console.error('Error al copiar:', err);\n            }\n\n            document.body.removeChild(tempInput);\n          }\n\n          // Show toast notification\n          function showToast(iconName) {\n            const toast = document.getElementById('copyToast');\n            const message = document.getElementById('toastMessage');\n\n            message.textContent = \\`\"\\${iconName}\" copiado al portapapeles\\`;\n\n            // Show toast\n            toast.style.opacity = '1';\n            toast.style.transform = 'translateY(0)';\n\n            // Hide after 2 seconds\n            setTimeout(() => {\n              toast.style.opacity = '0';\n              toast.style.transform = 'translateY(20px)';\n            }, 2000);\n          }\n\n          // Focus search on key press\n          document.addEventListener('keydown', (e) => {\n            const searchInput = document.getElementById('iconSearch');\n            const isTyping = document.activeElement.tagName === 'INPUT';\n\n            // Focus search on any letter/number key (except if already typing)\n            if (!isTyping && e.key.length === 1 && /[a-zA-Z0-9]/.test(e.key)) {\n              searchInput.focus();\n            }\n\n            // Clear search on Escape\n            if (e.key === 'Escape' && isTyping) {\n              searchInput.value = '';\n              filterIcons('');\n              searchInput.blur();\n            }\n          });\n        </script>\n      </div>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "IconSizes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px;\">\n        <h3 style=\"margin-bottom: 24px; font-size: 24px; font-weight: 600;\">Tamaños Disponibles</h3>\n        <div style=\"display: flex; flex-direction: column; gap: 24px;\">\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">16px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 16px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"16\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">20px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 20px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"20\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">24px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 24px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"24\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">32px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"32\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">40px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 40px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"40\"</code>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 16px;\">\n            <div style=\"width: 80px; color: var(--text-secondary); font-size: 14px;\">48px</div>\n            <span class=\"material-symbols-rounded\" style=\"font-size: 48px;\">favorite</span>\n            <code style=\"\n              background: var(--bg-subtle);\n              padding: 4px 8px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n            \">size=\"48\"</code>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "IconStyles",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"font-family: Sora, sans-serif; padding: 24px;\">\n        <h3 style=\"margin-bottom: 24px; font-size: 24px; font-weight: 600;\">Estilos: Rounded vs Filled</h3>\n        <div style=\"display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; max-width: 800px;\">\n          <!-- Rounded -->\n          <div>\n            <h4 style=\"margin-bottom: 16px; font-size: 18px; font-weight: 600; color: var(--text-primary);\">\n              Rounded (Outline)\n            </h4>\n            <p style=\"margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;\">\n              Estilo por defecto. Líneas suaves y redondeadas.\n            </p>\n            <code style=\"\n              display: block;\n              background: var(--bg-subtle);\n              padding: 8px 12px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n              margin-bottom: 16px;\n            \">type=\"rounded\"</code>\n            <div style=\"display: flex; flex-wrap: wrap; gap: 16px;\">\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">home</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">favorite</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">star</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">settings</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px;\">notifications</span>\n            </div>\n          </div>\n\n          <!-- Filled -->\n          <div>\n            <h4 style=\"margin-bottom: 16px; font-size: 18px; font-weight: 600; color: var(--text-primary);\">\n              Filled (Solid)\n            </h4>\n            <p style=\"margin-bottom: 16px; color: var(--text-secondary); font-size: 14px;\">\n              Estilo sólido. Mayor énfasis visual.\n            </p>\n            <code style=\"\n              display: block;\n              background: var(--bg-subtle);\n              padding: 8px 12px;\n              border-radius: 4px;\n              font-family: monospace;\n              font-size: 12px;\n              margin-bottom: 16px;\n            \">type=\"filled\"</code>\n            <div style=\"display: flex; flex-wrap: wrap; gap: 16px;\">\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">home</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">favorite</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">star</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">settings</span>\n              <span class=\"material-symbols-rounded\" style=\"font-size: 32px; font-variation-settings: 'FILL' 1;\">notifications</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta",
+                    "defaultValue": "{\n  title: 'Bioma 2.0/Foundations/Iconography',\n  parameters: {\n    docs: {\n      description: {\n        component: 'Biblioteca de iconos Material Symbols. Busca, explora y copia nombres de iconos para usar en tus componentes.',\n      },\n    },\n  },\n}"
+                }
+            ],
             ".storybook/main.ts": [
                 {
                     "name": "config",
@@ -3036,6 +3912,16 @@
             ],
             ".storybook/preview.ts": [
                 {
+                    "name": "parameters",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  actions: { argTypesRegex: '^on[A-Z].*' },\n  controls: {\n    expanded: true,\n    hideNoControlsWarning: true,\n    matchers: {\n      color: /(background|color)$/i,\n      date: /Date$/,\n    },\n  },\n}"
+                },
+                {
                     "name": "preview",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -3124,6 +4010,19 @@
                     "kind": 184
                 }
             ],
+            "src/app/components/color-palette/color-palette.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ColorPaletteComponent>",
+                    "file": "src/app/components/color-palette/color-palette.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "src/app/components/icon-font/icon-font.stories.ts": [
                 {
                     "name": "Story",
@@ -3202,6 +4101,19 @@
                     "kind": 184
                 }
             ],
+            "src/documentation/foundations/iconography/icon-browser.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj",
+                    "file": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "src/documentation/foundations/spacing/spacing-tokens.stories.ts": [
                 {
                     "name": "Story",
@@ -3236,7 +4148,7 @@
         "children": []
     },
     "coverage": {
-        "count": 3,
+        "count": 2,
         "status": "low",
         "files": [
             {
@@ -3245,6 +4157,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "parameters",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -3489,6 +4411,193 @@
             },
             {
                 "filePath": "src/app/components/button/button.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ColorPaletteComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ColorPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ColorToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BrandHorizontal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "brandPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ErrorGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "errorPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InfoGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "infoPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NeutralHorizontal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "neutralPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Playground",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SuccessGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "successPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "VerticalLayout",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WarningGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "warningPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/color-palette/color-palette.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -4285,6 +5394,66 @@
             },
             {
                 "filePath": "src/documentation/foundations/elevation/shadow-tokens.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "commonIcons",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconBrowser",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconSizes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconStyles",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/documentation/foundations/iconography/icon-browser.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",

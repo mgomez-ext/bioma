@@ -1,6 +1,19 @@
 import type { Preview } from '@storybook/angular';
 import { componentWrapperDecorator } from '@storybook/angular';
 
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    expanded: true,
+    hideNoControlsWarning: true,
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+};
+
+
 /**
  * Bioma 2.0 Design System - Storybook Preview Configuration
  *

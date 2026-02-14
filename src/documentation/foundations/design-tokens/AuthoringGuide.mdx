@@ -1,0 +1,587 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bioma 2.0/Foundations/Design Tokens/Authoring Guide" />
+
+# Authoring Design Tokens
+
+Guidelines for creating new design tokens that maintain system consistency and quality.
+
+## Before You Create a Token
+
+Creating new tokens has long-term implications. Ask yourself:
+
+### ✅ Should this be a token?
+
+**Create a token if**:
+- The value will be reused across multiple components
+- The value represents a design decision (not arbitrary)
+- The value might need to change systematically (theming, scaling)
+- The value needs to be synchronized across platforms (web, mobile, Figma)
+
+**Don't create a token if**:
+- It's a one-off value specific to a single component
+- It's a component-specific override without broader meaning
+- It duplicates an existing token
+- It's a calculation that should be done at runtime
+
+---
+
+### ✅ Does a token already exist?
+
+Before creating, search existing tokens:
+
+1. **Check [All Tokens](/?path=/docs/bioma-2-0-foundations-design-tokens-all-tokens)** for similar values
+2. **Review token categories** to find the right semantic token
+3. **Ask in design system channel** if unsure
+
+**Common duplicates to avoid**:
+```scss
+// Don't create these - they exist!
+--card-padding        // Use --spacing-6
+--button-text         // Use --text-inverse or --text-primary
+--light-gray-border   // Use --border-subtle
+```
+
+---
+
+## Token Naming Conventions
+
+Follow these strict naming rules to maintain consistency.
+
+### Foundation Token Names
+
+**Pattern**: `--{category}-{scale}`
+
+**Valid categories**:
+- `brand` - Brand color palette
+- `neutral` - Grayscale palette
+- `spacing` - Spacing scale
+- `radius` - Border radius
+- `font` - Font sizes
+- `shadow` - Elevation shadows
+
+**Valid scales**:
+- Colors: `50`, `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`, `950`
+- Spacing: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `8`, `9`, `10`, `12`, `16`
+- Sizes: `xs`, `sm`, `base/md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`
+
+**Examples**:
+```scss
+// ✅ Good
+--brand-600
+--neutral-400
+--spacing-8
+--radius-lg
+--font-2xl
+
+// ❌ Bad
+--brand-primary      // Use semantic tokens for "primary"
+--spacing-7          // Not in scale (use 6 or 8)
+--radius-medium      // Use --radius-md
+--font-huge          // Use scale (--font-4xl)
+```
+
+---
+
+### Semantic Token Names
+
+**Pattern**: `--{purpose}-{variant}`
+
+**Valid purposes**:
+
+**UI Element Purposes**:
+- `text` - Text colors
+- `bg` - Background colors
+- `border` - Border colors
+- `icon` - Icon colors
+
+**Action Purposes**:
+- `primary` - Brand/primary actions
+- `secondary` - Secondary actions
+- `tertiary` - Tertiary actions
+
+**Status Purposes**:
+- `success` - Success states
+- `warning` - Warning states
+- `error` - Error states
+- `info` - Information states
+
+**Valid variants**:
+
+**Hierarchy Variants**:
+- `strong` - Highest emphasis
+- `primary` - Default emphasis (text/borders only)
+- `secondary` - Lower emphasis (text only)
+- `tertiary` - Subtle emphasis (text only)
+- `muted` - Very subtle (text/backgrounds)
+- `subtle` - Light/tinted version
+
+**Interactive Variants**:
+- `default` - Resting state
+- `hover` - Mouse over state
+- `active` - Click/press state
+- `disabled` - Inactive state
+
+**Special Variants**:
+- `inverse` - For inverted backgrounds
+- `link` - Hyperlink specific (text only)
+- `overlay` - Semi-transparent (backgrounds only)
+
+**Examples**:
+```scss
+// ✅ Good
+--text-primary
+--bg-subtle
+--border-strong
+--primary-hover
+--success-default
+--error-subtle
+
+// ❌ Bad
+--text-color           // Too generic, use --text-primary
+--background-light     // Use --bg-subtle
+--border-gray          // Use --border-default
+--button-hover         // Too specific, use --primary-hover
+--green-background     // Use --success-subtle
+```
+
+---
+
+## Token Value Guidelines
+
+### Foundation Token Values
+
+**Colors** must use hex format:
+```scss
+✅ --brand-500: #E30038;
+❌ --brand-500: rgb(227, 0, 56);
+❌ --brand-500: hsl(345, 100%, 45%);
+```
+
+**Spacing** must use px units:
+```scss
+✅ --spacing-4: 16px;
+❌ --spacing-4: 1rem;
+❌ --spacing-4: 16;
+```
+
+**Font sizes** must use px units:
+```scss
+✅ --font-base: 16px;
+❌ --font-base: 1rem;
+❌ --font-base: 1em;
+```
+
+**Shadows** must use rgba format:
+```scss
+✅ --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+❌ --shadow-md: 0 4px 6px -1px #00000019;
+```
+
+---
+
+### Semantic Token Values
+
+Semantic tokens **must reference** foundation tokens:
+
+```scss
+// ✅ Good - references foundation token
+--text-primary: var(--neutral-950);
+--primary-default: var(--brand-500);
+--bg-subtle: var(--neutral-50);
+
+// ❌ Bad - hardcoded values
+--text-primary: #121212;
+--primary-default: #E30038;
+--bg-subtle: #FAFAFA;
+```
+
+**Exception**: Tokens without foundation equivalents can use absolute values:
+```scss
+// ✅ Acceptable - no foundation token exists
+--text-link: #0066CC;
+--bg-overlay: rgba(0, 0, 0, 0.5);
+```
+
+---
+
+## Creating New Foundation Tokens
+
+Foundation tokens should be created **rarely** and only when expanding the system.
+
+### When to Create Foundation Tokens
+
+**Valid reasons**:
+- Adding a new color palette (e.g., secondary brand color)
+- Extending spacing scale for larger layouts
+- Adding new typography scales
+- Creating new shadow levels
+
+**Process**:
+1. **Propose** in design system working group
+2. **Document** rationale and use cases
+3. **Get approval** from design system leads
+4. **Add to** `tokens.scss` under Foundation Tokens section
+5. **Update** documentation
+
+### Foundation Token Template
+
+```scss
+/* ========================================
+ * FOUNDATION TOKENS - [CATEGORY NAME]
+ * [Description of purpose]
+ * ======================================== */
+
+:root {
+  /* [Category] [Description] */
+  --[category]-[scale-1]: [value];  /* [Usage note] */
+  --[category]-[scale-2]: [value];
+  --[category]-[scale-3]: [value];  /* ⭐ [Mark primary] */
+  /* ... */
+}
+```
+
+**Example**:
+```scss
+/* ========================================
+ * FOUNDATION TOKENS - ACCENT PALETTE
+ * Cerulean blue accent color for links and info states
+ * ======================================== */
+
+:root {
+  /* Accent Palette - Cerulean Blue */
+  --accent-50: #E0F2FE;
+  --accent-100: #BAE6FD;
+  --accent-200: #7DD3FC;
+  --accent-300: #38BDF8;
+  --accent-400: #0EA5E9;
+  --accent-500: #0284C7;   /* ⭐ Primary accent */
+  --accent-600: #0369A1;
+  --accent-700: #075985;
+  --accent-800: #0C4A6E;
+  --accent-900: #0A3854;
+  --accent-950: #082F46;
+}
+```
+
+---
+
+## Creating New Semantic Tokens
+
+Semantic tokens are created more frequently when new UI patterns emerge.
+
+### When to Create Semantic Tokens
+
+**Valid reasons**:
+- Supporting a new component pattern (e.g., tertiary buttons)
+- Adding new interactive states (e.g., focus visible)
+- Creating new status types (e.g., neutral status)
+- Expanding theme variations (e.g., high contrast mode)
+
+**Process**:
+1. **Identify** the UI element and its purpose
+2. **Choose** appropriate naming following conventions
+3. **Reference** existing foundation tokens
+4. **Consider** dark mode implications
+5. **Add to** `tokens.scss` under Semantic Tokens section
+6. **Test** in light and dark modes
+7. **Document** usage
+
+### Semantic Token Template
+
+```scss
+/* [Purpose] [Description] */
+--[purpose]-[variant]: var(--[foundation-token]);  /* [Usage note] */
+```
+
+**Example - New Action Type**:
+```scss
+/* Tertiary Action (ghost buttons, minimal actions) */
+--tertiary-default: transparent;             /* Transparent background */
+--tertiary-hover: var(--neutral-50);        /* Light hover state */
+--tertiary-active: var(--neutral-100);      /* Pressed state */
+--tertiary-disabled: transparent;           /* Disabled background */
+--tertiary-text: var(--neutral-700);        /* Text color */
+--tertiary-text-hover: var(--neutral-950);  /* Hover text color */
+```
+
+**Example - New Status Type**:
+```scss
+/* Neutral Status (neutral badges, informational highlights) */
+--neutral-status-default: var(--neutral-600);  /* Standard neutral */
+--neutral-status-hover: var(--neutral-700);    /* Hover state */
+--neutral-status-subtle: var(--neutral-100);   /* Light background */
+--neutral-status-strong: var(--neutral-950);   /* High contrast text */
+```
+
+---
+
+## Dark Mode Considerations
+
+When creating semantic tokens, **always define dark mode overrides**.
+
+### Dark Mode Template
+
+```scss
+:root {
+  /* Light mode (default) */
+  --[token-name]: var(--[light-foundation]);
+}
+
+[data-theme="dark"] {
+  /* Dark mode override */
+  --[token-name]: var(--[dark-foundation]);
+}
+```
+
+### Dark Mode Guidelines
+
+**Text colors** invert:
+```scss
+:root {
+  --text-primary: var(--neutral-950);  // Dark text on light
+}
+
+[data-theme="dark"] {
+  --text-primary: var(--neutral-50);   // Light text on dark
+}
+```
+
+**Backgrounds** invert:
+```scss
+:root {
+  --bg-default: var(--neutral-white);  // Light background
+}
+
+[data-theme="dark"] {
+  --bg-default: var(--neutral-950);    // Dark background
+}
+```
+
+**Borders** adapt:
+```scss
+:root {
+  --border-default: var(--neutral-300);  // Light border
+}
+
+[data-theme="dark"] {
+  --border-default: var(--neutral-700);  // Dark border (reversed scale)
+}
+```
+
+**Brand colors** typically stay the same:
+```scss
+:root {
+  --primary-default: var(--brand-500);
+}
+
+[data-theme="dark"] {
+  --primary-default: var(--brand-500);  // Same in dark mode
+}
+```
+
+**Subtle variants** may need adjustment:
+```scss
+:root {
+  --primary-subtle: var(--brand-50);    // Very light in light mode
+}
+
+[data-theme="dark"] {
+  --primary-subtle: var(--brand-950);   // Very dark in dark mode
+}
+```
+
+---
+
+## Token Testing Checklist
+
+Before finalizing new tokens, verify:
+
+### ✅ Naming
+- [ ] Follows naming conventions
+- [ ] Uses existing category/purpose names
+- [ ] Uses standard variants
+- [ ] No abbreviations or acronyms
+- [ ] Name is self-explanatory
+
+### ✅ Values
+- [ ] Foundation tokens use absolute values
+- [ ] Semantic tokens reference foundation tokens
+- [ ] Correct unit types (px for spacing, hex for colors)
+- [ ] Values align with existing scale
+
+### ✅ Dark Mode
+- [ ] Dark mode override exists (if semantic)
+- [ ] Appropriate contrast in both modes
+- [ ] Tested visually in both themes
+
+### ✅ Documentation
+- [ ] Added to tokens.scss with comments
+- [ ] Usage notes included
+- [ ] Example provided
+- [ ] All Tokens page updated
+
+### ✅ Usage
+- [ ] Used in at least one component
+- [ ] Works in all relevant contexts
+- [ ] No unintended side effects
+- [ ] Team reviewed and approved
+
+---
+
+## Token Deprecation
+
+When tokens need to be removed or replaced:
+
+### Deprecation Process
+
+1. **Mark as deprecated** in code:
+```scss
+/* @deprecated Use --text-primary instead */
+--body-text: var(--neutral-950);
+```
+
+2. **Update documentation** with migration path
+3. **Notify team** of deprecation timeline
+4. **Provide migration guide** with find/replace patterns
+5. **Remove after** 1-2 version cycles
+
+### Migration Examples
+
+```scss
+// Old token (deprecated)
+--body-text: var(--neutral-950);
+
+// New token (use instead)
+--text-primary: var(--neutral-950);
+```
+
+**Migration guide**:
+```
+Find:    var(--body-text)
+Replace: var(--text-primary)
+```
+
+---
+
+## Common Mistakes to Avoid
+
+### ❌ Creating component-specific tokens
+
+```scss
+// Wrong - too specific
+--button-primary-background: var(--brand-500);
+--card-border-color: var(--neutral-300);
+```
+
+```scss
+// Right - reusable semantic tokens
+--primary-default: var(--brand-500);
+--border-default: var(--neutral-300);
+```
+
+**Why**: Component-specific tokens don't scale. Use semantic tokens that describe purpose, not location.
+
+---
+
+### ❌ Skipping dark mode
+
+```scss
+// Wrong - only light mode
+:root {
+  --my-new-token: var(--neutral-950);
+}
+```
+
+```scss
+// Right - both modes
+:root {
+  --my-new-token: var(--neutral-950);
+}
+
+[data-theme="dark"] {
+  --my-new-token: var(--neutral-50);
+}
+```
+
+**Why**: All semantic tokens must work in both themes.
+
+---
+
+### ❌ Hardcoding semantic token values
+
+```scss
+// Wrong - hardcoded
+--text-primary: #121212;
+```
+
+```scss
+// Right - references foundation
+--text-primary: var(--neutral-950);
+```
+
+**Why**: Semantic tokens should reference foundation tokens for flexibility.
+
+---
+
+### ❌ Using inconsistent scales
+
+```scss
+// Wrong - arbitrary value
+--spacing-7: 28px;
+```
+
+```scss
+// Right - follows 4px scale
+--spacing-8: 32px;
+```
+
+**Why**: Maintain consistent intervals in scales.
+
+---
+
+## Quick Start Templates
+
+### New Color Palette
+
+```scss
+/* [Palette Name] */
+--[palette]-50: #[hex];
+--[palette]-100: #[hex];
+--[palette]-200: #[hex];
+--[palette]-300: #[hex];
+--[palette]-400: #[hex];
+--[palette]-500: #[hex];   /* ⭐ Primary */
+--[palette]-600: #[hex];
+--[palette]-700: #[hex];
+--[palette]-800: #[hex];
+--[palette]-900: #[hex];
+--[palette]-950: #[hex];
+```
+
+### New Semantic Color Set
+
+```scss
+/* [Purpose] Colors */
+--[purpose]-default: var(--[foundation]);
+--[purpose]-hover: var(--[foundation]);
+--[purpose]-active: var(--[foundation]);
+--[purpose]-disabled: var(--[foundation]);
+--[purpose]-subtle: var(--[foundation]);
+--[purpose]-strong: var(--[foundation]);
+```
+
+### New Spacing Value
+
+```scss
+/* Spacing - [Use Case] */
+--spacing-[n]: [n*4]px;  /* [Usage description] */
+```
+
+---
+
+## Next Steps
+
+- **[Reading Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-reading-guide)** - Understand token names
+- **[Usage Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-usage-guide)** - Best practices for using tokens
+- **[All Tokens](/?path=/docs/bioma-2-0-foundations-design-tokens-all-tokens)** - See all existing tokens

@@ -1,0 +1,78 @@
+<div class="color-palette" [attr.data-layout]="layout">
+  <!-- Palette Header -->
+  <div class="palette-header">
+    <h3 class="palette-name">{{ palette.name }}</h3>
+    <p *ngIf="palette.description" class="palette-description">
+      {{ palette.description }}
+    </p>
+  </div>
+
+  <!-- Color Swatches -->
+  <div class="color-swatches" [ngClass]="'layout-' + layout">
+    <div
+      *ngFor="let token of palette.tokens"
+      class="color-swatch"
+      [class.selected]="selectedToken === token"
+      [class.copied]="isCopied(token)"
+      [style.background-color]="token.hex"
+      (click)="selectToken(token)">
+
+      <!-- Token Label (always visible) -->
+      <div class="swatch-label" [ngClass]="getContrastClass(token)">
+        <span class="token-name">{{ token.name }}</span>
+        <span class="token-value">{{ token.hex }}</span>
+      </div>
+
+      <!-- Expanded Details (on selection) -->
+      <div *ngIf="selectedToken === token && showDetails" class="swatch-details">
+        <div class="detail-section">
+          <div class="detail-row">
+            <span class="detail-label">Token</span>
+            <code class="detail-value copyable" (click)="copyToClipboard(getTokenName(token), token); $event.stopPropagation()">
+              {{ getTokenName(token) }}
+            </code>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">HEX</span>
+            <code class="detail-value copyable" (click)="copyToClipboard(token.hex, token); $event.stopPropagation()">
+              {{ token.hex }}
+            </code>
+          </div>
+
+          <div *ngIf="token.rgb" class="detail-row">
+            <span class="detail-label">RGB</span>
+            <code class="detail-value copyable" (click)="copyToClipboard(token.rgb, token); $event.stopPropagation()">
+              {{ token.rgb }}
+            </code>
+          </div>
+
+          <div *ngIf="token.hsl" class="detail-row">
+            <span class="detail-label">HSL</span>
+            <code class="detail-value copyable" (click)="copyToClipboard(token.hsl, token); $event.stopPropagation()">
+              {{ token.hsl }}
+            </code>
+          </div>
+
+          <div *ngIf="token.usage" class="detail-row usage-row">
+            <span class="detail-label">Usage</span>
+            <span class="usage-text">{{ token.usage }}</span>
+          </div>
+        </div>
+
+        <!-- Copy Confirmation -->
+        <div *ngIf="isCopied(token)" class="copy-confirmation">
+          ✓ Copied!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference Guide -->
+  <div *ngIf="layout === 'horizontal'" class="palette-guide">
+    <p class="guide-text">
+      <span class="guide-icon">💡</span>
+      Click any color to view details and copy values
+    </p>
+  </div>
+</div>

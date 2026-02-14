@@ -4,11 +4,13 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Design Tokens
 
-Design tokens are the single source of truth for design decisions in Bioma. They're named values that represent visual design attributes like colors, spacing, typography, and more.
+Design tokens abstract out visual properties like color, typography, and spacing for consistent and meaningful user interface design across tools and platforms.
 
 ## What are Design Tokens?
 
-Tokens are named entities that store visual design information. Instead of hardcoding values like `#E30038` or `16px`, you use tokens like `--primary-default` or `--spacing-4`.
+Design tokens are the **single source of truth** for design decisions in Bioma. They're named entities that store visual design information, enabling teams to build consistent interfaces without hardcoding values.
+
+Instead of using magic numbers and hex codes scattered throughout your codebase, tokens provide semantic, self-documenting references that make your design system scalable and maintainable.
 
 ### Without Tokens
 ```scss
@@ -28,143 +30,352 @@ Tokens are named entities that store visual design information. Instead of hardc
 }
 ```
 
+## Why Design Tokens Matter
+
+Design tokens provide six critical benefits to the Bioma design system:
+
+### 🗂️ Catalog Design Constants
+Centralize all design values in one place, making them discoverable and documented
+
+### 📋 Codify Design Decisions
+Transform abstract design choices into concrete, named values that explain their purpose
+
+### 🔄 Synchronize Across Tools
+Maintain consistency between Figma, code, documentation, and other platforms
+
+### 🧩 Promote Abstraction
+Decouple visual appearance from implementation, enabling flexible design changes
+
+### 🚀 Facilitate New Decisions
+Provide a framework for making consistent design choices when building new features
+
+### 🎨 Enable Themes and Modes
+Support light/dark modes and future theming capabilities without code changes
+
+---
+
 ## Token Architecture
 
-Bioma uses a **two-level token system** inspired by design systems like Material Design and Polaris:
+Bioma uses a **two-tier token system** that balances flexibility with clarity:
 
 ```
-Foundation Tokens (Level 1)
-         ↓
-Semantic Tokens (Level 2)
-         ↓
-Components
-         ↓
-UI
+┌──────────────────────────────┐
+│  Foundation Tokens (Tier 1)  │  Primitive values
+│  --brand-500: #E30038        │
+└──────────────┬───────────────┘
+               │ reference
+               ↓
+┌──────────────────────────────┐
+│  Semantic Tokens (Tier 2)    │  Contextual meaning
+│  --primary-default: var(...) │
+└──────────────┬───────────────┘
+               │ used in
+               ↓
+┌──────────────────────────────┐
+│  Components & UI             │  Interface elements
+└──────────────────────────────┘
 ```
 
-### Level 1: Foundation Tokens
+### Tier 1: Foundation Tokens
 
-**Purpose**: Define primitive, context-independent values
+Foundation tokens are **primitive, context-independent values** that form the system's bedrock.
 
 **Characteristics**:
-- Absolute values
+- Contain absolute values (hex colors, pixel dimensions)
 - Never reference other tokens
-- Platform agnostic
-- Rarely change
+- Platform and theme agnostic
+- Change infrequently
+- Serve as building blocks for semantic tokens
 
 **Examples**:
 ```scss
---brand-500: #E30038;
---neutral-950: #121212;
---spacing-4: 16px;
---radius-md: 8px;
+--brand-500: #E30038;        // Bioma red
+--neutral-950: #121212;      // Near black
+--spacing-4: 16px;           // Base unit × 4
+--radius-md: 8px;            // Medium corner
+--font-base: 16px;           // Body text size
 ```
 
-**Naming Pattern**: `{category}/{value}` or `{category}-{value}`
+**Naming Pattern**: `{category}-{scale}` or `{category}-{descriptor}`
+- Categories: `brand`, `neutral`, `spacing`, `radius`, `font`, `shadow`
+- Scale: Numeric (50-950 for colors, 0-16 for spacing)
+- Descriptors: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, etc.
 
-### Level 2: Semantic Tokens
+---
 
-**Purpose**: Provide contextual meaning by referencing foundation tokens
+### Tier 2: Semantic Tokens
+
+Semantic tokens provide **contextual meaning** by referencing foundation tokens and adapting to themes.
 
 **Characteristics**:
-- Reference foundation tokens
-- Change based on context (light/dark mode)
-- Self-documenting
-- Frequently used in components
+- Reference foundation tokens using `var()`
+- Self-documenting names that explain purpose
+- Adapt to context (light/dark mode, themes)
+- Used directly in components
+- More flexible and maintainable than foundation tokens
 
 **Examples**:
 ```scss
---primary-default: var(--brand-500);
---text-primary: var(--neutral-950);
---bg-default: var(--neutral-white);
+--primary-default: var(--brand-500);     // Primary brand action
+--text-primary: var(--neutral-950);      // Primary text color
+--bg-default: var(--neutral-white);      // Default background
+--border-default: var(--neutral-300);    // Default border
 ```
 
 **Naming Pattern**: `{purpose}-{variant}`
+- Purpose: `text`, `bg`, `border`, `primary`, `success`, `error`, etc.
+- Variant: `default`, `hover`, `active`, `subtle`, `strong`, `disabled`
+
+**Why Two Tiers?**
+
+This architecture provides the best of both worlds:
+- **Foundation tokens** ensure visual consistency across primitive values
+- **Semantic tokens** enable flexible theming and clear intent
+- **Components** reference semantic tokens for automatic theme adaptation
 
 ## Token Categories
 
-### Color Tokens
+Bioma organizes tokens into clear categories based on their visual purpose. Each category contains both foundation and semantic tokens.
 
-**Foundation Colors** (68 tokens)
-- Brand palette: 11 values from 50-950
-- Neutral palette: 13 values from 50-950
-- Status colors: Success, Warning, Error, Info
+---
 
-**Semantic Colors** (47 tokens)
-- Text: primary, secondary, tertiary, muted, disabled, inverse, link
-- Background: default, subtle, muted, inverse, overlay
-- Border: subtle, default, strong, inverse
-- Action: primary (default, hover, active, disabled, subtle, strong)
-- Status: success, warning, error, info (each with default, hover, subtle, strong)
+### 🎨 Color Tokens
 
-### Spacing Tokens (11 tokens)
+Color is the largest token category, providing both primitive palettes and semantic color roles.
 
-Based on 4px grid:
+#### Foundation Colors
+
+**Brand Palette** (11 shades)
 ```scss
---spacing-0: 0px;
---spacing-1: 4px;
---spacing-2: 8px;
---spacing-3: 12px;
---spacing-4: 16px;
---spacing-5: 20px;
---spacing-6: 24px;
---spacing-8: 32px;
---spacing-10: 40px;
---spacing-12: 48px;
---spacing-16: 64px;
+--brand-50  // Lightest tint
+--brand-100
+--brand-200
+--brand-300
+--brand-400
+--brand-500 // ⭐ Primary brand color
+--brand-600
+--brand-700
+--brand-800
+--brand-900
+--brand-950 // Darkest shade
 ```
 
-### Typography Tokens (21 tokens)
-
-**Font Families**:
+**Neutral Palette** (13 shades)
 ```scss
---font-primary: 'Sora', sans-serif;
---font-mono: 'SF Mono', monospace;
+--neutral-white   // Pure white
+--neutral-50      // Lightest gray
+// ... 100-900 shades
+--neutral-950     // Near black
+--neutral-black   // Pure black
 ```
 
-**Font Sizes**: xs (12px) → 5xl (48px)
-**Font Weights**: 300, 400, 500, 600, 700
-**Line Heights**: none, tight, snug, normal, relaxed, loose
-**Letter Spacing**: tight, normal, wide
+**Status Palettes** (4 × 4 variants each)
+- Success (green): Default, hover, subtle, strong
+- Warning (amber): Default, hover, subtle, strong
+- Error (red): Default, hover, subtle, strong
+- Info (blue): Default, hover, subtle, strong
 
-### Border Tokens (8 tokens)
+#### Semantic Colors
 
-**Radius**:
+Semantic color tokens are organized by UI element type:
+
+**Text Colors** (8 tokens)
 ```scss
---radius-none: 0px;
---radius-sm: 4px;
---radius-md: 8px;
---radius-lg: 12px;
---radius-xl: 16px;
---radius-2xl: 24px;
---radius-full: 9999px;
+--text-strong      // Highest emphasis (headings)
+--text-primary     // Body text, primary content
+--text-secondary   // Supporting text, labels
+--text-tertiary    // Subtle text, helper text
+--text-muted       // Very subtle text, placeholders
+--text-disabled    // Disabled state text
+--text-inverse     // Text on dark backgrounds
+--text-link        // Hyperlinks and actions
 ```
 
-### Effect Tokens
+**Background Colors** (5 tokens)
+```scss
+--bg-default       // Primary surface color
+--bg-subtle        // Slightly tinted surface
+--bg-muted         // More pronounced tint
+--bg-inverse       // Inverted surface (dark on light)
+--bg-overlay       // Modal/dialog overlays
+```
 
-**Shadows** (5 levels):
+**Border Colors** (4 tokens)
+```scss
+--border-subtle    // Very light borders
+--border-default   // Standard borders
+--border-strong    // Emphasized borders
+--border-inverse   // Borders on dark backgrounds
+```
+
+**Action Colors** (Primary, Secondary, Tertiary)
+Each action type has variants for interactive states:
+```scss
+// Primary (brand) actions
+--primary-default
+--primary-hover
+--primary-active
+--primary-disabled
+--primary-subtle   // Light background variant
+--primary-strong   // High contrast text
+
+// Secondary actions (similar variants)
+// Tertiary actions (similar variants)
+```
+
+**Status Colors** (Success, Warning, Error, Info)
+Each status has semantic variants:
+```scss
+--success-default  // Main success color
+--success-hover    // Hover state
+--success-subtle   // Light background
+--success-strong   // Dark, high contrast
+```
+
+---
+
+### 📏 Spacing Tokens
+
+Spacing tokens follow a **4px base unit** scale for consistent rhythm and alignment.
+
+**Scale** (12 tokens)
+```scss
+--spacing-0: 0px      // No spacing
+--spacing-1: 4px      // Minimal spacing (tight padding)
+--spacing-2: 8px      // Small spacing (compact elements)
+--spacing-3: 12px     // Base spacing (button padding)
+--spacing-4: 16px     // Standard spacing (card padding)
+--spacing-5: 20px     // Comfortable spacing
+--spacing-6: 24px     // Generous spacing (section padding)
+--spacing-8: 32px     // Large spacing (between sections)
+--spacing-9: 36px     // Extra large spacing
+--spacing-10: 40px    // Section spacing
+--spacing-12: 48px    // Major section spacing
+--spacing-16: 64px    // Maximum spacing (page margins)
+```
+
+**Usage Guidelines**:
+- Use `spacing-3` and `spacing-4` for most component padding
+- Use `spacing-6` and `spacing-8` for section spacing
+- Use `spacing-1` and `spacing-2` for compact components
+- Maintain consistent spacing relationships within components
+
+---
+
+### ✍️ Typography Tokens
+
+Typography tokens define text appearance across the system.
+
+**Font Families** (2 tokens)
+```scss
+--font-primary: 'Sora', sans-serif;   // UI text, headings
+--font-mono: 'SF Mono', monospace;    // Code, technical content
+```
+
+**Font Sizes** (9 tokens)
+```scss
+--font-xs: 12px      // Captions, labels
+--font-sm: 14px      // Small body text
+--font-base: 16px    // ⭐ Default body text
+--font-lg: 18px      // Large body text
+--font-xl: 20px      // Small headings
+--font-2xl: 24px     // Section headings
+--font-3xl: 30px     // Page headings
+--font-4xl: 36px     // Large headings
+--font-5xl: 48px     // Hero headings
+```
+
+**Font Weights** (5 tokens)
+```scss
+--font-light: 300      // Subtle text
+--font-regular: 400    // ⭐ Default weight
+--font-medium: 500     // Emphasized text
+--font-semibold: 600   // Headings, important text
+--font-bold: 700       // Strong emphasis
+```
+
+**Line Heights** (6 tokens)
+```scss
+--leading-none: 1        // Tight, display text
+--leading-tight: 1.25    // Headings
+--leading-snug: 1.375    // Subheadings
+--leading-normal: 1.5    // ⭐ Body text
+--leading-relaxed: 1.625 // Comfortable reading
+--leading-loose: 2       // Very open spacing
+```
+
+**Letter Spacing** (3 tokens)
+```scss
+--tracking-tight: -0.025em   // Headings
+--tracking-normal: 0em       // ⭐ Default
+--tracking-wide: 0.025em     // All caps, labels
+```
+
+---
+
+### 📐 Border Radius Tokens
+
+Border radius tokens create consistent corner treatments.
+
+**Scale** (8 tokens)
+```scss
+--radius-none: 0px        // Sharp corners
+--radius-xs: 2px          // Minimal rounding
+--radius-sm: 4px          // Small elements (tags, badges)
+--radius-md: 8px          // ⭐ Default (buttons, inputs)
+--radius-lg: 12px         // Cards, modals
+--radius-xl: 16px         // Large cards
+--radius-2xl: 24px        // Hero elements
+--radius-full: 9999px     // Pills, circular avatars
+```
+
+---
+
+### ✨ Effect Tokens
+
+Effect tokens control visual depth, motion, and layering.
+
+**Shadows** (5 levels)
 ```scss
 --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
---shadow-sm: ...;
---shadow-md: ...;
---shadow-lg: ...;
---shadow-xl: ...;
+  // Subtle lift (hover states)
+
+--shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  // Light elevation (cards)
+
+--shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  // ⭐ Standard elevation (raised cards)
+
+--shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+  // High elevation (dropdowns)
+
+--shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+  // Maximum elevation (modals)
 ```
 
-**Transitions** (3 speeds):
+**Transitions** (3 speeds + easing curves)
 ```scss
---transition-fast: 150ms ease;
---transition-base: 250ms ease;
---transition-slow: 350ms ease;
+// Duration tokens
+--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);   // Quick feedback
+--transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);   // ⭐ Standard
+--transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);   // Dramatic
+
+// Easing curves
+--ease-in: cubic-bezier(0.4, 0, 1, 1);           // Accelerate
+--ease-out: cubic-bezier(0, 0, 0.2, 1);          // Decelerate
+--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);     // Smooth
 ```
 
-**Z-Index** (8 levels):
+**Z-Index** (8 levels)
 ```scss
---z-base: 0;
---z-dropdown: 1000;
---z-sticky: 1020;
---z-modal: 1050;
-// ... etc
+--z-base: 0              // Default layer
+--z-dropdown: 1000       // Dropdown menus
+--z-sticky: 1020         // Sticky headers
+--z-fixed: 1030          // Fixed elements
+--z-modal-backdrop: 1040 // Modal backgrounds
+--z-modal: 1050          // Modal dialogs
+--z-popover: 1060        // Popovers, tooltips
+--z-tooltip: 1070        // Highest priority tooltips
 ```
 
 ## Dark Mode with Tokens
@@ -277,26 +488,49 @@ See [All Design Tokens](#) for the complete reference of all 150+ tokens with va
 - [Reading Guide](#) - How to understand token names
 - [Usage Guide](#) - How to use tokens effectively
 
-## Benefits of Tokens
+## Next Steps
 
-### 🎨 Consistency
-Same spacing, colors, and typography everywhere
+Ready to use design tokens? Choose your path:
 
-### 🔧 Maintainability
-Update once, change everywhere
+### 📖 [Reading Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-reading-guide)
+Learn how to understand and interpret token names
 
-### 🌙 Theming
-Dark mode and themes without code changes
+### ✍️ [Authoring Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-authoring-guide)
+Create new tokens that follow system conventions
 
-### 📱 Platform Agnostic
-Export tokens to iOS, Android, Web, etc.
+### 🛠️ [Usage Guide](/?path=/docs/bioma-2-0-foundations-design-tokens-usage-guide)
+Best practices for using tokens in code and design
 
-### 📖 Self-Documenting
-Token names explain their purpose
-
-### ♿ Accessibility
-Ensure proper contrast and sizing
+### 📚 [All Tokens](/?path=/docs/bioma-2-0-foundations-design-tokens-all-tokens)
+Complete reference of all 150+ tokens
 
 ---
 
-Next: Learn how to [read token names](#) or explore [all tokens](#).
+## Quick Reference
+
+**Most Common Tokens**:
+```scss
+// Colors
+--text-primary        // Body text
+--bg-default          // Backgrounds
+--primary-default     // Brand actions
+--border-default      // Borders
+
+// Spacing
+--spacing-4           // Standard padding
+--spacing-6           // Section spacing
+
+// Typography
+--font-base           // Body text size
+--font-regular        // Normal weight
+--leading-normal      // Line height
+
+// Effects
+--radius-md           // Border radius
+--shadow-md           // Card elevation
+--transition-base     // Animations
+```
+
+**Token Patterns**:
+- Foundation: `{category}-{scale}` → `--brand-500`, `--spacing-4`
+- Semantic: `{purpose}-{variant}` → `--text-primary`, `--primary-hover`
